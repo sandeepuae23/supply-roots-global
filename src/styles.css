@@ -128,23 +128,27 @@
 
 @layer components {
   /* Buttons */
-  .btn {
+  .btn-primary,
+  .btn-accent,
+  .btn-outline,
+  .btn-light,
+  .btn-outline-light {
     @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-sm px-8 py-4 text-sm font-bold tracking-wider uppercase transition-colors;
   }
   .btn-primary {
-    @apply btn bg-primary text-primary-foreground hover:bg-primary/90;
+    @apply bg-primary text-primary-foreground hover:bg-primary/90;
   }
   .btn-accent {
-    @apply btn bg-accent text-accent-foreground hover:bg-accent/90;
+    @apply bg-accent text-accent-foreground hover:bg-accent/90;
   }
   .btn-outline {
-    @apply btn border border-primary/25 text-primary hover:bg-primary/5;
+    @apply border border-primary/25 text-primary hover:bg-primary/5;
   }
   .btn-light {
-    @apply btn bg-card text-card-foreground hover:bg-secondary;
+    @apply bg-card text-card-foreground hover:bg-secondary;
   }
   .btn-outline-light {
-    @apply btn border border-cream/60 text-cream hover:bg-cream/10;
+    @apply border border-cream/60 text-cream hover:bg-cream/10;
   }
 
   /* Eyebrow label above section headings */
