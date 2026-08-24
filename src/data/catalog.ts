@@ -399,7 +399,7 @@ const productSeeds: Record<string, ProductSeed[]> = {
 
 function buildProduct(categorySlug: string, seed: ProductSeed): Product {
   const category = categories.find((c) => c.slug === categorySlug)!;
-  const d = categoryDefaults[categorySlug];
+  const d = categoryDefaults[categorySlug]!;
   return {
     slug: seed.slug,
     name: seed.name,

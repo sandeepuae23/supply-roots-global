@@ -59,7 +59,7 @@ export function SiteHeader() {
           </div>
 
           <div className="flex items-center gap-3">
-            <Link to="/request-quote" className="btn-accent hidden !px-5 !py-2.5 !text-xs sm:inline-flex">
+            <Link to="/request-quote" className="btn-accent hidden px-5! py-2.5! text-xs! sm:inline-flex">
               Request a Quote
             </Link>
             <button
@@ -91,7 +91,7 @@ export function SiteHeader() {
               <Link
                 to="/request-quote"
                 onClick={() => setOpen(false)}
-                className="btn-accent mt-2 !py-3 !text-xs"
+                className="btn-accent mt-2 py-3! text-xs!"
               >
                 Request a Quote
               </Link>
