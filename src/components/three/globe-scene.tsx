@@ -96,14 +96,14 @@ function Globe() {
       </mesh>
 
       {points.map((p, i) => (
-        <mesh key={HUBS[i].name} position={p}>
+        <mesh key={HUBS[i]!.name} position={p}>
           <sphereGeometry args={[0.038, 16, 16]} />
           <meshStandardMaterial color="#fbbf24" emissive="#f59e0b" emissiveIntensity={1.8} toneMapped={false} />
         </mesh>
       ))}
 
       {LANES.map(([a, b], i) => (
-        <Arc key={`${a}-${b}-${i}`} from={points[a]} to={points[b]} delay={i / LANES.length} />
+        <Arc key={`${a}-${b}-${i}`} from={points[a]!} to={points[b]!} delay={i / LANES.length} />
       ))}
     </group>
   );
