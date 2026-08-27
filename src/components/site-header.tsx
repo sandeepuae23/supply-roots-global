@@ -3,7 +3,6 @@ import { Menu, X, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { contact } from "@/data/catalog";
 import logo from "@/assets/logo-leo-infinity.png";
-import logo from "@/assets/logo-leo-infinity.png";
 
 const NAV = [
   { to: "/", label: "Home" },
