@@ -1,14 +1,28 @@
 import { Link } from "@tanstack/react-router";
 import { categories, contact, markets } from "@/data/catalog";
+import logo from "@/assets/logo-leo-infinity.png";
 
 export function SiteFooter() {
   return (
     <footer className="bg-primary text-cream">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-2 lg:grid-cols-4">
         <div className="space-y-4">
-          <span className="font-serif text-2xl font-bold tracking-tight">
-            GlobalTerra<span className="text-accent">.</span>
-          </span>
+          <div className="flex items-center gap-3">
+            <img
+              src={logo}
+              alt="Leo Infinity Global General Trading logo"
+              width={1024}
+              height={1024}
+              loading="lazy"
+              className="h-12 w-12 object-contain brightness-0 invert"
+            />
+            <span className="font-serif text-xl leading-tight font-bold tracking-tight">
+              Leo Infinity<span className="text-accent">.</span>
+              <span className="block text-[10px] font-medium tracking-[0.2em] text-cream/60 uppercase">
+                Global General Trading
+              </span>
+            </span>
+          </div>
           <p className="text-sm leading-relaxed text-cream/70">
             Licensed international food trading company sourcing, importing and exporting quality agricultural and
             food products worldwide.

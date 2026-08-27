@@ -5,13 +5,13 @@ import { CheckItem, PageHero, SectionHeading } from "@/components/ui-primitives"
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Us — GlobalTerra Food Trading" },
+      { title: "About Us — Leo Infinity Global General Trading" },
       {
         name: "description",
         content:
-          "GlobalTerra is an international food trading company sourcing, importing, exporting and supplying high-quality agricultural and food products worldwide.",
+          "Leo Infinity is an international food trading company sourcing, importing, exporting and supplying high-quality agricultural and food products worldwide.",
       },
-      { property: "og:title", content: "About Us — GlobalTerra Food Trading" },
+      { property: "og:title", content: "About Us — Leo Infinity Global General Trading" },
       {
         property: "og:description",
         content: "A trusted global food trading partner connecting quality producers with international buyers.",

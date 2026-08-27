@@ -6,13 +6,13 @@ import { Field, PageHero } from "@/components/ui-primitives";
 export const Route = createFileRoute("/request-quote")({
   head: () => ({
     meta: [
-      { title: "Request a Quote — GlobalTerra Food Trading" },
+      { title: "Request a Quote — Leo Infinity Global General Trading" },
       {
         name: "description",
         content:
           "B2B quotation for food import & export: product, specification, quantity, origin, destination port, packaging and Incoterm (FOB / CIF / CFR / EXW).",
       },
-      { property: "og:title", content: "Request a Quote — GlobalTerra Food Trading" },
+      { property: "og:title", content: "Request a Quote — Leo Infinity Global General Trading" },
       {
         property: "og:description",
         content: "Detailed B2B quotation with specifications, packaging and Incoterms — response within one business day.",

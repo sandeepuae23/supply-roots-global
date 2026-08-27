@@ -72,14 +72,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "GlobalTerra Food Trading — Global Food Import & Export" },
+      { title: "Leo Infinity Global General Trading — Global Food Import & Export" },
       {
         name: "description",
         content:
           "International food trading company supplying quality vegetables, fruits, rice, pulses, eggs, spices and grains to UAE, India, Saudi Arabia, Qatar, Europe, Africa and Asia.",
       },
-      { name: "author", content: "GlobalTerra Food Trading" },
-      { property: "og:title", content: "GlobalTerra Food Trading — Global Food Import & Export" },
+      { name: "author", content: "Leo Infinity Global General Trading" },
+      { property: "og:title", content: "Leo Infinity Global General Trading — Global Food Import & Export" },
       {
         property: "og:description",
         content:
@@ -90,7 +90,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

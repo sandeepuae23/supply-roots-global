@@ -7,13 +7,13 @@ import { Field, PageHero } from "@/components/ui-primitives";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Us — GlobalTerra Food Trading" },
+      { title: "Contact Us — Leo Infinity Global General Trading" },
       {
         name: "description",
         content:
-          "Reach GlobalTerra's export desk by phone, WhatsApp or email. Offices in Dubai, UAE and Mumbai, India. Send your product enquiry today.",
+          "Reach Leo Infinity's export desk by phone, WhatsApp or email. Offices in Dubai, UAE and Mumbai, India. Send your product enquiry today.",
       },
-      { property: "og:title", content: "Contact Us — GlobalTerra Food Trading" },
+      { property: "og:title", content: "Contact Us — Leo Infinity Global General Trading" },
       { property: "og:description", content: "Export desk in Dubai and sourcing office in Mumbai. We reply within one business day." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

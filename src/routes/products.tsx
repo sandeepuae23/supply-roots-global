@@ -5,13 +5,13 @@ import { SectionHeading } from "@/components/ui-primitives";
 export const Route = createFileRoute("/products")({
   head: () => ({
     meta: [
-      { title: "Product Catalog — GlobalTerra Food Trading" },
+      { title: "Product Catalog — Leo Infinity Global General Trading" },
       {
         name: "description",
         content:
           "Export-grade vegetables, fruits, basmati rice, pulses, eggs, spices, grains, dry fruits, nuts, edible oils and frozen foods for international markets.",
       },
-      { property: "og:title", content: "Product Catalog — GlobalTerra Food Trading" },
+      { property: "og:title", content: "Product Catalog — Leo Infinity Global General Trading" },
       {
         property: "og:description",
         content: "12 food categories, 60+ products, bulk and private-label supply with full export documentation.",

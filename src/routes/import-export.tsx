@@ -5,13 +5,13 @@ import { CheckItem, PageHero, SectionHeading } from "@/components/ui-primitives"
 export const Route = createFileRoute("/import-export")({
   head: () => ({
     meta: [
-      { title: "Import & Export Services — GlobalTerra Food Trading" },
+      { title: "Import & Export Services — Leo Infinity Global General Trading" },
       {
         name: "description",
         content:
           "End-to-end food import and export services: sourcing, verification, documentation, freight coordination, customs clearance and quality inspection. EXW, FOB, CFR, CIF, DDP.",
       },
-      { property: "og:title", content: "Import & Export Services — GlobalTerra Food Trading" },
+      { property: "og:title", content: "Import & Export Services — Leo Infinity Global General Trading" },
       {
         property: "og:description",
         content: "Precision-sourced agricultural commodities moved across borders with full documentation support.",

@@ -5,13 +5,13 @@ import { CheckItem, SectionHeading } from "@/components/ui-primitives";
 export const Route = createFileRoute("/quality")({
   head: () => ({
     meta: [
-      { title: "Quality & Certifications — GlobalTerra Food Trading" },
+      { title: "Quality & Certifications — Leo Infinity Global General Trading" },
       {
         name: "description",
         content:
           "Food safety, quality inspection, phytosanitary certificates, certificates of origin, health and veterinary certificates, lab testing and export packing standards.",
       },
-      { property: "og:title", content: "Quality & Certifications — GlobalTerra Food Trading" },
+      { property: "og:title", content: "Quality & Certifications — Leo Infinity Global General Trading" },
       {
         property: "og:description",
         content: "Every shipment inspected, tested and documented to destination-market requirements.",

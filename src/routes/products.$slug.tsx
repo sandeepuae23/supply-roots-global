@@ -10,13 +10,13 @@ export const Route = createFileRoute("/products/$slug")({
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
-      return { meta: [{ title: "Product Not Found — GlobalTerra Food Trading" }] };
+      return { meta: [{ title: "Product Not Found — Leo Infinity Global General Trading" }] };
     }
     return {
       meta: [
-        { title: `${loaderData.name} — GlobalTerra Food Trading` },
+        { title: `${loaderData.name} — Leo Infinity Global General Trading` },
         { name: "description", content: loaderData.description },
-        { property: "og:title", content: `${loaderData.name} — GlobalTerra Food Trading` },
+        { property: "og:title", content: `${loaderData.name} — Leo Infinity Global General Trading` },
         { property: "og:description", content: loaderData.description },
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary_large_image" },
