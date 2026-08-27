@@ -40,38 +40,52 @@ const whyChooseUs = [
 function HomePage() {
   return (
     <div>
-      {/* Hero */}
-      <section className="relative flex min-h-[85vh] items-center overflow-hidden">
+      {/* Hero — interactive 3D trade globe */}
+      <section className="deep-panel relative flex min-h-[92vh] items-center overflow-hidden">
         <img
           src={heroFields}
           alt="Aerial view of lush green farmland at sunrise"
           width={1920}
           height={1080}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover opacity-20"
         />
-        <div className="absolute inset-0 bg-primary/55" />
+        <div className="absolute inset-0 bg-primary/40" />
+
+        <div className="absolute inset-y-0 right-0 hidden w-[58%] lg:block">
+          <HeroGlobe />
+        </div>
+
         <div className="relative mx-auto w-full max-w-7xl px-6 py-24">
-          <span className="eyebrow">Quality Food Products. Reliable Global Supply.</span>
-          <h1 className="max-w-4xl font-serif text-5xl leading-[1.1] text-cream md:text-7xl">
-            Global Food <span className="italic">Import & Export</span>
-          </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream/90">
-            Supplying quality vegetables, fruits, rice, pulses, eggs, spices, grains and food products across
-            international markets — with precision and integrity.
-          </p>
-          <p className="mt-4 text-sm font-semibold tracking-widest text-cream/70 uppercase">
-            Vegetables • Fruits • Rice • Pulses • Eggs • Spices
-          </p>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Link to="/products" className="btn-light">
-              View Products
-            </Link>
-            <Link to="/request-quote" className="btn-accent">
-              Request a Quote
-            </Link>
-            <Link to="/contact" className="btn-outline-light">
-              Contact Us
-            </Link>
+          <div className="max-w-2xl">
+            <span className="eyebrow">Quality Food Products. Reliable Global Supply.</span>
+            <h1 className="font-serif text-5xl leading-[1.1] text-cream md:text-7xl">
+              Global Food <span className="italic">Import & Export</span>
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream/90">
+              Supplying quality vegetables, fruits, rice, pulses, eggs, spices, grains and food products across
+              international markets — with precision and integrity.
+            </p>
+            <p className="mt-4 text-sm font-semibold tracking-widest text-cream/70 uppercase">
+              Vegetables • Fruits • Rice • Pulses • Eggs • Spices
+            </p>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link to="/products" className="btn-light">
+                View Products
+              </Link>
+              <Link to="/request-quote" className="btn-accent">
+                Request a Quote
+              </Link>
+              <Link to="/contact" className="btn-outline-light">
+                Contact Us
+              </Link>
+            </div>
+          </div>
+
+          <div className="glass-panel mt-14 hidden max-w-md rounded-sm px-6 py-5 text-cream lg:block">
+            <p className="text-xs font-bold tracking-widest text-accent uppercase">Live trade lanes</p>
+            <p className="mt-2 text-sm text-cream/80">
+              Drag the globe to explore our shipping corridors across the Gulf, India, Europe, Africa and Asia.
+            </p>
           </div>
         </div>
       </section>
