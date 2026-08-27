@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { categories, contact, markets } from "@/data/catalog";
+import logo from "@/assets/logo-leo-infinity.png";
 
 export function SiteFooter() {
   return (
