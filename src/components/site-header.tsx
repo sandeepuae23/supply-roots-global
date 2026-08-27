@@ -41,8 +41,20 @@ export function SiteHeader() {
       {/* Main nav */}
       <nav className="sticky top-0 z-50 border-b border-primary/5 bg-cream/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <Link to="/" className="font-serif text-2xl font-bold tracking-tight text-primary">
-            Leo Infinity<span className="text-accent">.</span>
+          <Link to="/" className="flex items-center gap-3">
+            <img
+              src={logo}
+              alt="Leo Infinity Global General Trading logo"
+              width={1024}
+              height={1024}
+              className="h-12 w-12 object-contain"
+            />
+            <span className="font-serif text-lg leading-tight font-bold tracking-tight text-primary sm:text-xl">
+              Leo Infinity<span className="text-accent">.</span>
+              <span className="block text-[10px] font-medium tracking-[0.2em] text-primary/60 uppercase">
+                Global General Trading
+              </span>
+            </span>
           </Link>
 
           <div className="hidden gap-7 text-sm font-medium tracking-wider uppercase lg:flex">
