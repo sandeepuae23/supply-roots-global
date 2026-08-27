@@ -5,13 +5,13 @@ import { CheckItem, Field, PageHero } from "@/components/ui-primitives";
 export const Route = createFileRoute("/business-clients")({
   head: () => ({
     meta: [
-      { title: "Business & Wholesale Solutions — GlobalTerra Food Trading" },
+      { title: "Business & Wholesale Solutions — Leo Infinity Global General Trading" },
       {
         name: "description",
         content:
           "Bulk purchasing, contract supply, private labeling and container supply for importers, wholesalers, supermarkets, hotels, restaurants and food distributors.",
       },
-      { property: "og:title", content: "Business & Wholesale Solutions — GlobalTerra Food Trading" },
+      { property: "og:title", content: "Business & Wholesale Solutions — Leo Infinity Global General Trading" },
       {
         property: "og:description",
         content: "Wholesale food supply with competitive pricing, flexible packaging and dedicated account management.",

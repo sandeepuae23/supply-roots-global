@@ -462,11 +462,11 @@ export const tradeLanes = [
 ];
 
 export const contact = {
-  company: "GlobalTerra Food Trading LLC",
+  company: "Leo Infinity Global General Trading LLC",
   phone: "+971 4 887 2130",
   whatsapp: "+971 50 214 8890",
   whatsappLink: "https://wa.me/971502148890",
-  email: "trade@globalterra.food",
+  email: "trade@leoinfinity.ae",
   address: "Office 1204, JAFZA One, Jebel Ali Free Zone, Dubai, UAE",
   indiaOffice: "Suite 402, Trade Tower, MG Road, Mumbai 400001, India",
   hours: "Monday – Saturday, 9:00 – 18:00 (GST)",

@@ -41,7 +41,7 @@ export function SiteHeader() {
       <nav className="sticky top-0 z-50 border-b border-primary/5 bg-cream/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <Link to="/" className="font-serif text-2xl font-bold tracking-tight text-primary">
-            GlobalTerra<span className="text-accent">.</span>
+            Leo Infinity<span className="text-accent">.</span>
           </Link>
 
           <div className="hidden gap-7 text-sm font-medium tracking-wider uppercase lg:flex">

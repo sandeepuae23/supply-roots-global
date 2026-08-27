@@ -7,7 +7,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-2 lg:grid-cols-4">
         <div className="space-y-4">
           <span className="font-serif text-2xl font-bold tracking-tight">
-            GlobalTerra<span className="text-accent">.</span>
+            Leo Infinity<span className="text-accent">.</span>
           </span>
           <p className="text-sm leading-relaxed text-cream/70">
             Licensed international food trading company sourcing, importing and exporting quality agricultural and

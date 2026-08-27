@@ -8,13 +8,13 @@ import { CheckItem, Field, SectionHeading } from "@/components/ui-primitives";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Global Food Import & Export — GlobalTerra Food Trading" },
+      { title: "Global Food Import & Export — Leo Infinity Global General Trading" },
       {
         name: "description",
         content:
           "Supplying quality vegetables, fruits, rice, pulses, eggs, spices, grains and food products across UAE, India, Saudi Arabia, Qatar, Oman, Europe, Africa and Asia.",
       },
-      { property: "og:title", content: "Global Food Import & Export — GlobalTerra Food Trading" },
+      { property: "og:title", content: "Global Food Import & Export — Leo Infinity Global General Trading" },
       {
         property: "og:description",
         content: "Quality food products. Reliable global supply. Explore 12 product categories for international markets.",
@@ -127,7 +127,7 @@ function HomePage() {
               A reliable international sourcing & supply partner
             </h2>
             <p className="mb-8 text-lg leading-relaxed text-muted-foreground">
-              GlobalTerra is an international food trading company specializing in sourcing, importing, exporting and
+              Leo Infinity is an international food trading company specializing in sourcing, importing, exporting and
               supplying high-quality agricultural and food products to businesses worldwide.
             </p>
             <ul className="mb-10 grid gap-3 text-sm sm:grid-cols-2">
