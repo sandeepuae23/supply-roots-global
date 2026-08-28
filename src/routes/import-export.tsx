@@ -2,6 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import tradePort from "@/assets/trade-port.jpg";
 import import3d from "@/assets/3d-import.jpg";
 import export3d from "@/assets/3d-export.jpg";
+import import3dAvif1024 from "@/assets/3d-import-1024.avif";
+import import3dAvif640 from "@/assets/3d-import-640.avif";
+import import3dWebp1024 from "@/assets/3d-import-1024.webp";
+import import3dWebp640 from "@/assets/3d-import-640.webp";
+import export3dAvif1024 from "@/assets/3d-export-1024.avif";
+import export3dAvif640 from "@/assets/3d-export-640.avif";
+import export3dWebp1024 from "@/assets/3d-export-1024.webp";
+import export3dWebp640 from "@/assets/3d-export-640.webp";
 import { CheckItem, PageHero, SectionHeading } from "@/components/ui-primitives";
 
 export const Route = createFileRoute("/import-export")({
