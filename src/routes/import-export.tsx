@@ -2,15 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import tradePort from "@/assets/trade-port.jpg";
 import import3d from "@/assets/3d-import.jpg";
 import export3d from "@/assets/3d-export.jpg";
-import import3dAvif1024 from "@/assets/3d-import-1024.avif";
-import import3dAvif640 from "@/assets/3d-import-640.avif";
-import import3dWebp1024 from "@/assets/3d-import-1024.webp";
-import import3dWebp640 from "@/assets/3d-import-640.webp";
-import export3dAvif1024 from "@/assets/3d-export-1024.avif";
-import export3dAvif640 from "@/assets/3d-export-640.avif";
-import export3dWebp1024 from "@/assets/3d-export-1024.webp";
-import export3dWebp640 from "@/assets/3d-export-640.webp";
 import { CheckItem, PageHero, SectionHeading } from "@/components/ui-primitives";
+import { SmartImage } from "@/components/smart-image";
 
 export const Route = createFileRoute("/import-export")({
   head: () => ({
@@ -69,38 +62,6 @@ const process = [
 
 const SIZES = "(min-width: 1024px) 50vw, 100vw";
 
-function TradeImage({
-  alt,
-  fallback,
-  avif1024,
-  avif640,
-  webp1024,
-  webp640,
-}: {
-  alt: string;
-  fallback: string;
-  avif1024: string;
-  avif640: string;
-  webp1024: string;
-  webp640: string;
-}) {
-  return (
-    <picture>
-      <source type="image/avif" srcSet={`${avif640} 640w, ${avif1024} 1024w`} sizes={SIZES} />
-      <source type="image/webp" srcSet={`${webp640} 640w, ${webp1024} 1024w`} sizes={SIZES} />
-      <img
-        src={fallback}
-        alt={alt}
-        loading="lazy"
-        decoding="async"
-        width={1024}
-        height={768}
-        className="aspect-[4/3] w-full object-cover"
-      />
-    </picture>
-  );
-}
-
 function ImportExportPage() {
   return (
     <div>
@@ -115,13 +76,13 @@ function ImportExportPage() {
       <section className="px-6 py-24">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-2">
           <div className="surface-3d overflow-hidden rounded-sm border border-border bg-card">
-            <TradeImage
+            <SmartImage
+              src={import3d}
               alt="Container ship arriving at port — import services"
-              fallback={import3d}
-              avif1024={import3dAvif1024}
-              avif640={import3dAvif640}
-              webp1024={import3dWebp1024}
-              webp640={import3dWebp640}
+              sizes={SIZES}
+              width={1024}
+              height={768}
+              className="aspect-[4/3] w-full object-cover"
             />
             <div className="p-10">
               <span className="eyebrow">Bringing Goods In</span>
@@ -134,13 +95,13 @@ function ImportExportPage() {
             </div>
           </div>
           <div className="surface-3d overflow-hidden rounded-sm border border-border bg-card">
-            <TradeImage
+            <SmartImage
+              src={export3d}
               alt="Containers loaded for shipment — export services"
-              fallback={export3d}
-              avif1024={export3dAvif1024}
-              avif640={export3dAvif640}
-              webp1024={export3dWebp1024}
-              webp640={export3dWebp640}
+              sizes={SIZES}
+              width={1024}
+              height={768}
+              className="aspect-[4/3] w-full object-cover"
             />
             <div className="p-10">
               <span className="eyebrow">Sending Goods Out</span>
