@@ -1,5 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import tradePort from "@/assets/trade-port.jpg";
+import import3d from "@/assets/3d-import.jpg";
+import export3d from "@/assets/3d-export.jpg";
 import { CheckItem, PageHero, SectionHeading } from "@/components/ui-primitives";
 
 export const Route = createFileRoute("/import-export")({
@@ -70,23 +72,43 @@ function ImportExportPage() {
       {/* Services */}
       <section className="px-6 py-24">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-2">
-          <div className="rounded-sm border border-border bg-card p-10">
-            <span className="eyebrow">Bringing Goods In</span>
-            <h2 className="mb-8 font-serif text-3xl text-primary">Import Services</h2>
-            <ul className="grid gap-4 text-sm sm:grid-cols-2">
-              {importServices.map((s) => (
-                <CheckItem key={s}>{s}</CheckItem>
-              ))}
-            </ul>
+          <div className="surface-3d overflow-hidden rounded-sm border border-border bg-card">
+            <img
+              src={import3d}
+              alt="Container ship arriving at port — import services"
+              loading="lazy"
+              width={1024}
+              height={768}
+              className="aspect-[4/3] w-full object-cover"
+            />
+            <div className="p-10">
+              <span className="eyebrow">Bringing Goods In</span>
+              <h2 className="mb-8 font-serif text-3xl text-primary">Import Services</h2>
+              <ul className="grid gap-4 text-sm sm:grid-cols-2">
+                {importServices.map((s) => (
+                  <CheckItem key={s}>{s}</CheckItem>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="rounded-sm border border-border bg-card p-10">
-            <span className="eyebrow">Sending Goods Out</span>
-            <h2 className="mb-8 font-serif text-3xl text-primary">Export Services</h2>
-            <ul className="grid gap-4 text-sm sm:grid-cols-2">
-              {exportServices.map((s) => (
-                <CheckItem key={s}>{s}</CheckItem>
-              ))}
-            </ul>
+          <div className="surface-3d overflow-hidden rounded-sm border border-border bg-card">
+            <img
+              src={export3d}
+              alt="Containers loaded for shipment — export services"
+              loading="lazy"
+              width={1024}
+              height={768}
+              className="aspect-[4/3] w-full object-cover"
+            />
+            <div className="p-10">
+              <span className="eyebrow">Sending Goods Out</span>
+              <h2 className="mb-8 font-serif text-3xl text-primary">Export Services</h2>
+              <ul className="grid gap-4 text-sm sm:grid-cols-2">
+                {exportServices.map((s) => (
+                  <CheckItem key={s}>{s}</CheckItem>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
