@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { toast } from "sonner";
 import heroFields from "@/assets/hero-fields.jpg";
 import warehouseOps from "@/assets/warehouse-ops.jpg";
+import { HeroGlobe } from "@/components/hero-globe";
 import { categories, contact, featuredProducts, markets, tradeLanes } from "@/data/catalog";
 import { CheckItem, Field, SectionHeading } from "@/components/ui-primitives";
 
