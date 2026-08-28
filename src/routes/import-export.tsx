@@ -115,13 +115,13 @@ function ImportExportPage() {
       <section className="px-6 py-24">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-2">
           <div className="surface-3d overflow-hidden rounded-sm border border-border bg-card">
-            <img
-              src={import3d}
+            <TradeImage
               alt="Container ship arriving at port — import services"
-              loading="lazy"
-              width={1024}
-              height={768}
-              className="aspect-[4/3] w-full object-cover"
+              fallback={import3d}
+              avif1024={import3dAvif1024}
+              avif640={import3dAvif640}
+              webp1024={import3dWebp1024}
+              webp640={import3dWebp640}
             />
             <div className="p-10">
               <span className="eyebrow">Bringing Goods In</span>
@@ -134,13 +134,13 @@ function ImportExportPage() {
             </div>
           </div>
           <div className="surface-3d overflow-hidden rounded-sm border border-border bg-card">
-            <img
-              src={export3d}
+            <TradeImage
               alt="Containers loaded for shipment — export services"
-              loading="lazy"
-              width={1024}
-              height={768}
-              className="aspect-[4/3] w-full object-cover"
+              fallback={export3d}
+              avif1024={export3dAvif1024}
+              avif640={export3dAvif640}
+              webp1024={export3dWebp1024}
+              webp640={export3dWebp640}
             />
             <div className="p-10">
               <span className="eyebrow">Sending Goods Out</span>
