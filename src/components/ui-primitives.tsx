@@ -64,7 +64,7 @@ export function PageHero({
     <section className="relative overflow-hidden bg-primary">
       {image && (
         <>
-          <SmartImage src={image} alt="" className="absolute inset-0 h-full w-full object-cover" />
+          <SmartImage src={image} alt="" priority sizes="100vw" className="absolute inset-0 h-full w-full object-cover" />
           <div className="absolute inset-0 bg-primary/70" />
         </>
       )}

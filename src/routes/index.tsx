@@ -47,6 +47,8 @@ function HomePage() {
         <SmartImage
           src={heroFields}
           alt="Aerial view of lush green farmland at sunrise"
+          priority
+          sizes="100vw"
           width={1920}
           height={1080}
           className="absolute inset-0 h-full w-full object-cover opacity-20"
