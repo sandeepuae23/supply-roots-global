@@ -67,6 +67,40 @@ const process = [
   { step: "05", title: "Delivery & Support", text: "Tracking to destination with post-delivery claims support." },
 ];
 
+const SIZES = "(min-width: 1024px) 50vw, 100vw";
+
+function TradeImage({
+  alt,
+  fallback,
+  avif1024,
+  avif640,
+  webp1024,
+  webp640,
+}: {
+  alt: string;
+  fallback: string;
+  avif1024: string;
+  avif640: string;
+  webp1024: string;
+  webp640: string;
+}) {
+  return (
+    <picture>
+      <source type="image/avif" srcSet={`${avif640} 640w, ${avif1024} 1024w`} sizes={SIZES} />
+      <source type="image/webp" srcSet={`${webp640} 640w, ${webp1024} 1024w`} sizes={SIZES} />
+      <img
+        src={fallback}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        width={1024}
+        height={768}
+        className="aspect-[4/3] w-full object-cover"
+      />
+    </picture>
+  );
+}
+
 function ImportExportPage() {
   return (
     <div>
