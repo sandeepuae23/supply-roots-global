@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import qualityLab from "@/assets/quality-lab.jpg";
 import { CheckItem, SectionHeading } from "@/components/ui-primitives";
+import { SmartImage } from "@/components/smart-image";
 
 export const Route = createFileRoute("/quality")({
   head: () => ({
@@ -70,12 +71,11 @@ function QualityPage() {
             </p>
           </div>
           <div className="overflow-hidden rounded-sm">
-            <img
+            <SmartImage
               src={qualityLab}
               alt="Laboratory technician inspecting grain samples under a microscope"
               width={1200}
               height={800}
-              loading="lazy"
               className="h-full w-full object-cover"
             />
           </div>

@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { MessageCircle } from "lucide-react";
 import { contact, getCategory, getProduct, productsByCategory } from "@/data/catalog";
+import { SmartImage } from "@/components/smart-image";
 
 export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {
@@ -52,7 +53,7 @@ function ProductDetailPage() {
       <section className="bg-card px-6 py-20">
         <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
           <div className="overflow-hidden rounded-sm">
-            <img
+            <SmartImage
               src={product.image}
               alt={product.name}
               width={800}
@@ -134,12 +135,11 @@ function ProductDetailPage() {
                   className="group rounded-sm border border-border bg-card"
                 >
                   <div className="aspect-[4/3] overflow-hidden rounded-t-sm">
-                    <img
+                    <SmartImage
                       src={p.image}
                       alt={p.name}
                       width={800}
                       height={600}
-                      loading="lazy"
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
