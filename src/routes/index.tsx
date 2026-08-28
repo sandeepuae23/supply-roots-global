@@ -5,6 +5,7 @@ import warehouseOps from "@/assets/warehouse-ops.jpg";
 import { HeroGlobe } from "@/components/hero-globe";
 import { categories, contact, featuredProducts, markets, tradeLanes } from "@/data/catalog";
 import { CheckItem, Field, SectionHeading } from "@/components/ui-primitives";
+import { SmartImage } from "@/components/smart-image";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -43,7 +44,7 @@ function HomePage() {
     <div>
       {/* Hero — interactive 3D trade globe */}
       <section className="deep-panel relative flex min-h-[92vh] items-center overflow-hidden">
-        <img
+        <SmartImage
           src={heroFields}
           alt="Aerial view of lush green farmland at sunrise"
           width={1920}
@@ -107,12 +108,11 @@ function HomePage() {
             {categories.map((c) => (
               <Link key={c.slug} to="/products" hash={c.slug} className="group cursor-pointer">
                 <div className="mb-4 aspect-square overflow-hidden rounded-sm bg-secondary">
-                  <img
+                  <SmartImage
                     src={c.image}
                     alt={c.name}
                     width={600}
                     height={600}
-                    loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
@@ -127,12 +127,11 @@ function HomePage() {
       <section className="bg-card px-6 py-24">
         <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
           <div className="overflow-hidden rounded-sm">
-            <img
+            <SmartImage
               src={warehouseOps}
               alt="Organized crates of grains and pulses in an export warehouse"
               width={1200}
               height={800}
-              loading="lazy"
               className="h-full w-full object-cover"
             />
           </div>
@@ -178,12 +177,11 @@ function HomePage() {
                   params={{ slug: p.slug }}
                   className="block aspect-[4/3] overflow-hidden rounded-t-sm"
                 >
-                  <img
+                  <SmartImage
                     src={p.image}
                     alt={p.name}
                     width={800}
                     height={600}
-                    loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </Link>

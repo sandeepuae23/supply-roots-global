@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { categories, productsByCategory } from "@/data/catalog";
 import { SectionHeading } from "@/components/ui-primitives";
+import { SmartImage } from "@/components/smart-image";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
@@ -47,12 +48,11 @@ function ProductsPage() {
             return (
               <section key={c.slug} id={c.slug} className="scroll-mt-32">
                 <div className="mb-8 grid items-center gap-8 rounded-sm border border-border bg-card p-6 md:grid-cols-[240px_1fr] md:p-8">
-                  <img
+                  <SmartImage
                     src={c.image}
                     alt={c.name}
                     width={600}
                     height={600}
-                    loading="lazy"
                     className="aspect-square w-full rounded-sm object-cover"
                   />
                   <div>
