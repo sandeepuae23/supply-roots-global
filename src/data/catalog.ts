@@ -1,4 +1,5 @@
 import catVegetables from "@/assets/cat-vegetables.jpg";
+// gallery imports are below with the other image imports
 import catFruits from "@/assets/cat-fruits.jpg";
 import catRice from "@/assets/cat-rice.jpg";
 import catPulses from "@/assets/cat-pulses.jpg";
