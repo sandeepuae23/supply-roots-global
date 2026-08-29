@@ -70,6 +70,21 @@ function ProductsPage() {
                         </Link>
                       ))}
                     </div>
+                    {c.gallery && (
+                      <div className="mt-6 grid grid-cols-3 gap-3">
+                        {c.gallery.map((src, i) => (
+                          <SmartImage
+                            key={src}
+                            src={src}
+                            alt={`${c.name} — photo ${i + 1}`}
+                            width={1024}
+                            height={768}
+                            sizes="(max-width: 768px) 33vw, 300px"
+                            className="aspect-[4/3] w-full rounded-sm object-cover"
+                          />
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               </section>

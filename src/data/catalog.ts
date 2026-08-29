@@ -12,6 +12,18 @@ import catFrozen from "@/assets/cat-frozen.jpg";
 import catOther from "@/assets/cat-other.jpg";
 import productBasmati from "@/assets/product-basmati.jpg";
 import productMango from "@/assets/product-mango.jpg";
+import galVegOnions from "@/assets/gal-veg-onions.jpg";
+import galVegTomato from "@/assets/gal-veg-tomato.jpg";
+import galVegChilli from "@/assets/gal-veg-chilli.jpg";
+import galFruitMango from "@/assets/gal-fruit-mango.jpg";
+import galFruitPomegranate from "@/assets/gal-fruit-pomegranate.jpg";
+import galFruitBanana from "@/assets/gal-fruit-banana.jpg";
+import galRiceBasmati from "@/assets/gal-rice-basmati.jpg";
+import galRiceMill from "@/assets/gal-rice-mill.jpg";
+import galRiceBags from "@/assets/gal-rice-bags.jpg";
+import galPulsesDals from "@/assets/gal-pulses-dals.jpg";
+import galPulsesChickpeas from "@/assets/gal-pulses-chickpeas.jpg";
+import galPulsesBeans from "@/assets/gal-pulses-beans.jpg";
 
 export interface Category {
   slug: string;
@@ -19,6 +31,8 @@ export interface Category {
   image: string;
   tagline: string;
   items: string[];
+  /** Additional photos shown as a gallery on the Products page. */
+  gallery?: string[];
 }
 
 export interface Product {
@@ -47,6 +61,7 @@ export const categories: Category[] = [
     image: catVegetables,
     tagline: "Farm-fresh, export-grade vegetables shipped in reefer containers",
     items: ["Onion", "Potato", "Tomato", "Carrot", "Green Chilli", "Garlic", "Ginger", "Okra", "Cabbage", "Cauliflower"],
+    gallery: [galVegOnions, galVegTomato, galVegChilli],
   },
   {
     slug: "fruits",
@@ -54,6 +69,7 @@ export const categories: Category[] = [
     image: catFruits,
     tagline: "Sun-ripened fruits graded and packed for long-haul freshness",
     items: ["Mango", "Banana", "Pomegranate", "Grapes", "Orange", "Apple", "Papaya", "Watermelon"],
+    gallery: [galFruitMango, galFruitPomegranate, galFruitBanana],
   },
   {
     slug: "rice",
@@ -61,6 +77,7 @@ export const categories: Category[] = [
     image: catRice,
     tagline: "Premium Basmati and non-Basmati rice from certified mills",
     items: ["Basmati Rice", "1121 Basmati", "Sona Masoori", "Non-Basmati Rice", "Parboiled Rice", "Brown Rice"],
+    gallery: [galRiceBasmati, galRiceMill, galRiceBags],
   },
   {
     slug: "pulses",
@@ -68,6 +85,7 @@ export const categories: Category[] = [
     image: catPulses,
     tagline: "Machine-cleaned lentils, dals and beans in bulk and retail packs",
     items: ["Toor Dal", "Moong Dal", "Urad Dal", "Masoor Dal", "Chickpeas", "Kidney Beans"],
+    gallery: [galPulsesDals, galPulsesChickpeas, galPulsesBeans],
   },
   {
     slug: "eggs",
