@@ -12,6 +12,18 @@ import catFrozen from "@/assets/cat-frozen.jpg";
 import catOther from "@/assets/cat-other.jpg";
 import productBasmati from "@/assets/product-basmati.jpg";
 import productMango from "@/assets/product-mango.jpg";
+import galVegOnions from "@/assets/gal-veg-onions.jpg";
+import galVegTomato from "@/assets/gal-veg-tomato.jpg";
+import galVegChilli from "@/assets/gal-veg-chilli.jpg";
+import galFruitMango from "@/assets/gal-fruit-mango.jpg";
+import galFruitPomegranate from "@/assets/gal-fruit-pomegranate.jpg";
+import galFruitBanana from "@/assets/gal-fruit-banana.jpg";
+import galRiceBasmati from "@/assets/gal-rice-basmati.jpg";
+import galRiceMill from "@/assets/gal-rice-mill.jpg";
+import galRiceBags from "@/assets/gal-rice-bags.jpg";
+import galPulsesDals from "@/assets/gal-pulses-dals.jpg";
+import galPulsesChickpeas from "@/assets/gal-pulses-chickpeas.jpg";
+import galPulsesBeans from "@/assets/gal-pulses-beans.jpg";
 
 export interface Category {
   slug: string;
@@ -19,6 +31,8 @@ export interface Category {
   image: string;
   tagline: string;
   items: string[];
+  /** Additional photos shown as a gallery on the Products page. */
+  gallery?: string[];
 }
 
 export interface Product {
