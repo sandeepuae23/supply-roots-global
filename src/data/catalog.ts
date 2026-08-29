@@ -61,6 +61,7 @@ export const categories: Category[] = [
     image: catVegetables,
     tagline: "Farm-fresh, export-grade vegetables shipped in reefer containers",
     items: ["Onion", "Potato", "Tomato", "Carrot", "Green Chilli", "Garlic", "Ginger", "Okra", "Cabbage", "Cauliflower"],
+    gallery: [galVegOnions, galVegTomato, galVegChilli],
   },
   {
     slug: "fruits",
@@ -68,6 +69,7 @@ export const categories: Category[] = [
     image: catFruits,
     tagline: "Sun-ripened fruits graded and packed for long-haul freshness",
     items: ["Mango", "Banana", "Pomegranate", "Grapes", "Orange", "Apple", "Papaya", "Watermelon"],
+    gallery: [galFruitMango, galFruitPomegranate, galFruitBanana],
   },
   {
     slug: "rice",
@@ -75,6 +77,7 @@ export const categories: Category[] = [
     image: catRice,
     tagline: "Premium Basmati and non-Basmati rice from certified mills",
     items: ["Basmati Rice", "1121 Basmati", "Sona Masoori", "Non-Basmati Rice", "Parboiled Rice", "Brown Rice"],
+    gallery: [galRiceBasmati, galRiceMill, galRiceBags],
   },
   {
     slug: "pulses",
@@ -82,6 +85,7 @@ export const categories: Category[] = [
     image: catPulses,
     tagline: "Machine-cleaned lentils, dals and beans in bulk and retail packs",
     items: ["Toor Dal", "Moong Dal", "Urad Dal", "Masoor Dal", "Chickpeas", "Kidney Beans"],
+    gallery: [galPulsesDals, galPulsesChickpeas, galPulsesBeans],
   },
   {
     slug: "eggs",
