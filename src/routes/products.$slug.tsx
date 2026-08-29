@@ -2,6 +2,8 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { MessageCircle } from "lucide-react";
 import { contact, getCategory, getProduct, productsByCategory } from "@/data/catalog";
 import { SmartImage } from "@/components/smart-image";
+import { ProductGallery } from "@/components/product-gallery";
+import { EnquireForm } from "@/components/enquire-form";
 
 export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {
@@ -34,6 +36,10 @@ function ProductDetailPage() {
     .filter((p) => p.slug !== product.slug)
     .slice(0, 3);
 
+  const galleryImages = Array.from(
+    new Set([product.image, ...(category?.gallery ?? []), ...related.map((p) => p.image)]),
+  ).slice(0, 4);
+
   const specs: [string, string][] = [
     ["Origin", product.origin],
     ["Variety", product.variety],
@@ -52,15 +58,7 @@ function ProductDetailPage() {
       {/* Detail */}
       <section className="bg-card px-6 py-20">
         <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
-          <div className="overflow-hidden rounded-sm">
-            <SmartImage
-              src={product.image}
-              alt={product.name}
-              width={800}
-              height={800}
-              className="aspect-square w-full object-cover"
-            />
-          </div>
+          <ProductGallery images={galleryImages} alt={product.name} />
           <div>
             {product.featured && (
               <span className="mb-4 inline-block rounded-full bg-accent/10 px-3 py-1 text-xs font-bold text-accent">
@@ -86,9 +84,9 @@ function ProductDetailPage() {
               <Link to="/request-quote" className="btn-primary">
                 Request Price
               </Link>
-              <Link to="/contact" className="btn-outline">
-                Request Sample
-              </Link>
+              <a href="#enquire" className="btn-outline">
+                Enquire Now
+              </a>
               <a
                 href={`${contact.whatsappLink}?text=${encodeURIComponent(`Hello, I'm interested in ${product.name}. Please share pricing and availability.`)}`}
                 target="_blank"
@@ -100,6 +98,13 @@ function ProductDetailPage() {
               </a>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Enquiry */}
+      <section className="px-6 py-20">
+        <div className="mx-auto max-w-4xl">
+          <EnquireForm productName={product.name} />
         </div>
       </section>
 
