@@ -24,6 +24,30 @@ import galRiceBags from "@/assets/gal-rice-bags.jpg";
 import galPulsesDals from "@/assets/gal-pulses-dals.jpg";
 import galPulsesChickpeas from "@/assets/gal-pulses-chickpeas.jpg";
 import galPulsesBeans from "@/assets/gal-pulses-beans.jpg";
+import galEggsCartons from "@/assets/gal-eggs-cartons.jpg";
+import galEggsFarm from "@/assets/gal-eggs-farm.jpg";
+import galEggsBrown from "@/assets/gal-eggs-brown.jpg";
+import galSpicesTurmeric from "@/assets/gal-spices-turmeric.jpg";
+import galSpicesMarket from "@/assets/gal-spices-market.jpg";
+import galSpicesPepper from "@/assets/gal-spices-pepper.jpg";
+import galGrainsWheat from "@/assets/gal-grains-wheat.jpg";
+import galGrainsSacks from "@/assets/gal-grains-sacks.jpg";
+import galGrainsSilo from "@/assets/gal-grains-silo.jpg";
+import galDryFruitsMix from "@/assets/gal-dryfruits-mix.jpg";
+import galDryFruitsDates from "@/assets/gal-dryfruits-dates.jpg";
+import galDryFruitsRaisins from "@/assets/gal-dryfruits-raisins.jpg";
+import galNutsWalnuts from "@/assets/gal-nuts-walnuts.jpg";
+import galNutsSesame from "@/assets/gal-nuts-sesame.jpg";
+import galNutsSacks from "@/assets/gal-nuts-sacks.jpg";
+import galOilsBottling from "@/assets/gal-oils-bottling.jpg";
+import galOilsOlive from "@/assets/gal-oils-olive.jpg";
+import galOilsDrums from "@/assets/gal-oils-drums.jpg";
+import galFrozenPeas from "@/assets/gal-frozen-peas.jpg";
+import galFrozenColdstore from "@/assets/gal-frozen-coldstore.jpg";
+import galFrozenMango from "@/assets/gal-frozen-mango.jpg";
+import galOtherHoney from "@/assets/gal-other-honey.jpg";
+import galOtherCanned from "@/assets/gal-other-canned.jpg";
+import galOtherRte from "@/assets/gal-other-rte.jpg";
 
 export interface Category {
   slug: string;
@@ -93,6 +117,7 @@ export const categories: Category[] = [
     image: catEggs,
     tagline: "Farm-fresh table and hatching eggs in export cartons",
     items: ["White Eggs", "Brown Eggs", "Table Eggs", "Hatching Eggs", "Free-Range Eggs"],
+    gallery: [galEggsCartons, galEggsFarm, galEggsBrown],
   },
   {
     slug: "spices",
@@ -100,6 +125,7 @@ export const categories: Category[] = [
     image: catSpices,
     tagline: "Whole and ground spices with lab-tested purity and aroma",
     items: ["Turmeric", "Red Chilli", "Black Pepper", "Cardamom", "Cumin", "Coriander", "Cloves", "Cinnamon"],
+    gallery: [galSpicesTurmeric, galSpicesMarket, galSpicesPepper],
   },
   {
     slug: "grains",
@@ -107,6 +133,7 @@ export const categories: Category[] = [
     image: catGrains,
     tagline: "Food and feed-grade cereals cleaned to export specifications",
     items: ["Wheat", "Maize", "Millet", "Barley", "Sorghum"],
+    gallery: [galGrainsWheat, galGrainsSacks, galGrainsSilo],
   },
   {
     slug: "dry-fruits",
@@ -114,6 +141,7 @@ export const categories: Category[] = [
     image: catDryFruits,
     tagline: "Premium dried fruits, graded and vacuum packed",
     items: ["Almonds", "Cashews", "Raisins", "Dates", "Dried Apricots"],
+    gallery: [galDryFruitsMix, galDryFruitsDates, galDryFruitsRaisins],
   },
   {
     slug: "nuts-seeds",
@@ -121,6 +149,7 @@ export const categories: Category[] = [
     image: catNutsSeeds,
     tagline: "Whole nuts and oilseeds for food processors and retailers",
     items: ["Walnuts", "Pistachios", "Sesame Seeds", "Pumpkin Seeds", "Flax Seeds"],
+    gallery: [galNutsWalnuts, galNutsSesame, galNutsSacks],
   },
   {
     slug: "edible-oils",
@@ -128,6 +157,7 @@ export const categories: Category[] = [
     image: catOils,
     tagline: "Refined and cold-pressed oils in flexitank, drum and retail packs",
     items: ["Sunflower Oil", "Olive Oil", "Mustard Oil", "Coconut Oil"],
+    gallery: [galOilsBottling, galOilsOlive, galOilsDrums],
   },
   {
     slug: "frozen-foods",
@@ -135,6 +165,7 @@ export const categories: Category[] = [
     image: catFrozen,
     tagline: "IQF vegetables, fruits and pulps with full cold-chain control",
     items: ["Frozen Peas", "Mixed Vegetables", "Frozen Berries", "Frozen Mango Pulp"],
+    gallery: [galFrozenPeas, galFrozenColdstore, galFrozenMango],
   },
   {
     slug: "other",
@@ -142,6 +173,7 @@ export const categories: Category[] = [
     image: catOther,
     tagline: "Honey, canned goods, condiments and specialty food items",
     items: ["Honey", "Canned Goods", "Sauces & Condiments", "Ready-to-Eat Foods"],
+    gallery: [galOtherHoney, galOtherCanned, galOtherRte],
   },
 ];
 
