@@ -51,23 +51,38 @@ function AboutPage() {
         image={warehouseOps}
         eyebrow="About Our Company"
         title="Who We Are"
-        subtitle="We are an international food trading company specializing in sourcing, importing, exporting and supplying high-quality agricultural and food products to businesses and customers worldwide."
+        subtitle="Leo Infinity Global General Trading is a licensed international food trading company. We source, import, export and supply premium agricultural and food products to distributors, retailers, manufacturers and foodservice businesses across global markets."
       />
 
-      {/* Mission & vision */}
+      {/* Introduction */}
       <section className="px-6 py-24">
+        <div className="mx-auto max-w-4xl text-center">
+          <span className="eyebrow">Our Story</span>
+          <p className="mt-4 text-xl leading-relaxed text-muted-foreground md:text-2xl">
+            Founded on a commitment to quality and reliability, Leo Infinity has grown into a trusted bridge between
+            world-class food producers and discerning buyers. From farm gate to destination port, we manage every stage
+            of the supply chain — procurement, inspection, documentation, logistics and delivery — so our partners can
+            trade with confidence.
+          </p>
+        </div>
+      </section>
+
+      {/* Mission & vision */}
+      <section className="bg-card px-6 py-24">
         <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2">
-          <div className="rounded-sm border border-border bg-card p-10">
+          <div className="rounded-sm border border-border bg-background p-10">
             <span className="eyebrow">Our Mission</span>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              To provide safe, reliable, competitively priced food products while building long-term relationships with
-              farmers, manufacturers, exporters, importers, wholesalers and retailers.
+              To deliver safe, compliant and competitively priced food products that meet the exact standards of every
+              destination market, while building enduring partnerships with growers, processors, exporters, importers,
+              wholesalers and retailers worldwide.
             </p>
           </div>
-          <div className="rounded-sm border border-border bg-card p-10">
+          <div className="rounded-sm border border-border bg-background p-10">
             <span className="eyebrow">Our Vision</span>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              To become a trusted global food trading partner connecting quality producers with international buyers.
+              To be a globally recognized food trading partner known for integrity, operational excellence and the
+              consistent delivery of value across every continent we serve.
             </p>
           </div>
         </div>
