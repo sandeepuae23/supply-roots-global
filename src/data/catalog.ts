@@ -48,6 +48,14 @@ import galFrozenMango from "@/assets/gal-frozen-mango.jpg";
 import galOtherHoney from "@/assets/gal-other-honey.jpg";
 import galOtherCanned from "@/assets/gal-other-canned.jpg";
 import galOtherRte from "@/assets/gal-other-rte.jpg";
+import galVegPotatoes from "@/assets/gal-veg-potatoes.jpg";
+import galVegGarlic from "@/assets/gal-veg-garlic.jpg";
+import galFruitCitrus from "@/assets/gal-fruit-citrus.jpg";
+import galFruitGrapes from "@/assets/gal-fruit-grapes.jpg";
+import galRicePaddy from "@/assets/gal-rice-paddy.jpg";
+import galRiceSteamed from "@/assets/gal-rice-steamed.jpg";
+import galPulsesLentils from "@/assets/gal-pulses-lentils.jpg";
+import galPulsesMung from "@/assets/gal-pulses-mung.jpg";
 
 export interface Category {
   slug: string;
