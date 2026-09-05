@@ -1,5 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import qualityLab from "@/assets/quality-lab.jpg";
+import qualLabTesting from "@/assets/qual-lab-testing.jpg";
+import qualInspection from "@/assets/qual-inspection.jpg";
+import qualCertificates from "@/assets/qual-certificates.jpg";
 import { CheckItem, SectionHeading } from "@/components/ui-primitives";
 import { SmartImage } from "@/components/smart-image";
 
