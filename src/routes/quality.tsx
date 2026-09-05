@@ -1,5 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import qualityLab from "@/assets/quality-lab.jpg";
+import qualLabTesting from "@/assets/qual-lab-testing.jpg";
+import qualInspection from "@/assets/qual-inspection.jpg";
+import qualCertificates from "@/assets/qual-certificates.jpg";
 import { CheckItem, SectionHeading } from "@/components/ui-primitives";
 import { SmartImage } from "@/components/smart-image";
 
@@ -115,6 +118,31 @@ function QualityPage() {
               </CheckItem>
             ))}
           </ul>
+        </div>
+      </section>
+
+      {/* Quality gallery */}
+      <section className="px-6 py-24">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading eyebrow="In Practice" title="Quality in Action" />
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { src: qualLabTesting, alt: "Laboratory technician testing grain and spice samples under a microscope" },
+              { src: qualInspection, alt: "Surveyor inspecting export food sacks inside a shipping container" },
+              { src: qualCertificates, alt: "Official export certificates and stamps on a documentation desk" },
+            ].map((img) => (
+              <div key={img.src} className="surface-3d overflow-hidden rounded-sm">
+                <SmartImage
+                  src={img.src}
+                  alt={img.alt}
+                  width={1024}
+                  height={768}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="aspect-[4/3] w-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
