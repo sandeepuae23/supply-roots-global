@@ -3,6 +3,9 @@ import qualityLab from "@/assets/quality-lab.jpg";
 import qualLabTesting from "@/assets/qual-lab-testing.jpg";
 import qualInspection from "@/assets/qual-inspection.jpg";
 import qualCertificates from "@/assets/qual-certificates.jpg";
+import qualAudit from "@/assets/qual-audit.jpg";
+import qualSampling from "@/assets/qual-sampling.jpg";
+import qualDocuments from "@/assets/qual-documents.jpg";
 import { CheckItem, SectionHeading } from "@/components/ui-primitives";
 import { SmartImage } from "@/components/smart-image";
 
@@ -130,6 +133,9 @@ function QualityPage() {
               { src: qualLabTesting, alt: "Laboratory technician testing grain and spice samples under a microscope" },
               { src: qualInspection, alt: "Surveyor inspecting export food sacks inside a shipping container" },
               { src: qualCertificates, alt: "Official export certificates and stamps on a documentation desk" },
+              { src: qualAudit, alt: "Food safety inspector auditing hygiene standards in a processing facility" },
+              { src: qualSampling, alt: "Laboratory technician testing edible oil and honey samples for quality control" },
+              { src: qualDocuments, alt: "Official export certificates and customs documents with a golden globe" },
             ].map((img) => (
               <div key={img.src} className="surface-3d overflow-hidden rounded-sm">
                 <SmartImage
