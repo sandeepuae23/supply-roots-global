@@ -82,6 +82,36 @@ function BusinessClientsPage() {
             ))}
           </div>
 
+          {/* Visual gallery */}
+          <section className="mt-20 px-6">
+            <div className="mx-auto max-w-7xl">
+              <SectionHeading eyebrow="At Scale" title="Wholesale in Action" center />
+              <div className="grid gap-6 md:grid-cols-2">
+                {[
+                  {
+                    src: businessWarehouse,
+                    alt: "Wholesale food warehouse with pallets of rice, spices, pulses and dry fruits",
+                  },
+                  {
+                    src: businessPackaging,
+                    alt: "Private-label food packaging line with branded pouches on a conveyor belt",
+                  },
+                ].map((img) => (
+                  <div key={img.src} className="surface-3d overflow-hidden rounded-sm">
+                    <SmartImage
+                      src={img.src}
+                      alt={img.alt}
+                      width={1024}
+                      height={768}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="aspect-[4/3] w-full object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
           <div className="mt-20 grid gap-16 lg:grid-cols-2">
             <div>
               <span className="eyebrow">Services</span>
