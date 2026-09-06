@@ -1,6 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { toast } from "sonner";
-import { CheckItem, Field, PageHero } from "@/components/ui-primitives";
+import businessPort from "@/assets/business-port.jpg";
+import businessWarehouse from "@/assets/business-warehouse.jpg";
+import businessPackaging from "@/assets/business-packaging.jpg";
+import { CheckItem, Field, PageHero, SectionHeading } from "@/components/ui-primitives";
+import { SmartImage } from "@/components/smart-image";
 
 export const Route = createFileRoute("/business-clients")({
   head: () => ({
@@ -54,6 +58,7 @@ function BusinessClientsPage() {
   return (
     <div>
       <PageHero
+        image={businessPort}
         eyebrow="For Trade Buyers"
         title="Business & Wholesale Solutions"
         subtitle="Consistent supply chains, customized packaging and full documentation support for volume buyers across the Gulf, Europe, Africa and Asia."
