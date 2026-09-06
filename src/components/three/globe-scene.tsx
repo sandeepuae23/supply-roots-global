@@ -15,56 +15,131 @@ function latLonToVec3(lat: number, lon: number, radius: number) {
   );
 }
 
+type Mode = "sea" | "air" | "land";
+
 const HUBS: { name: string; lat: number; lon: number }[] = [
-  { name: "Dubai", lat: 25.2, lon: 55.3 },
-  { name: "Mumbai", lat: 19.1, lon: 72.9 },
-  { name: "Riyadh", lat: 24.7, lon: 46.7 },
-  { name: "Doha", lat: 25.3, lon: 51.5 },
-  { name: "Rotterdam", lat: 51.9, lon: 4.5 },
-  { name: "Mombasa", lat: -4.0, lon: 39.7 },
-  { name: "Singapore", lat: 1.35, lon: 103.8 },
-  { name: "Cairo", lat: 30.0, lon: 31.2 },
+  { name: "Dubai", lat: 25.2, lon: 55.3 }, // 0
+  { name: "Mumbai", lat: 19.1, lon: 72.9 }, // 1
+  { name: "Riyadh", lat: 24.7, lon: 46.7 }, // 2
+  { name: "Doha", lat: 25.3, lon: 51.5 }, // 3
+  { name: "Rotterdam", lat: 51.9, lon: 4.5 }, // 4
+  { name: "Mombasa", lat: -4.0, lon: 39.7 }, // 5
+  { name: "Singapore", lat: 1.35, lon: 103.8 }, // 6
+  { name: "Cairo", lat: 30.0, lon: 31.2 }, // 7
+  { name: "Jebel Ali Port", lat: 24.98, lon: 55.06 }, // 8 (sea)
+  { name: "Dubai Intl. Airport", lat: 25.25, lon: 55.36 }, // 9 (air)
+  { name: "Gulf Corridor", lat: 26.4, lon: 50.1 }, // 10 (land)
 ];
 
-const LANES: [number, number][] = [
-  [1, 0],
-  [0, 4],
-  [1, 2],
-  [0, 3],
-  [1, 6],
-  [5, 0],
-  [7, 4],
-  [6, 0],
+// [fromIndex, toIndex, mode]
+const LANES: [number, number, Mode][] = [
+  [1, 8, "sea"],
+  [8, 4, "sea"],
+  [6, 8, "sea"],
+  [5, 8, "sea"],
+  [9, 2, "air"],
+  [9, 6, "air"],
+  [7, 4, "air"],
+  [9, 4, "air"],
+  [0, 2, "land"],
+  [0, 10, "land"],
+  [10, 7, "land"],
+  [1, 0, "land"],
 ];
+
+const MODE_STYLE: Record<Mode, { color: string; emissive: string; lift: number; speed: number; tube: number }> = {
+  sea: { color: "#2dd4bf", emissive: "#0d9488", lift: 0.1, speed: 0.09, tube: 0.014 },
+  air: { color: "#fbbf24", emissive: "#f59e0b", lift: 0.34, speed: 0.2, tube: 0.011 },
+  land: { color: "#fb923c", emissive: "#ea580c", lift: 0.18, speed: 0.13, tube: 0.012 },
+};
 
 const R = 2;
 
-function Arc({ from, to, delay }: { from: THREE.Vector3; to: THREE.Vector3; delay: number }) {
+/** Moving cargo marker: box for sea freight, cone (plane) for air, cylinder (truck) for land. */
+function CargoMarker({ mode }: { mode: Mode }) {
+  if (mode === "air") {
+    return (
+      <mesh rotation-x={Math.PI / 2}>
+        <coneGeometry args={[0.028, 0.09, 10]} />
+        <meshStandardMaterial color="#fde68a" emissive="#f59e0b" emissiveIntensity={2.4} toneMapped={false} />
+      </mesh>
+    );
+  }
+  if (mode === "sea") {
+    return (
+      <mesh>
+        <boxGeometry args={[0.07, 0.045, 0.045]} />
+        <meshStandardMaterial color="#99f6e4" emissive="#14b8a6" emissiveIntensity={1.8} toneMapped={false} />
+      </mesh>
+    );
+  }
+  return (
+    <mesh rotation-x={Math.PI / 2}>
+      <cylinderGeometry args={[0.024, 0.024, 0.07, 10]} />
+      <meshStandardMaterial color="#fed7aa" emissive="#f97316" emissiveIntensity={2} toneMapped={false} />
+    </mesh>
+  );
+}
+
+function Lane({ from, to, mode, delay }: { from: THREE.Vector3; to: THREE.Vector3; mode: Mode; delay: number }) {
+  const style = MODE_STYLE[mode];
+
   const curve = useMemo(() => {
     const mid = from.clone().add(to).multiplyScalar(0.5);
-    const lift = 1 + from.distanceTo(to) * 0.28;
+    const lift = 1 + from.distanceTo(to) * style.lift;
     mid.normalize().multiplyScalar(R * lift);
     return new THREE.QuadraticBezierCurve3(from, mid, to);
-  }, [from, to]);
+  }, [from, to, style.lift]);
 
-  const geometry = useMemo(() => new THREE.TubeGeometry(curve, 64, 0.012, 8, false), [curve]);
-  const dotRef = useRef<THREE.Mesh>(null);
+  const geometry = useMemo(() => new THREE.TubeGeometry(curve, 64, style.tube, 8, false), [curve, style.tube]);
+  const cargoRef = useRef<THREE.Group>(null);
 
   useFrame(({ clock }) => {
-    if (!dotRef.current) return;
-    const t = (clock.elapsedTime * 0.16 + delay) % 1;
+    if (!cargoRef.current) return;
+    const t = (clock.elapsedTime * style.speed + delay) % 1;
     const p = curve.getPoint(t);
-    dotRef.current.position.copy(p);
+    cargoRef.current.position.copy(p);
+    // orient cargo along the lane direction
+    const tangent = curve.getTangent(t).normalize();
+    const target = p.clone().add(tangent);
+    cargoRef.current.lookAt(target);
   });
 
   return (
     <group>
       <mesh geometry={geometry}>
-        <meshStandardMaterial color="#d97706" emissive="#d97706" emissiveIntensity={0.7} roughness={0.4} />
+        <meshStandardMaterial
+          color={style.color}
+          emissive={style.emissive}
+          emissiveIntensity={0.7}
+          roughness={0.4}
+          transparent
+          opacity={mode === "sea" ? 0.85 : 1}
+        />
       </mesh>
-      <mesh ref={dotRef}>
-        <sphereGeometry args={[0.035, 12, 12]} />
-        <meshStandardMaterial color="#fde68a" emissive="#f59e0b" emissiveIntensity={2.4} toneMapped={false} />
+      <group ref={cargoRef}>
+        <CargoMarker mode={mode} />
+      </group>
+    </group>
+  );
+}
+
+function HubMarker({ position, name }: { position: THREE.Vector3; name: string }) {
+  const pulseRef = useRef<THREE.Mesh>(null);
+  useFrame(({ clock }) => {
+    if (!pulseRef.current) return;
+    const s = 1 + 0.35 * Math.sin(clock.elapsedTime * 2 + position.x * 5);
+    pulseRef.current.scale.setScalar(s);
+  });
+  return (
+    <group position={position} key={name}>
+      <mesh>
+        <sphereGeometry args={[0.034, 16, 16]} />
+        <meshStandardMaterial color="#fbbf24" emissive="#f59e0b" emissiveIntensity={1.8} toneMapped={false} />
+      </mesh>
+      <mesh ref={pulseRef}>
+        <sphereGeometry args={[0.05, 16, 16]} />
+        <meshBasicMaterial color="#fbbf24" transparent opacity={0.25} />
       </mesh>
     </group>
   );
@@ -79,11 +154,12 @@ function Globe() {
   const points = useMemo(() => HUBS.map((h) => latLonToVec3(h.lat, h.lon, R * 1.005)), []);
 
   useFrame((_, delta) => {
-    if (group.current) group.current.rotation.y += delta * 0.06;
+    if (group.current) group.current.rotation.y += delta * 0.05;
   });
 
   return (
-    <group ref={group} rotation={[0.12, -1.1, 0.16]}>
+    // initial yaw ~ -2.05 so the Gulf / Indian Ocean hubs face the camera
+    <group ref={group} rotation={[0.14, -2.05, 0.14]}>
       <mesh castShadow receiveShadow>
         <sphereGeometry args={[R, 96, 96]} />
         <meshStandardMaterial map={map} roughness={0.75} metalness={0.05} />
@@ -96,14 +172,11 @@ function Globe() {
       </mesh>
 
       {points.map((p, i) => (
-        <mesh key={HUBS[i]!.name} position={p}>
-          <sphereGeometry args={[0.038, 16, 16]} />
-          <meshStandardMaterial color="#fbbf24" emissive="#f59e0b" emissiveIntensity={1.8} toneMapped={false} />
-        </mesh>
+        <HubMarker key={HUBS[i]!.name} position={p} name={HUBS[i]!.name} />
       ))}
 
-      {LANES.map(([a, b], i) => (
-        <Arc key={`${a}-${b}-${i}`} from={points[a]!} to={points[b]!} delay={i / LANES.length} />
+      {LANES.map(([a, b, mode], i) => (
+        <Lane key={`${a}-${b}-${mode}-${i}`} from={points[a]!} to={points[b]!} mode={mode} delay={i / LANES.length} />
       ))}
     </group>
   );
