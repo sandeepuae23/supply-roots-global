@@ -1,6 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { toast } from "sonner";
-import { CheckItem, Field, PageHero } from "@/components/ui-primitives";
+import businessPort from "@/assets/business-port.jpg";
+import businessWarehouse from "@/assets/business-warehouse.jpg";
+import businessPackaging from "@/assets/business-packaging.jpg";
+import { CheckItem, Field, PageHero, SectionHeading } from "@/components/ui-primitives";
+import { SmartImage } from "@/components/smart-image";
 
 export const Route = createFileRoute("/business-clients")({
   head: () => ({
@@ -54,6 +58,7 @@ function BusinessClientsPage() {
   return (
     <div>
       <PageHero
+        image={businessPort}
         eyebrow="For Trade Buyers"
         title="Business & Wholesale Solutions"
         subtitle="Consistent supply chains, customized packaging and full documentation support for volume buyers across the Gulf, Europe, Africa and Asia."
@@ -75,6 +80,34 @@ function BusinessClientsPage() {
                 {t}
               </span>
             ))}
+          </div>
+
+          {/* Visual gallery */}
+          <div className="mt-20">
+            <SectionHeading eyebrow="At Scale" title="Wholesale in Action" center />
+            <div className="grid gap-6 md:grid-cols-2">
+              {[
+                {
+                  src: businessWarehouse,
+                  alt: "Wholesale food warehouse with pallets of rice, spices, pulses and dry fruits",
+                },
+                {
+                  src: businessPackaging,
+                  alt: "Private-label food packaging line with branded pouches on a conveyor belt",
+                },
+              ].map((img) => (
+                <div key={img.src} className="surface-3d overflow-hidden rounded-sm">
+                  <SmartImage
+                    src={img.src}
+                    alt={img.alt}
+                    width={1024}
+                    height={768}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="aspect-[4/3] w-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="mt-20 grid gap-16 lg:grid-cols-2">
