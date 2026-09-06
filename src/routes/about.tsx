@@ -1,6 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import warehouseOps from "@/assets/warehouse-ops.jpg";
+import headquarters from "@/assets/about-headquarters.jpg";
+import inspection from "@/assets/about-inspection.jpg";
+import partnership from "@/assets/about-partnership.jpg";
 import { CheckItem, PageHero, SectionHeading } from "@/components/ui-primitives";
+import { SmartImage } from "@/components/smart-image";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -48,7 +51,7 @@ function AboutPage() {
   return (
     <div>
       <PageHero
-        image={warehouseOps}
+        image={headquarters}
         eyebrow="About Our Company"
         title="Who We Are"
         subtitle="Leo Infinity Global General Trading is a licensed international food trading company. We source, import, export and supply premium agricultural and food products to distributors, retailers, manufacturers and foodservice businesses across global markets."
@@ -97,6 +100,27 @@ function AboutPage() {
               <CheckItem key={item}>{item}</CheckItem>
             ))}
           </ul>
+        </div>
+      </section>
+
+      {/* Image gallery */}
+      <section className="px-6 py-24">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading eyebrow="Who We Are" title="Company in Action" center />
+          <div className="grid gap-8 md:grid-cols-2">
+            <SmartImage
+              src={inspection}
+              alt="Quality inspectors examining fresh produce in a modern warehouse"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="surface-3d aspect-[4/3] w-full rounded-sm object-cover"
+            />
+            <SmartImage
+              src={partnership}
+              alt="Business partners shaking hands over global trade documents"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="surface-3d aspect-[4/3] w-full rounded-sm object-cover"
+            />
+          </div>
         </div>
       </section>
 
