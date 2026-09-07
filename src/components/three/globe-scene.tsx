@@ -64,7 +64,7 @@ function ShipIcon() {
   const hull = "#0f766e";
   const glow = "#2dd4bf";
   return (
-    <group scale={1.15}>
+    <group scale={1.7}>
       {/* hull — wider at back, tapering to the bow (+Z) */}
       <mesh position={[0, 0.012, -0.01]}>
         <boxGeometry args={[0.05, 0.024, 0.11]} />
@@ -101,7 +101,7 @@ function PlaneIcon() {
   const body = "#fde68a";
   const glow = "#f59e0b";
   return (
-    <group scale={1.15}>
+    <group scale={1.7}>
       {/* fuselage pointing along +Z */}
       <mesh rotation-x={Math.PI / 2}>
         <cylinderGeometry args={[0.011, 0.011, 0.095, 10]} />
@@ -136,7 +136,7 @@ function TruckIcon() {
   const glow = "#fb923c";
   const wheel = "#1c1917";
   return (
-    <group scale={1.15}>
+    <group scale={1.7}>
       {/* trailer / container box at the rear */}
       <mesh position={[0, 0.026, -0.022]}>
         <boxGeometry args={[0.034, 0.032, 0.062]} />
