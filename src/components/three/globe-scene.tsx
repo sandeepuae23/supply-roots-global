@@ -55,30 +55,119 @@ const MODE_STYLE: Record<Mode, { color: string; emissive: string; lift: number; 
 
 const R = 2;
 
-/** Moving cargo marker: box for sea freight, cone (plane) for air, cylinder (truck) for land. */
-function CargoMarker({ mode }: { mode: Mode }) {
-  if (mode === "air") {
-    return (
-      <mesh rotation-x={Math.PI / 2}>
-        <coneGeometry args={[0.028, 0.09, 10]} />
-        <meshStandardMaterial color="#fde68a" emissive="#f59e0b" emissiveIntensity={2.4} toneMapped={false} />
-      </mesh>
-    );
-  }
-  if (mode === "sea") {
-    return (
-      <mesh>
-        <boxGeometry args={[0.07, 0.045, 0.045]} />
-        <meshStandardMaterial color="#99f6e4" emissive="#14b8a6" emissiveIntensity={1.8} toneMapped={false} />
-      </mesh>
-    );
-  }
+/**
+ * Moving cargo icons built from primitives.
+ * The parent group uses lookAt(), so +Z is the forward direction of travel.
+ */
+
+function ShipIcon() {
+  const hull = "#0f766e";
+  const glow = "#2dd4bf";
   return (
-    <mesh rotation-x={Math.PI / 2}>
-      <cylinderGeometry args={[0.024, 0.024, 0.07, 10]} />
-      <meshStandardMaterial color="#fed7aa" emissive="#f97316" emissiveIntensity={2} toneMapped={false} />
-    </mesh>
+    <group scale={1.15}>
+      {/* hull — wider at back, tapering to the bow (+Z) */}
+      <mesh position={[0, 0.012, -0.01]}>
+        <boxGeometry args={[0.05, 0.024, 0.11]} />
+        <meshStandardMaterial color={hull} emissive={glow} emissiveIntensity={0.9} toneMapped={false} />
+      </mesh>
+      {/* bow wedge */}
+      <mesh position={[0, 0.012, 0.055]} rotation-y={Math.PI / 4}>
+        <boxGeometry args={[0.036, 0.024, 0.036]} />
+        <meshStandardMaterial color={hull} emissive={glow} emissiveIntensity={0.9} toneMapped={false} />
+      </mesh>
+      {/* container stacks */}
+      {[-0.028, -0.004, 0.02].map((z, i) => (
+        <mesh key={i} position={[0, 0.036, z]}>
+          <boxGeometry args={[0.038, 0.016, 0.02]} />
+          <meshStandardMaterial
+            color={["#f59e0b", "#e2e8f0", "#dc2626"][i]}
+            emissive={["#f59e0b", "#94a3b8", "#dc2626"][i]}
+            emissiveIntensity={0.6}
+            toneMapped={false}
+          />
+        </mesh>
+      ))}
+      {/* bridge tower at the stern */}
+      <mesh position={[0, 0.042, -0.042]}>
+        <boxGeometry args={[0.04, 0.028, 0.014]} />
+        <meshStandardMaterial color="#f8fafc" emissive="#cbd5e1" emissiveIntensity={0.8} toneMapped={false} />
+      </mesh>
+    </group>
   );
+}
+
+function PlaneIcon() {
+  const body = "#fde68a";
+  const glow = "#f59e0b";
+  return (
+    <group scale={1.15}>
+      {/* fuselage pointing along +Z */}
+      <mesh rotation-x={Math.PI / 2}>
+        <cylinderGeometry args={[0.011, 0.011, 0.095, 10]} />
+        <meshStandardMaterial color={body} emissive={glow} emissiveIntensity={1.6} toneMapped={false} />
+      </mesh>
+      {/* nose cone */}
+      <mesh position={[0, 0, 0.058]} rotation-x={Math.PI / 2}>
+        <coneGeometry args={[0.011, 0.026, 10]} />
+        <meshStandardMaterial color={body} emissive={glow} emissiveIntensity={1.6} toneMapped={false} />
+      </mesh>
+      {/* main wings — swept back slightly */}
+      <mesh position={[0, 0, 0.004]} rotation-y={0}>
+        <boxGeometry args={[0.115, 0.004, 0.026]} />
+        <meshStandardMaterial color={body} emissive={glow} emissiveIntensity={1.4} toneMapped={false} />
+      </mesh>
+      {/* tail wings */}
+      <mesh position={[0, 0, -0.04]}>
+        <boxGeometry args={[0.05, 0.003, 0.014]} />
+        <meshStandardMaterial color={body} emissive={glow} emissiveIntensity={1.4} toneMapped={false} />
+      </mesh>
+      {/* vertical tail fin */}
+      <mesh position={[0, 0.014, -0.042]}>
+        <boxGeometry args={[0.003, 0.024, 0.016]} />
+        <meshStandardMaterial color={body} emissive={glow} emissiveIntensity={1.4} toneMapped={false} />
+      </mesh>
+    </group>
+  );
+}
+
+function TruckIcon() {
+  const cab = "#ea580c";
+  const glow = "#fb923c";
+  const wheel = "#1c1917";
+  return (
+    <group scale={1.15}>
+      {/* trailer / container box at the rear */}
+      <mesh position={[0, 0.026, -0.022]}>
+        <boxGeometry args={[0.034, 0.032, 0.062]} />
+        <meshStandardMaterial color="#fff7ed" emissive={glow} emissiveIntensity={0.9} toneMapped={false} />
+      </mesh>
+      {/* cab at the front */}
+      <mesh position={[0, 0.02, 0.03]}>
+        <boxGeometry args={[0.032, 0.024, 0.022]} />
+        <meshStandardMaterial color={cab} emissive={cab} emissiveIntensity={1.2} toneMapped={false} />
+      </mesh>
+      {/* windshield */}
+      <mesh position={[0, 0.028, 0.0415]}>
+        <boxGeometry args={[0.026, 0.01, 0.002]} />
+        <meshStandardMaterial color="#bae6fd" emissive="#7dd3fc" emissiveIntensity={1.2} toneMapped={false} />
+      </mesh>
+      {/* wheels */}
+      {[-0.038, -0.006, 0.03].map((z, i) =>
+        [-0.018, 0.018].map((x, j) => (
+          <mesh key={`${i}-${j}`} position={[x, 0.008, z]} rotation-z={Math.PI / 2}>
+            <cylinderGeometry args={[0.008, 0.008, 0.006, 10]} />
+            <meshStandardMaterial color={wheel} />
+          </mesh>
+        )),
+      )}
+    </group>
+  );
+}
+
+function CargoMarker({ mode }: { mode: Mode }) {
+  if (mode === "air") return <PlaneIcon />;
+  if (mode === "sea") return <ShipIcon />;
+  return <TruckIcon />;
 }
 
 function Lane({ from, to, mode, delay }: { from: THREE.Vector3; to: THREE.Vector3; mode: Mode; delay: number }) {
