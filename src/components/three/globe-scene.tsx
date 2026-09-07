@@ -1,8 +1,9 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment, Lightformer, OrbitControls, useTexture } from "@react-three/drei";
-import { Suspense, useMemo, useRef } from "react";
+import { Suspense, useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import earthMap from "@/assets/earth-map.jpg";
+import { HUBS, LANES, TIMELINE_LANES, type LaneMode } from "@/data/trade-lanes";
 
 /** Convert lat/lon (degrees) to a point on a sphere of the given radius. */
 function latLonToVec3(lat: number, lon: number, radius: number) {
@@ -15,37 +16,8 @@ function latLonToVec3(lat: number, lon: number, radius: number) {
   );
 }
 
-type Mode = "sea" | "air" | "land";
+type Mode = LaneMode;
 
-const HUBS: { name: string; lat: number; lon: number }[] = [
-  { name: "Dubai", lat: 25.2, lon: 55.3 }, // 0
-  { name: "Mumbai", lat: 19.1, lon: 72.9 }, // 1
-  { name: "Riyadh", lat: 24.7, lon: 46.7 }, // 2
-  { name: "Doha", lat: 25.3, lon: 51.5 }, // 3
-  { name: "Rotterdam", lat: 51.9, lon: 4.5 }, // 4
-  { name: "Mombasa", lat: -4.0, lon: 39.7 }, // 5
-  { name: "Singapore", lat: 1.35, lon: 103.8 }, // 6
-  { name: "Cairo", lat: 30.0, lon: 31.2 }, // 7
-  { name: "Jebel Ali Port", lat: 24.98, lon: 55.06 }, // 8 (sea)
-  { name: "Dubai Intl. Airport", lat: 25.25, lon: 55.36 }, // 9 (air)
-  { name: "Gulf Corridor", lat: 26.4, lon: 50.1 }, // 10 (land)
-];
-
-// [fromIndex, toIndex, mode]
-const LANES: [number, number, Mode][] = [
-  [1, 8, "sea"],
-  [8, 4, "sea"],
-  [6, 8, "sea"],
-  [5, 8, "sea"],
-  [9, 2, "air"],
-  [9, 6, "air"],
-  [7, 4, "air"],
-  [9, 4, "air"],
-  [0, 2, "land"],
-  [0, 10, "land"],
-  [10, 7, "land"],
-  [1, 0, "land"],
-];
 
 const MODE_STYLE: Record<Mode, { color: string; emissive: string; lift: number; speed: number; tube: number }> = {
   sea: { color: "#2dd4bf", emissive: "#0d9488", lift: 0.1, speed: 0.09, tube: 0.014 },
