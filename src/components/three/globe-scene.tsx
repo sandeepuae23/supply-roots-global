@@ -76,15 +76,16 @@ function ShipIcon() {
         <meshStandardMaterial color={hull} emissive={glow} emissiveIntensity={0.9} toneMapped={false} />
       </mesh>
       {/* container stacks */}
-      {[-0.028, -0.004, 0.02].map((z, i) => (
+      {(
+        [
+          [-0.028, "#f59e0b", "#f59e0b"],
+          [-0.004, "#e2e8f0", "#94a3b8"],
+          [0.02, "#dc2626", "#dc2626"],
+        ] as [number, string, string][]
+      ).map(([z, color, emissive], i) => (
         <mesh key={i} position={[0, 0.036, z]}>
           <boxGeometry args={[0.038, 0.016, 0.02]} />
-          <meshStandardMaterial
-            color={["#f59e0b", "#e2e8f0", "#dc2626"][i]}
-            emissive={["#f59e0b", "#94a3b8", "#dc2626"][i]}
-            emissiveIntensity={0.6}
-            toneMapped={false}
-          />
+          <meshStandardMaterial color={color} emissive={emissive} emissiveIntensity={0.6} toneMapped={false} />
         </mesh>
       ))}
       {/* bridge tower at the stern */}
