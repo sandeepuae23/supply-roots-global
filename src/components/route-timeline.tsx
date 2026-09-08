@@ -22,7 +22,7 @@ export function RouteTimeline() {
   };
 
   const current = stage >= 0 ? TIMELINE_LANES[stage] : undefined;
-  const progress = stage < 0 ? 0 : ((stage + (playing ? 1 : 1)) / TIMELINE_LANES.length) * 100;
+  const progress = stage < 0 ? 0 : ((stage + 1) / TIMELINE_LANES.length) * 100;
 
   return (
     <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">

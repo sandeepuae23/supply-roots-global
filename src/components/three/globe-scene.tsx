@@ -308,7 +308,7 @@ function TimelineRunner({
     if (!s || s.done) return;
     const leg = TIMELINE_LANES[s.index];
     if (!leg) return;
-    s.t += delta * (MODE_STYLE[leg.mode].speed * 3.4);
+    s.t += delta * (MODE_STYLE[leg.mode].speed * 1.6);
     if (s.t >= 1) {
       s.t = 0;
       s.index += 1;
