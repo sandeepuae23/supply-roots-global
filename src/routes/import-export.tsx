@@ -2,6 +2,10 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import tradePort from "@/assets/trade-port.jpg";
 import import3d from "@/assets/3d-import.jpg";
 import export3d from "@/assets/3d-export.jpg";
+import tradeContainers from "@/assets/trade-containers.jpg";
+import tradeDocuments from "@/assets/trade-documents.jpg";
+import tradeInspection from "@/assets/trade-inspection.jpg";
+import tradeAirFreight from "@/assets/trade-air-freight.jpg";
 import { CheckItem, PageHero, SectionHeading } from "@/components/ui-primitives";
 import { SmartImage } from "@/components/smart-image";
 
