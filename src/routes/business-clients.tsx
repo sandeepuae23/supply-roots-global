@@ -5,6 +5,7 @@ import businessWarehouse from "@/assets/business-warehouse.jpg";
 import businessPackaging from "@/assets/business-packaging.jpg";
 import { CheckItem, Field, PageHero, SectionHeading } from "@/components/ui-primitives";
 import { SmartImage } from "@/components/smart-image";
+import { RouteTimeline } from "@/components/route-timeline";
 
 export const Route = createFileRoute("/business-clients")({
   head: () => ({
@@ -110,7 +111,12 @@ function BusinessClientsPage() {
             </div>
           </div>
 
-          <div className="mt-20 grid gap-16 lg:grid-cols-2">
+          {/* Animated route timeline */}
+          <div className="mt-24">
+            <RouteTimeline />
+          </div>
+
+          <div className="mt-24 grid gap-16 lg:grid-cols-2">
             <div>
               <span className="eyebrow">Services</span>
               <h2 className="mb-8 font-serif text-3xl text-primary">What Business Clients Get</h2>
