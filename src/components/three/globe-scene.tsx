@@ -327,10 +327,10 @@ function TimelineRunner({
 }
 
 type GlobeProps = {
-  timeline?: boolean;
-  playToken?: number;
-  onStage?: (i: number) => void;
-  onComplete?: () => void;
+  timeline?: boolean | undefined;
+  playToken?: number | undefined;
+  onStage?: ((i: number) => void) | undefined;
+  onComplete?: (() => void) | undefined;
 };
 
 function Globe({ timeline = false, playToken = 0, onStage, onComplete }: GlobeProps) {
