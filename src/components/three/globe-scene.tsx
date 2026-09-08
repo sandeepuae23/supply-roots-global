@@ -207,16 +207,143 @@ function HubMarker({ position, name }: { position: THREE.Vector3; name: string }
   );
 }
 
-function Globe() {
+/** A single leg of the "Show Route" timeline: the tube draws in as the cargo travels. */
+function TimelineLane({
+  index,
+  from,
+  to,
+  mode,
+  state,
+}: {
+  index: number;
+  from: THREE.Vector3;
+  to: THREE.Vector3;
+  mode: Mode;
+  state: React.RefObject<{ index: number; t: number; done: boolean }>;
+}) {
+  const style = MODE_STYLE[mode];
+
+  const curve = useMemo(() => {
+    const mid = from.clone().add(to).multiplyScalar(0.5);
+    const lift = 1 + from.distanceTo(to) * style.lift;
+    mid.normalize().multiplyScalar(R * lift);
+    return new THREE.QuadraticBezierCurve3(from, mid, to);
+  }, [from, to, style.lift]);
+
+  const geometry = useMemo(() => new THREE.TubeGeometry(curve, 64, style.tube, 8, false), [curve, style.tube]);
+  const totalIndices = geometry.index ? geometry.index.count : 0;
+
+  const tubeRef = useRef<THREE.Mesh>(null);
+  const cargoRef = useRef<THREE.Group>(null);
+  const matRef = useRef<THREE.MeshStandardMaterial>(null);
+
+  useFrame(() => {
+    const s = state.current;
+    if (!s) return;
+    const active = s.index === index && !s.done;
+    const passed = s.done || s.index > index;
+    const reveal = passed ? 1 : active ? s.t : 0;
+
+    geometry.setDrawRange(0, Math.max(2, Math.floor(totalIndices * reveal)));
+    if (tubeRef.current) tubeRef.current.visible = reveal > 0.001;
+    if (matRef.current) matRef.current.opacity = active ? 1 : passed ? 0.4 : 0;
+
+    if (cargoRef.current) {
+      cargoRef.current.visible = active;
+      if (active) {
+        const p = curve.getPoint(s.t);
+        cargoRef.current.position.copy(p);
+        cargoRef.current.lookAt(p.clone().add(curve.getTangent(s.t).normalize()));
+      }
+    }
+  });
+
+  return (
+    <group>
+      <mesh ref={tubeRef} geometry={geometry}>
+        <meshStandardMaterial
+          ref={matRef}
+          color={style.color}
+          emissive={style.emissive}
+          emissiveIntensity={1}
+          roughness={0.4}
+          transparent
+          opacity={0}
+        />
+      </mesh>
+      <group ref={cargoRef} visible={false}>
+        <CargoMarker mode={mode} />
+      </group>
+    </group>
+  );
+}
+
+function TimelineRunner({
+  playToken,
+  onStage,
+  onComplete,
+  stateRef,
+}: {
+  playToken: number;
+  onStage: (i: number) => void;
+  onComplete: () => void;
+  stateRef: React.RefObject<{ index: number; t: number; done: boolean }>;
+}) {
+  useEffect(() => {
+    if (!stateRef.current) return;
+    if (playToken === 0) {
+      stateRef.current.index = 0;
+      stateRef.current.t = 0;
+      stateRef.current.done = true;
+      return;
+    }
+    stateRef.current.index = 0;
+    stateRef.current.t = 0;
+    stateRef.current.done = false;
+    onStage(0);
+  }, [playToken, onStage, stateRef]);
+
+  useFrame((_, delta) => {
+    const s = stateRef.current;
+    if (!s || s.done) return;
+    const leg = TIMELINE_LANES[s.index];
+    if (!leg) return;
+    s.t += delta * (MODE_STYLE[leg.mode].speed * 3.4);
+    if (s.t >= 1) {
+      s.t = 0;
+      s.index += 1;
+      if (s.index >= TIMELINE_LANES.length) {
+        s.index = TIMELINE_LANES.length - 1;
+        s.t = 1;
+        s.done = true;
+        onComplete();
+      } else {
+        onStage(s.index);
+      }
+    }
+  });
+
+  return null;
+}
+
+type GlobeProps = {
+  timeline?: boolean;
+  playToken?: number;
+  onStage?: (i: number) => void;
+  onComplete?: () => void;
+};
+
+function Globe({ timeline = false, playToken = 0, onStage, onComplete }: GlobeProps) {
   const map = useTexture(earthMap);
   map.colorSpace = THREE.SRGBColorSpace;
   map.anisotropy = 8;
 
   const group = useRef<THREE.Group>(null);
   const points = useMemo(() => HUBS.map((h) => latLonToVec3(h.lat, h.lon, R * 1.005)), []);
+  const stateRef = useRef({ index: 0, t: 0, done: true });
 
   useFrame((_, delta) => {
-    if (group.current) group.current.rotation.y += delta * 0.05;
+    if (group.current) group.current.rotation.y += delta * (timeline ? 0.025 : 0.05);
   });
 
   return (
@@ -237,14 +364,35 @@ function Globe() {
         <HubMarker key={HUBS[i]!.name} position={p} name={HUBS[i]!.name} />
       ))}
 
-      {LANES.map(([a, b, mode], i) => (
-        <Lane key={`${a}-${b}-${mode}-${i}`} from={points[a]!} to={points[b]!} mode={mode} delay={i / LANES.length} />
-      ))}
+      {timeline ? (
+        <>
+          <TimelineRunner
+            playToken={playToken}
+            stateRef={stateRef}
+            onStage={onStage ?? (() => {})}
+            onComplete={onComplete ?? (() => {})}
+          />
+          {TIMELINE_LANES.map((leg, i) => (
+            <TimelineLane
+              key={`${leg.from}-${leg.to}-${i}`}
+              index={i}
+              from={points[leg.from]!}
+              to={points[leg.to]!}
+              mode={leg.mode}
+              state={stateRef}
+            />
+          ))}
+        </>
+      ) : (
+        LANES.map(([a, b, mode], i) => (
+          <Lane key={`${a}-${b}-${mode}-${i}`} from={points[a]!} to={points[b]!} mode={mode} delay={i / LANES.length} />
+        ))
+      )}
     </group>
   );
 }
 
-export default function GlobeScene() {
+export default function GlobeScene({ timeline, playToken, onStage, onComplete }: GlobeProps = {}) {
   return (
     <Canvas
       shadows
@@ -257,7 +405,7 @@ export default function GlobeScene() {
       <directionalLight position={[5, 4, 5]} intensity={2.2} castShadow />
       <directionalLight position={[-6, -2, -4]} intensity={0.5} color="#8fb3a5" />
       <Suspense fallback={null}>
-        <Globe />
+        <Globe timeline={timeline} playToken={playToken} onStage={onStage} onComplete={onComplete} />
         <Environment>
           <Lightformer intensity={1.6} position={[0, 5, 2]} scale={[10, 10, 1]} />
           <Lightformer intensity={0.8} color="#f5b971" position={[-5, 1, -2]} rotation-y={Math.PI / 2} scale={[16, 4, 1]} />
@@ -267,3 +415,4 @@ export default function GlobeScene() {
     </Canvas>
   );
 }
+
