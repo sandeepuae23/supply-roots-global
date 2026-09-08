@@ -2,6 +2,10 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import tradePort from "@/assets/trade-port.jpg";
 import import3d from "@/assets/3d-import.jpg";
 import export3d from "@/assets/3d-export.jpg";
+import tradeContainers from "@/assets/trade-containers.jpg";
+import tradeDocuments from "@/assets/trade-documents.jpg";
+import tradeInspection from "@/assets/trade-inspection.jpg";
+import tradeAirFreight from "@/assets/trade-air-freight.jpg";
 import { CheckItem, PageHero, SectionHeading } from "@/components/ui-primitives";
 import { SmartImage } from "@/components/smart-image";
 
@@ -112,6 +116,44 @@ function ImportExportPage() {
                 ))}
               </ul>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trade in Action gallery */}
+      <section className="px-6 py-24">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading eyebrow="Global Movement" title="Trade in Action" center />
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                src: tradeContainers,
+                alt: "Container ship being loaded with colorful shipping containers at a major international port",
+              },
+              {
+                src: tradeDocuments,
+                alt: "International trade documentation including certificate of origin, phytosanitary certificate and bill of lading",
+              },
+              {
+                src: tradeInspection,
+                alt: "Quality inspector checking food cargo at a port warehouse before export",
+              },
+              {
+                src: tradeAirFreight,
+                alt: "Cargo airplane being loaded with refrigerated food pallets at dusk",
+              },
+            ].map((img) => (
+              <div key={img.src} className="surface-3d overflow-hidden rounded-sm">
+                <SmartImage
+                  src={img.src}
+                  alt={img.alt}
+                  width={1024}
+                  height={768}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="aspect-[4/3] w-full object-cover"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
