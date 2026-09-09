@@ -500,6 +500,8 @@ function buildProduct(categorySlug: string, seed: ProductSeed): Product {
     category: categorySlug,
     image: category.image,
     origin: d.origin,
+    price: d.price,
+    weight: d.weight,
     variety: d.variety,
     grade: "Export grade",
     moisture: "Per specification",
