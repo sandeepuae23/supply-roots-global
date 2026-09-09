@@ -81,6 +81,10 @@ export interface Product {
   category: string;
   image: string;
   origin: string;
+  /** Indicative FOB price range shown on the detail page. */
+  price: string;
+  /** Standard pack / unit weight shown on the detail page. */
+  weight: string;
   variety: string;
   grade: string;
   moisture: string;
@@ -201,10 +205,12 @@ interface ProductSeed {
 
 const categoryDefaults: Record<
   string,
-  Pick<Product, "origin" | "packaging" | "moq" | "shipping" | "variety">
+  Pick<Product, "origin" | "price" | "weight" | "packaging" | "moq" | "shipping" | "variety">
 > = {
   vegetables: {
     origin: "India (Nashik / Gujarat belts)",
+    price: "US$ 280–420 / MT (FOB)",
+    weight: "5–25 kg mesh bags & cartons",
     variety: "Fresh export grade",
     packaging: "Mesh bags / corrugated cartons, 5–25 kg",
     moq: "14 MT (1 × 40' reefer)",
@@ -212,6 +218,8 @@ const categoryDefaults: Record<
   },
   fruits: {
     origin: "India (Ratnagiri / Andhra Pradesh)",
+    price: "US$ 450–900 / MT (FOB)",
+    weight: "3–20 kg ventilated cartons",
     variety: "Premium export grade",
     packaging: "Ventilated cartons, 3–20 kg",
     moq: "5 MT (air) / 12 MT (sea reefer)",
@@ -219,6 +227,8 @@ const categoryDefaults: Record<
   },
   rice: {
     origin: "India (Punjab / Haryana)",
+    price: "US$ 520–1,050 / MT (FOB)",
+    weight: "5kg / 10kg / 25kg / 50kg bags",
     variety: "Long grain, aged 12–24 months",
     packaging: "5kg / 10kg / 25kg / 50kg PP & jute bags",
     moq: "20 MT (1 × 20' FCL)",
@@ -226,6 +236,8 @@ const categoryDefaults: Record<
   },
   pulses: {
     origin: "India / Canada / Australia",
+    price: "US$ 650–1,200 / MT (FOB)",
+    weight: "25kg / 50kg bags",
     variety: "Machine cleaned, Sortex graded",
     packaging: "25kg / 50kg PP bags, retail packs on request",
     moq: "20 MT (1 × 20' FCL)",
@@ -233,6 +245,8 @@ const categoryDefaults: Record<
   },
   eggs: {
     origin: "India (Namakkal, Tamil Nadu)",
+    price: "US$ 95–120 / 360-egg carton (FOB)",
+    weight: "53–65 g per egg, 360 per carton",
     variety: "53–65 g graded",
     packaging: "30-egg trays, 360 eggs per export carton",
     moq: "1 × 40' reefer (≈ 1,312 cartons)",
@@ -240,6 +254,8 @@ const categoryDefaults: Record<
   },
   spices: {
     origin: "India (Kerala / Telangana / Gujarat)",
+    price: "US$ 1,800–6,500 / MT (FOB)",
+    weight: "25kg / 50kg bags",
     variety: "Whole / ground, lab tested",
     packaging: "25kg / 50kg PP or jute bags with liner",
     moq: "5 MT",
@@ -247,6 +263,8 @@ const categoryDefaults: Record<
   },
   grains: {
     origin: "India / Ukraine / Australia",
+    price: "US$ 240–380 / MT (FOB)",
+    weight: "50kg bags / bulk",
     variety: "Food & feed grade",
     packaging: "50kg PP bags / bulk container liner",
     moq: "25 MT (1 × 20' FCL)",
@@ -254,6 +272,8 @@ const categoryDefaults: Record<
   },
   "dry-fruits": {
     origin: "India / USA / Iran / Afghanistan",
+    price: "US$ 2,500–8,000 / MT (FOB)",
+    weight: "10kg / 25kg cartons",
     variety: "Premium grade",
     packaging: "10kg / 25kg cartons, vacuum packed",
     moq: "2 MT",
@@ -261,6 +281,8 @@ const categoryDefaults: Record<
   },
   "nuts-seeds": {
     origin: "India / USA / Vietnam",
+    price: "US$ 1,900–9,500 / MT (FOB)",
+    weight: "25kg / 50kg bags & cartons",
     variety: "Whole, graded",
     packaging: "25kg / 50kg vacuum bags & cartons",
     moq: "5 MT",
@@ -268,6 +290,8 @@ const categoryDefaults: Record<
   },
   "edible-oils": {
     origin: "India / Ukraine / Spain / Indonesia",
+    price: "US$ 950–4,200 / MT (FOB)",
+    weight: "1–20 L packs / flexitank",
     variety: "Refined / cold pressed",
     packaging: "Flexitank, drums, 1–20 L retail packs",
     moq: "20 MT",
@@ -275,6 +299,8 @@ const categoryDefaults: Record<
   },
   "frozen-foods": {
     origin: "India",
+    price: "US$ 800–1,600 / MT (FOB)",
+    weight: "10kg / 20kg cartons",
     variety: "IQF, −18°C cold chain",
     packaging: "10kg / 20kg cartons with poly liner",
     moq: "12 MT (1 × 40' reefer)",
@@ -282,6 +308,8 @@ const categoryDefaults: Record<
   },
   other: {
     origin: "India",
+    price: "On request",
+    weight: "Retail & food-service packs",
     variety: "Branded / private label",
     packaging: "Retail & food-service packs",
     moq: "1 × 20' FCL (mixed)",
@@ -472,6 +500,8 @@ function buildProduct(categorySlug: string, seed: ProductSeed): Product {
     category: categorySlug,
     image: category.image,
     origin: d.origin,
+    price: d.price,
+    weight: d.weight,
     variety: d.variety,
     grade: "Export grade",
     moisture: "Per specification",
