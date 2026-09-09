@@ -81,6 +81,10 @@ export interface Product {
   category: string;
   image: string;
   origin: string;
+  /** Indicative FOB price range shown on the detail page. */
+  price: string;
+  /** Standard pack / unit weight shown on the detail page. */
+  weight: string;
   variety: string;
   grade: string;
   moisture: string;
@@ -201,10 +205,12 @@ interface ProductSeed {
 
 const categoryDefaults: Record<
   string,
-  Pick<Product, "origin" | "packaging" | "moq" | "shipping" | "variety">
+  Pick<Product, "origin" | "price" | "weight" | "packaging" | "moq" | "shipping" | "variety">
 > = {
   vegetables: {
     origin: "India (Nashik / Gujarat belts)",
+    price: "US$ 280–420 / MT (FOB)",
+    weight: "5–25 kg mesh bags & cartons",
     variety: "Fresh export grade",
     packaging: "Mesh bags / corrugated cartons, 5–25 kg",
     moq: "14 MT (1 × 40' reefer)",
