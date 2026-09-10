@@ -3,7 +3,7 @@ import { categories, productsByCategory } from "@/data/catalog";
 import { SectionHeading } from "@/components/ui-primitives";
 import { SmartImage } from "@/components/smart-image";
 
-export const Route = createFileRoute("/products")({
+export const Route = createFileRoute("/products/")({
   head: () => ({
     meta: [
       { title: "Product Catalog — Leo Infinity Global General Trading" },
