@@ -14,9 +14,9 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as BusinessClientsRouteImport } from './routes/business-clients'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ImportExportRouteImport } from './routes/import-export'
-import { Route as ProductsRouteImport } from './routes/products'
 import { Route as QualityRouteImport } from './routes/quality'
 import { Route as RequestQuoteRouteImport } from './routes/request-quote'
+import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -44,11 +44,6 @@ const ImportExportRoute = ImportExportRouteImport.update({
   path: '/import-export',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProductsRoute = ProductsRouteImport.update({
-  id: '/products',
-  path: '/products',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const QualityRoute = QualityRouteImport.update({
   id: '/quality',
   path: '/quality',
@@ -57,6 +52,11 @@ const QualityRoute = QualityRouteImport.update({
 const RequestQuoteRoute = RequestQuoteRouteImport.update({
   id: '/request-quote',
   path: '/request-quote',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsIndexRoute = ProductsIndexRouteImport.update({
+  id: '/products/',
+  path: '/products/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsSlugRoute = ProductsSlugRouteImport.update({
@@ -71,10 +71,10 @@ export interface FileRoutesByFullPath {
   '/business-clients': typeof BusinessClientsRoute
   '/contact': typeof ContactRoute
   '/import-export': typeof ImportExportRoute
-  '/products': typeof ProductsRouteWithChildren
   '/quality': typeof QualityRoute
   '/request-quote': typeof RequestQuoteRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/products/': typeof ProductsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -82,10 +82,10 @@ export interface FileRoutesByTo {
   '/business-clients': typeof BusinessClientsRoute
   '/contact': typeof ContactRoute
   '/import-export': typeof ImportExportRoute
-  '/products': typeof ProductsRouteWithChildren
   '/quality': typeof QualityRoute
   '/request-quote': typeof RequestQuoteRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/products': typeof ProductsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -94,10 +94,10 @@ export interface FileRoutesById {
   '/business-clients': typeof BusinessClientsRoute
   '/contact': typeof ContactRoute
   '/import-export': typeof ImportExportRoute
-  '/products': typeof ProductsRouteWithChildren
   '/quality': typeof QualityRoute
   '/request-quote': typeof RequestQuoteRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/products/': typeof ProductsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -107,10 +107,10 @@ export interface FileRouteTypes {
     | '/business-clients'
     | '/contact'
     | '/import-export'
-    | '/products'
     | '/quality'
     | '/request-quote'
     | '/products/$slug'
+    | '/products/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -118,10 +118,10 @@ export interface FileRouteTypes {
     | '/business-clients'
     | '/contact'
     | '/import-export'
-    | '/products'
     | '/quality'
     | '/request-quote'
     | '/products/$slug'
+    | '/products'
   id:
     | '__root__'
     | '/'
@@ -129,10 +129,10 @@ export interface FileRouteTypes {
     | '/business-clients'
     | '/contact'
     | '/import-export'
-    | '/products'
     | '/quality'
     | '/request-quote'
     | '/products/$slug'
+    | '/products/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -141,9 +141,9 @@ export interface RootRouteChildren {
   BusinessClientsRoute: typeof BusinessClientsRoute
   ContactRoute: typeof ContactRoute
   ImportExportRoute: typeof ImportExportRoute
-  ProductsRoute: typeof ProductsRouteWithChildren
   QualityRoute: typeof QualityRoute
   RequestQuoteRoute: typeof RequestQuoteRoute
+  ProductsIndexRoute: typeof ProductsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -183,13 +183,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ImportExportRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/products': {
-      id: '/products'
-      path: '/products'
-      fullPath: '/products'
-      preLoaderRoute: typeof ProductsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/quality': {
       id: '/quality'
       path: '/quality'
@@ -204,6 +197,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RequestQuoteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/products/': {
+      id: '/products/'
+      path: '/products'
+      fullPath: '/products/'
+      preLoaderRoute: typeof ProductsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/$slug': {
       id: '/products/$slug'
       path: '/$slug'
@@ -214,27 +214,15 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface ProductsRouteChildren {
-  ProductsSlugRoute: typeof ProductsSlugRoute
-}
-
-const ProductsRouteChildren: ProductsRouteChildren = {
-  ProductsSlugRoute: ProductsSlugRoute,
-}
-
-const ProductsRouteWithChildren = ProductsRoute._addFileChildren(
-  ProductsRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   BusinessClientsRoute: BusinessClientsRoute,
   ContactRoute: ContactRoute,
   ImportExportRoute: ImportExportRoute,
-  ProductsRoute: ProductsRouteWithChildren,
   QualityRoute: QualityRoute,
   RequestQuoteRoute: RequestQuoteRoute,
+  ProductsIndexRoute: ProductsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
