@@ -1,5 +1,5 @@
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, Lightformer, OrbitControls, useTexture } from "@react-three/drei";
+import { Environment, Html, Lightformer, OrbitControls, useTexture } from "@react-three/drei";
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import earthMap from "@/assets/earth-map.jpg";
@@ -151,12 +151,14 @@ function Lane({
   mode,
   delay,
   paused,
+  label,
 }: {
   from: THREE.Vector3;
   to: THREE.Vector3;
   mode: Mode;
   delay: number;
   paused: boolean;
+  label: string;
 }) {
   const style = MODE_STYLE[mode];
 
@@ -171,7 +173,10 @@ function Lane({
     () => new THREE.TubeGeometry(curve, 64, style.tube, 8, false),
     [curve, style.tube],
   );
+  const hitGeometry = useMemo(() => new THREE.TubeGeometry(curve, 40, 0.035, 5, false), [curve]);
   const cargoRef = useRef<THREE.Group>(null);
+  const particlesRef = useRef<THREE.Group>(null);
+  const [hovered, setHovered] = useState(false);
 
   const progress = useRef(delay);
   useFrame((_, delta) => {
@@ -184,6 +189,9 @@ function Lane({
     const tangent = curve.getTangent(t).normalize();
     const target = p.clone().add(tangent);
     cargoRef.current.lookAt(target);
+    particlesRef.current?.children.forEach((particle, index) => {
+      particle.position.copy(curve.getPoint((t - index * 0.035 + 1) % 1));
+    });
   });
 
   return (
@@ -198,9 +206,35 @@ function Lane({
           opacity={mode === "sea" ? 0.85 : 1}
         />
       </mesh>
+      <mesh
+        geometry={hitGeometry}
+        onPointerOver={(event) => {
+          event.stopPropagation();
+          setHovered(true);
+        }}
+        onPointerOut={(event) => {
+          event.stopPropagation();
+          setHovered(false);
+        }}
+      >
+        <meshBasicMaterial transparent opacity={0} depthWrite={false} />
+      </mesh>
       <group ref={cargoRef}>
         <CargoMarker mode={mode} />
       </group>
+      <group ref={particlesRef}>
+        {[0, 1, 2].map((index) => (
+          <mesh key={index}>
+            <sphereGeometry args={[0.011 - index * 0.002, 8, 8]} />
+            <meshBasicMaterial color={style.color} transparent opacity={0.8 - index * 0.18} />
+          </mesh>
+        ))}
+      </group>
+      {hovered && (
+        <Html position={curve.getPoint(0.52)} center distanceFactor={7} zIndexRange={[20, 0]}>
+          <div className="trade-route-tooltip">{label}</div>
+        </Html>
+      )}
     </group>
   );
 }
@@ -209,12 +243,21 @@ function HubMarker({
   position,
   name,
   paused,
+  interactive = false,
+  featured = false,
+  selected = false,
+  onSelect,
 }: {
   position: THREE.Vector3;
   name: string;
   paused: boolean;
+  interactive?: boolean;
+  featured?: boolean;
+  selected?: boolean;
+  onSelect?: () => void;
 }) {
   const pulseRef = useRef<THREE.Mesh>(null);
+  const [hovered, setHovered] = useState(false);
   useFrame(({ clock }) => {
     if (!pulseRef.current || paused) return;
     const s = 1 + 0.35 * Math.sin(clock.elapsedTime * 2 + position.x * 5);
@@ -222,7 +265,25 @@ function HubMarker({
   });
   return (
     <group position={position} key={name}>
-      <mesh>
+      <mesh
+        scale={selected ? 1.35 : 1}
+        {...(interactive
+          ? {
+              onClick: (event: { stopPropagation: () => void }) => {
+                event.stopPropagation();
+                onSelect?.();
+              },
+              onPointerOver: (event: { stopPropagation: () => void }) => {
+                event.stopPropagation();
+                setHovered(true);
+              },
+              onPointerOut: (event: { stopPropagation: () => void }) => {
+                event.stopPropagation();
+                setHovered(false);
+              },
+            }
+          : {})}
+      >
         <sphereGeometry args={[0.018, 16, 16]} />
         <meshStandardMaterial color="#fbbf24" emissive="#f59e0b" emissiveIntensity={0.25} />
       </mesh>
@@ -230,6 +291,21 @@ function HubMarker({
         <sphereGeometry args={[0.032, 16, 16]} />
         <meshBasicMaterial color="#fbbf24" transparent opacity={0.25} />
       </mesh>
+      {interactive && (featured || hovered) && (
+        <Html position={[0, 0.09, 0]} center distanceFactor={7.5} occlude zIndexRange={[15, 0]}>
+          <button
+            type="button"
+            className="trade-hub-label"
+            onClick={(event) => {
+              event.stopPropagation();
+              onSelect?.();
+            }}
+          >
+            <span />
+            {name}
+          </button>
+        </Html>
+      )}
     </group>
   );
 }
@@ -358,6 +434,8 @@ function TimelineRunner({
 
 type GlobeProps = {
   paused?: boolean | undefined;
+  activeMode?: Mode | "all" | undefined;
+  onHubSelect?: ((name: string) => void) | undefined;
   timeline?: boolean | undefined;
   playToken?: number | undefined;
   onStage?: ((i: number) => void) | undefined;
@@ -370,6 +448,8 @@ function Globe({
   onStage,
   onComplete,
   paused = false,
+  activeMode = "all",
+  onHubSelect,
 }: GlobeProps) {
   const map = useTexture(earthMap);
   map.colorSpace = THREE.SRGBColorSpace;
@@ -392,13 +472,30 @@ function Globe({
       </mesh>
 
       {/* Atmosphere shell */}
-      <mesh scale={1.015}>
+      <mesh scale={1.035}>
         <sphereGeometry args={[R, 64, 64]} />
-        <meshBasicMaterial color="#7dd3c0" transparent opacity={0.07} side={THREE.BackSide} />
+        <meshBasicMaterial
+          color="#7dd3c0"
+          transparent
+          opacity={0.1}
+          side={THREE.BackSide}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+        />
       </mesh>
 
       {points.map((p, i) => (
-        <HubMarker key={HUBS[i]!.name} position={p} name={HUBS[i]!.name} paused={paused} />
+        <HubMarker
+          key={HUBS[i]!.name}
+          position={p}
+          name={HUBS[i]!.name}
+          paused={paused}
+          interactive={!timeline}
+          featured={["Dubai", "Mumbai", "Singapore", "Rotterdam", "Mombasa"].includes(
+            HUBS[i]!.name,
+          )}
+          onSelect={() => onHubSelect?.(HUBS[i]!.name)}
+        />
       ))}
 
       {timeline ? (
@@ -421,16 +518,19 @@ function Globe({
           ))}
         </>
       ) : (
-        LANES.map(([a, b, mode], i) => (
-          <Lane
-            key={`${a}-${b}-${mode}-${i}`}
-            from={points[a]!}
-            to={points[b]!}
-            mode={mode}
-            delay={i / LANES.length}
-            paused={paused}
-          />
-        ))
+        LANES.filter(([, , mode]) => activeMode === "all" || mode === activeMode).map(
+          ([a, b, mode], i) => (
+            <Lane
+              key={`${a}-${b}-${mode}-${i}`}
+              from={points[a]!}
+              to={points[b]!}
+              mode={mode}
+              delay={i / LANES.length}
+              paused={paused}
+              label={`${HUBS[a]!.name} → ${HUBS[b]!.name}`}
+            />
+          ),
+        )
       )}
     </group>
   );
@@ -442,6 +542,8 @@ export default function GlobeScene({
   onStage,
   onComplete,
   paused = false,
+  activeMode = "all",
+  onHubSelect,
 }: GlobeProps = {}) {
   const [reducedMotion, setReducedMotion] = useState(false);
   useEffect(() => {
@@ -454,9 +556,17 @@ export default function GlobeScene({
   return (
     <Canvas
       dpr={[1, 2]}
-      camera={{ position: [0, 0.7, 7.4], fov: 42 }}
+      camera={{
+        position: [0, timeline ? 1.1 : 0.6, timeline ? 7.4 : 6.7],
+        fov: timeline ? 42 : 40,
+      }}
       gl={{ antialias: true, alpha: true }}
       style={{ background: "transparent" }}
+      fallback={
+        <div className="trade-globe-static">
+          <img src={earthMap} alt="Global trade network preview" />
+        </div>
+      }
     >
       <ambientLight intensity={0.65} />
       <directionalLight position={[5, 4, 5]} intensity={1.4} />
@@ -464,6 +574,8 @@ export default function GlobeScene({
       <Suspense fallback={null}>
         <Globe
           paused={paused || reducedMotion}
+          activeMode={activeMode}
+          onHubSelect={onHubSelect}
           timeline={timeline}
           playToken={playToken}
           onStage={onStage}

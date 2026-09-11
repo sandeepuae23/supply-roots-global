@@ -1,0 +1,14 @@
+# Mark binary assets explicitly. Without this, core.autocrlf=true on Windows
+# lets git's text heuristic misclassify some binaries (the product catalog PDF
+# is one) and rewrite their LF bytes to CRLF on checkout, corrupting the file.
+*.pdf  binary
+*.mp4  binary
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.gif  binary
+*.ico  binary
+*.webp binary
+*.avif binary
+*.woff  binary
+*.woff2 binary

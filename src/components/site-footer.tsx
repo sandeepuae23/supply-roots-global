@@ -1,53 +1,76 @@
 import { Link } from "@tanstack/react-router";
-import { categories, contact, markets } from "@/data/catalog";
+import { Mail, MessageCircle, Phone, Send } from "lucide-react";
+import { categories, contact } from "@/data/catalog";
 import logo from "@/assets/logo-leo-infinity.png";
+import "@/home-experience.css";
+
+const footerMarkets = ["UAE & Gulf", "Saudi Arabia", "Qatar", "Oman", "Europe", "Africa", "Asia"];
+const certificates = [
+  "Phytosanitary support",
+  "Certificate of origin",
+  "Health & veterinary documents",
+  "Laboratory reports",
+];
 
 export function SiteFooter() {
   return (
-    <footer className="bg-primary text-cream">
-      <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-2 lg:grid-cols-4">
-        <div className="space-y-4">
-          <div className="flex items-center gap-3">
-            <img
-              src={logo}
-              alt="Leo Infinity Global General Trading logo"
-              width={1024}
-              height={1024}
-              loading="lazy"
-              className="h-12 w-12 object-contain brightness-0 invert"
+    <footer className="site-footer">
+      <div className="site-footer-newsletter">
+        <div>
+          <span>MARKET INTELLIGENCE</span>
+          <h2>Product and seasonal updates for buyers</h2>
+          <p>Occasional availability, crop-window and trade-lane updates from our team.</p>
+        </div>
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            const data = new FormData(event.currentTarget);
+            const email = String(data.get("newsletter-email") ?? "");
+            window.location.href = `mailto:${contact.email}?subject=${encodeURIComponent("Subscribe me to product updates")}&body=${encodeURIComponent(`Please add ${email} to the Leo Infinity product update list.`)}`;
+          }}
+        >
+          <label htmlFor="newsletter-email">Business email</label>
+          <div>
+            <input
+              id="newsletter-email"
+              name="newsletter-email"
+              type="email"
+              required
+              autoComplete="email"
+              placeholder="buyer@company.com"
             />
-            <span className="font-serif text-xl leading-tight font-bold tracking-tight">
-              Leo Infinity<span className="text-accent">.</span>
-              <span className="block text-[10px] font-medium tracking-[0.2em] text-cream/60 uppercase">
-                Global General Trading
-              </span>
-            </span>
+            <button type="submit" aria-label="Request product updates">
+              <Send aria-hidden="true" />
+            </button>
           </div>
-          <p className="text-sm leading-relaxed text-cream/70">
-            Licensed international food trading company sourcing, importing and exporting quality agricultural and
-            food products worldwide.
+          <small>Your email app will open so you can confirm the request.</small>
+        </form>
+      </div>
+
+      <div className="site-footer-grid">
+        <div className="site-footer-brand">
+          <Link to="/" className="site-footer-logo">
+            <img src={logo} alt="" width={1024} height={1024} loading="lazy" />
+            <span>
+              Leo Infinity<strong>Global General Trading</strong>
+            </span>
+          </Link>
+          <p>
+            International sourcing, importing and exporting of quality agricultural and food
+            products for business buyers.
           </p>
+          <Link to="/request-quote" className="site-footer-quote">
+            Start an enquiry
+          </Link>
         </div>
 
         <div>
-          <h5 className="mb-4 text-xs font-bold tracking-widest text-cream/50 uppercase">Company</h5>
-          <ul className="space-y-2.5 text-sm">
-            <li><Link to="/about" className="text-cream/80 transition-colors hover:text-accent">About Us</Link></li>
-            <li><Link to="/import-export" className="text-cream/80 transition-colors hover:text-accent">Import & Export</Link></li>
-            <li><Link to="/business-clients" className="text-cream/80 transition-colors hover:text-accent">Business Clients</Link></li>
-            <li><Link to="/quality" className="text-cream/80 transition-colors hover:text-accent">Quality & Certifications</Link></li>
-            <li><Link to="/contact" className="text-cream/80 transition-colors hover:text-accent">Contact Us</Link></li>
-            <li><Link to="/request-quote" className="text-cream/80 transition-colors hover:text-accent">Request a Quote</Link></li>
-          </ul>
-        </div>
-
-        <div>
-          <h5 className="mb-4 text-xs font-bold tracking-widest text-cream/50 uppercase">Products</h5>
-          <ul className="space-y-2.5 text-sm">
-            {categories.slice(0, 6).map((c) => (
-              <li key={c.slug}>
-                <Link to="/products" hash={c.slug} className="text-cream/80 transition-colors hover:text-accent">
-                  {c.name}
+          <h3>Products</h3>
+          <ul>
+            {categories.slice(0, 6).map((category) => (
+              <li key={category.slug}>
+                <Link to="/products" hash={category.slug}>
+                  {category.name}
                 </Link>
               </li>
             ))}
@@ -55,34 +78,59 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h5 className="mb-4 text-xs font-bold tracking-widest text-cream/50 uppercase">Head Office</h5>
-          <address className="space-y-2.5 text-sm leading-relaxed text-cream/80 not-italic">
+          <h3>Markets</h3>
+          <ul>
+            {footerMarkets.map((market) => (
+              <li key={market}>
+                <Link to="/" hash="global-markets">
+                  {market}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3>Quality support</h3>
+          <ul>
+            {certificates.map((item) => (
+              <li key={item}>
+                <Link to="/quality">{item}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="site-footer-contact">
+          <h3>Contact</h3>
+          <address>
+            <a href={`tel:${contact.phone.replace(/\s/g, "")}`}>
+              <Phone aria-hidden="true" />
+              {contact.phone}
+            </a>
+            <a href={`mailto:${contact.email}`}>
+              <Mail aria-hidden="true" />
+              {contact.email}
+            </a>
+            <a href={contact.whatsappLink} target="_blank" rel="noreferrer">
+              <MessageCircle aria-hidden="true" />
+              WhatsApp our trade desk
+            </a>
             <p>{contact.address}</p>
-            <p>{contact.phone}</p>
-            <p>
-              <a href={`mailto:${contact.email}`} className="transition-colors hover:text-accent">
-                {contact.email}
-              </a>
-            </p>
-            <p className="text-cream/60">{contact.hours}</p>
           </address>
         </div>
       </div>
 
-      <div className="border-t border-cream/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 md:flex-row">
-          <div className="flex flex-wrap justify-center gap-x-3 gap-y-1 text-[11px] font-bold tracking-widest text-cream/60 uppercase">
-            {markets.map((m, i) => (
-              <span key={m} className="inline-flex items-center gap-3">
-                {i > 0 && <span className="text-accent">•</span>}
-                {m}
-              </span>
-            ))}
-          </div>
-          <p className="text-xs text-cream/50">
-            © {new Date().getFullYear()} {contact.company}. All rights reserved.
-          </p>
-        </div>
+      <div className="site-footer-bottom">
+        <p>
+          © {new Date().getFullYear()} {contact.company}. All rights reserved.
+        </p>
+        <nav aria-label="Footer navigation">
+          <Link to="/about">About</Link>
+          <Link to="/import-export">Trade services</Link>
+          <Link to="/business-clients">Business clients</Link>
+          <Link to="/contact">Contact</Link>
+        </nav>
       </div>
     </footer>
   );

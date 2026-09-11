@@ -38,7 +38,7 @@ def verify(slug):
     p = Page()
     p.feed(fetch('/products/' + slug).decode())
     assert len(p.buttons) >= 2, (slug, 'missing thumbnails')
-    assert p.images[0].endswith('/catalog-' + slug + '-1.jpg'), (slug, p.images[0])
+    assert p.images[0].split('?')[0].endswith('/catalog-' + slug + '-1.jpg'), (slug, p.images[0])
     assert p.buttons[0].get('aria-current') == 'true', slug
     assert all(b.get('aria-current') == 'false' for b in p.buttons[1:]), slug
     thumbnails = p.images[1:]
