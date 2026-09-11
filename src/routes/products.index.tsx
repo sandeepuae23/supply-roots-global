@@ -1,21 +1,41 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { categories, productsByCategory } from "@/data/catalog";
-import { SectionHeading } from "@/components/ui-primitives";
-import { SmartImage } from "@/components/smart-image";
+/* eslint-disable prettier/prettier */
+import { createFileRoute } from "@tanstack/react-router";
+import { ProductCatalogExplorer } from "@/components/product-discovery";
+import { categories } from "@/data/catalog";
+import type { ProductGroup } from "@/lib/product-utils";
+
+type ProductSearch = {
+  q?: string | undefined;
+  category?: string | undefined;
+  group?: ProductGroup | undefined;
+};
+
+const productGroups: ProductGroup[] = ["all", "featured", "seasonal", "high-demand"];
 
 export const Route = createFileRoute("/products/")({
+  validateSearch: (search: Record<string, unknown>): ProductSearch => ({
+    q: typeof search["q"] === "string" ? search["q"].slice(0, 80) : undefined,
+    category:
+      typeof search["category"] === "string" && categories.some((item) => item.slug === search["category"])
+        ? search["category"]
+        : undefined,
+    group:
+      typeof search["group"] === "string" && productGroups.includes(search["group"] as ProductGroup)
+        ? (search["group"] as ProductGroup)
+        : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Product Catalog — Leo Infinity Global General Trading" },
       {
         name: "description",
         content:
-          "Export-grade vegetables, fruits, basmati rice, pulses, eggs, spices, grains, dry fruits, nuts, edible oils and frozen foods for international markets.",
+          "Search and compare food products by category, origin, packaging, availability and minimum order quantity.",
       },
       { property: "og:title", content: "Product Catalog — Leo Infinity Global General Trading" },
       {
         property: "og:description",
-        content: "12 food categories, 60+ products, bulk and private-label supply with full export documentation.",
+        content: "Explore detailed food product specifications for international supply enquiries.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -25,73 +45,14 @@ export const Route = createFileRoute("/products/")({
 });
 
 function ProductsPage() {
+  const search = Route.useSearch();
   return (
-    <div className="px-6 py-20">
-      <div className="mx-auto max-w-7xl">
-        <SectionHeading
-          eyebrow="Our Catalog"
-          title="Product Categories"
-          action={
-            <Link to="/request-quote" className="btn-accent px-5! py-2.5! text-xs!">
-              Request a Quote
-            </Link>
-          }
-        />
-        <p className="mb-16 max-w-2xl text-muted-foreground">
-          Twelve specialized food categories, sourced from audited growers and processors. Every product is available
-          in bulk packaging with private-label options and complete export documentation.
-        </p>
-
-        <div className="space-y-20">
-          {categories.map((c) => {
-            const catProducts = productsByCategory(c.slug);
-            return (
-              <section key={c.slug} id={c.slug} className="scroll-mt-32">
-                <div className="mb-8 grid items-center gap-8 rounded-sm border border-border bg-card p-6 md:grid-cols-[240px_1fr] md:p-8">
-                  <SmartImage
-                    src={c.image}
-                    alt={c.name}
-                    width={600}
-                    height={600}
-                    className="aspect-square w-full rounded-sm object-cover"
-                  />
-                  <div>
-                    <h2 className="font-serif text-3xl text-primary">{c.name}</h2>
-                    <p className="mt-2 text-muted-foreground">{c.tagline}</p>
-                    <div className="mt-6 flex flex-wrap gap-3">
-                      {catProducts.map((p) => (
-                        <Link
-                          key={p.slug}
-                          to="/products/$slug"
-                          params={{ slug: p.slug }}
-                          className="rounded-sm border border-primary/20 bg-secondary px-4 py-2 text-sm font-medium text-primary transition-colors hover:border-accent hover:bg-accent hover:text-accent-foreground"
-                        >
-                          {p.name}
-                        </Link>
-                      ))}
-                    </div>
-                    {c.gallery && (
-                      <div className="mt-6 grid grid-cols-3 gap-3">
-                        {c.gallery.map((src, i) => (
-                          <SmartImage
-                            key={src}
-                            src={src}
-                            alt={`${c.name} — photo ${i + 1}`}
-                            width={1024}
-                            height={768}
-                            sizes="(max-width: 768px) 33vw, 300px"
-                            className="aspect-[4/3] w-full rounded-sm object-cover"
-                          />
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </section>
-            );
-          })}
-        </div>
-      </div>
+    <div className="catalog-page">
+      <ProductCatalogExplorer
+        initialQuery={search.q ?? ""}
+        initialCategory={search.category ?? "all"}
+        initialGroup={search.group ?? "all"}
+      />
     </div>
   );
 }

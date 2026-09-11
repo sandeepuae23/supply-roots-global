@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Link } from "@tanstack/react-router";
 import { Mail, MessageCircle, Phone, Send } from "lucide-react";
 import { categories, contact } from "@/data/catalog";
@@ -69,9 +70,9 @@ export function SiteFooter() {
           <ul>
             {categories.slice(0, 6).map((category) => (
               <li key={category.slug}>
-                <Link to="/products" hash={category.slug}>
+                <a href={`/products?category=${category.slug}`}>
                   {category.name}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>

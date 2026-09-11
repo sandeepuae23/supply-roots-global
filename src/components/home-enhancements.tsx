@@ -34,7 +34,7 @@ const process = [
   {
     icon: Sprout,
     title: "Sourcing",
-    text: "Approved farms and processors matched to your specification.",
+    text: "Farm and processor options matched to your specification.",
   },
   {
     icon: ScanSearch,
@@ -62,7 +62,7 @@ const assurances = [
   {
     icon: ShieldCheck,
     title: "Quality controlled",
-    text: "Audited suppliers, product checks and inspection support for every order.",
+    text: "Product checks and inspection support configured for the agreed order.",
   },
   {
     icon: Globe2,
@@ -285,7 +285,7 @@ export function CompanyFilm() {
           />
           <div className="home-film-points">
             <span>
-              <CheckCircle2 aria-hidden="true" /> Approved supply partners
+              <CheckCircle2 aria-hidden="true" /> Structured supplier matching
             </span>
             <span>
               <CheckCircle2 aria-hidden="true" /> Export-ready operations

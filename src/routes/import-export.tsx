@@ -1,27 +1,30 @@
+/* eslint-disable prettier/prettier */
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowDown, ArrowRight, CheckCircle2, ClipboardCheck, Container, FileCheck2, Globe2, PackageCheck, Plane, SearchCheck, Ship, Truck, Warehouse } from "lucide-react";
+import { useState } from "react";
 import tradePort from "@/assets/trade-port.jpg";
-import import3d from "@/assets/3d-import.jpg";
-import export3d from "@/assets/3d-export.jpg";
+import importImage from "@/assets/3d-import.jpg";
+import exportImage from "@/assets/3d-export.jpg";
 import tradeContainers from "@/assets/trade-containers.jpg";
-import tradeDocuments from "@/assets/trade-documents.jpg";
 import tradeInspection from "@/assets/trade-inspection.jpg";
 import tradeAirFreight from "@/assets/trade-air-freight.jpg";
-import { CheckItem, PageHero, SectionHeading } from "@/components/ui-primitives";
+import warehouseOps from "@/assets/warehouse-ops.jpg";
 import { SmartImage } from "@/components/smart-image";
+import "@/trade-pages.css";
 
 export const Route = createFileRoute("/import-export")({
   head: () => ({
     meta: [
-      { title: "Import & Export Services — Leo Infinity Global General Trading" },
+      { title: "Food Import & Export Services — Leo Infinity" },
       {
         name: "description",
         content:
-          "End-to-end food import and export services: sourcing, verification, documentation, freight coordination, customs clearance and quality inspection. EXW, FOB, CFR, CIF, DDP.",
+          "Plan food imports and exports with product sourcing, specification review, packaging, documentation and sea, air or land freight coordination.",
       },
-      { property: "og:title", content: "Import & Export Services — Leo Infinity Global General Trading" },
+      { property: "og:title", content: "Food Import & Export Services — Leo Infinity" },
       {
         property: "og:description",
-        content: "Precision-sourced agricultural commodities moved across borders with full documentation support.",
+        content: "A structured route from product brief to international shipment planning.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -30,180 +33,124 @@ export const Route = createFileRoute("/import-export")({
   component: ImportExportPage,
 });
 
-const importServices = [
-  "Supplier sourcing",
-  "Product verification",
-  "Documentation",
-  "Freight coordination",
-  "Customs clearance coordination",
-  "Quality inspection",
-];
-
-const exportServices = [
-  "Product sourcing",
-  "Export packaging",
-  "Documentation",
-  "Certificates",
-  "Port coordination",
-  "Shipping",
-];
-
-const tradeTerms = [
-  { code: "EXW", name: "Ex Works", text: "Buyer collects from our facility; we prepare goods and export packing." },
-  { code: "FOB", name: "Free On Board", text: "We deliver loaded on vessel at origin port; buyer arranges freight." },
-  { code: "CFR", name: "Cost & Freight", text: "We cover ocean freight to your destination port; insurance is yours." },
-  { code: "CIF", name: "Cost, Insurance & Freight", text: "Freight and marine insurance to your port, fully arranged." },
-  { code: "DDP", name: "Delivered Duty Paid", text: "Door delivery with duties handled — available in select markets." },
-];
+const directionContent = {
+  import: {
+    eyebrow: "Bringing products into your market",
+    title: "Import coordination",
+    text: "Build an import brief around the product, origin, destination rules and landed delivery requirement.",
+    image: importImage,
+    items: ["Origin and supplier options", "Product and pack specification", "Required document planning", "Freight and port coordination", "Destination support as scoped", "Inspection options on request"],
+  },
+  export: {
+    eyebrow: "Moving products from origin",
+    title: "Export coordination",
+    text: "Turn a buyer specification into a sourcing, packing and shipment plan with a clear quotation basis.",
+    image: exportImage,
+    items: ["Product and origin matching", "Grade and quality requirements", "Export packaging options", "Order-linked documents", "Loading and dispatch planning", "Sea, air or land routing"],
+  },
+} as const;
 
 const process = [
-  { step: "01", title: "Enquiry & Specification", text: "Share product, grade, quantity and destination requirements." },
-  { step: "02", title: "Quotation & Samples", text: "Receive pricing on your Incoterm, plus pre-shipment samples on request." },
-  { step: "03", title: "Contract & Inspection", text: "Confirmed order with third-party quality inspection before loading." },
-  { step: "04", title: "Documentation & Shipping", text: "Certificates, customs paperwork, port coordination and dispatch." },
-  { step: "05", title: "Delivery & Support", text: "Tracking to destination with post-delivery claims support." },
-];
+  { icon: SearchCheck, title: "Trade brief", text: "Product, specification, quantity, origin preference and destination." },
+  { icon: ClipboardCheck, title: "Option review", text: "Available origin, pack, MOQ and transport options are assessed." },
+  { icon: PackageCheck, title: "Order alignment", text: "Quality, marks, labels and inspection scope are confirmed." },
+  { icon: FileCheck2, title: "Document set", text: "Applicable commercial and shipment documents are coordinated." },
+  { icon: Ship, title: "Movement", text: "The agreed freight plan moves toward the named destination." },
+] as const;
 
-const SIZES = "(min-width: 1024px) 50vw, 100vw";
+const modes = [
+  { icon: Ship, name: "Sea freight", best: "Bulk and container loads", details: "Dry, reefer and consolidated options reviewed against product handling needs.", accent: "SEA / 01" },
+  { icon: Plane, name: "Air freight", best: "Urgent and short shelf-life goods", details: "Faster movement for selected fresh products and time-sensitive requirements.", accent: "AIR / 02" },
+  { icon: Truck, name: "Land freight", best: "Regional and cross-border movement", details: "Road options considered for suitable origin, destination and cargo profiles.", accent: "LAND / 03" },
+] as const;
+
+const documents = [
+  { name: "Commercial invoice", stage: "Commercial", note: "Prepared for the confirmed sale" },
+  { name: "Packing list", stage: "Packing", note: "Quantities, weights and pack details" },
+  { name: "Certificate of origin", stage: "Origin", note: "When required for the shipment" },
+  { name: "Phytosanitary / health", stage: "Compliance", note: "Product and destination dependent" },
+  { name: "Inspection report", stage: "Quality", note: "When inspection is included" },
+  { name: "Transport document", stage: "Freight", note: "Issued for the agreed transport mode" },
+] as const;
+
+const terms = [
+  { code: "FOB", name: "Free On Board", handoff: "Named origin port", text: "The seller delivers the goods on board the nominated vessel. The buyer arranges main freight and insurance." },
+  { code: "CFR", name: "Cost and Freight", handoff: "Named destination port", text: "The seller arranges ocean freight to the named port; cargo insurance remains with the buyer." },
+  { code: "CIF", name: "Cost, Insurance and Freight", handoff: "Named destination port", text: "The seller arranges ocean freight and the required minimum marine insurance to the named port." },
+] as const;
+
+const tradeImages = [
+  { image: tradeContainers, label: "Sea movement", note: "Container planning" },
+  { image: tradeInspection, label: "Quality checkpoint", note: "Inspection option" },
+  { image: tradeAirFreight, label: "Air movement", note: "Time-sensitive freight" },
+  { image: warehouseOps, label: "Cargo handling", note: "Packing and dispatch" },
+] as const;
 
 function ImportExportPage() {
+  const [direction, setDirection] = useState<keyof typeof directionContent>("export");
+  const active = directionContent[direction];
   return (
-    <div>
-      <PageHero
-        image={tradePort}
-        eyebrow="International Trading"
-        title="Import & Export Services"
-        subtitle="End-to-end movement of food commodities across borders — sourcing, verification, documentation, freight and customs, handled by one accountable team."
-      />
+    <div className="trade-service-page">
+      <section className="service-hero" aria-labelledby="service-title">
+        <SmartImage src={tradePort} alt="International container port" priority width={1920} height={1100} className="absolute inset-0 h-full w-full object-cover" />
+        <div className="service-hero-overlay" />
+        <div className="trade-page-shell service-hero-content">
+          <span className="trade-page-eyebrow"><i /> International movement</span>
+          <h1 id="service-title">A clearer route through <em>food import and export.</em></h1>
+          <p>Bring product requirements, commercial terms, documents and transport planning into one connected enquiry.</p>
+          <div><Link to="/request-quote" className="btn-accent">Plan a shipment <ArrowRight aria-hidden="true" /></Link><Link to="/products" className="btn-outline-light">Explore products</Link></div>
+          <a href="#direction" className="service-scroll">Explore the service <ArrowDown aria-hidden="true" /></a>
+        </div>
+        <div className="service-hero-bar"><div className="trade-page-shell"><span><Globe2 aria-hidden="true" /> Origin matched</span><span><PackageCheck aria-hidden="true" /> Specification aligned</span><span><FileCheck2 aria-hidden="true" /> Documents scoped</span><span><Ship aria-hidden="true" /> Freight planned</span></div></div>
+      </section>
 
-      {/* Services */}
-      <section className="px-6 py-24">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-2">
-          <div className="surface-3d overflow-hidden rounded-sm border border-border bg-card">
-            <SmartImage
-              src={import3d}
-              alt="Container ship arriving at port — import services"
-              sizes={SIZES}
-              width={1024}
-              height={768}
-              className="aspect-[4/3] w-full object-cover"
-            />
-            <div className="p-10">
-              <span className="eyebrow">Bringing Goods In</span>
-              <h2 className="mb-8 font-serif text-3xl text-primary">Import Services</h2>
-              <ul className="grid gap-4 text-sm sm:grid-cols-2">
-                {importServices.map((s) => (
-                  <CheckItem key={s}>{s}</CheckItem>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <div className="surface-3d overflow-hidden rounded-sm border border-border bg-card">
-            <SmartImage
-              src={export3d}
-              alt="Containers loaded for shipment — export services"
-              sizes={SIZES}
-              width={1024}
-              height={768}
-              className="aspect-[4/3] w-full object-cover"
-            />
-            <div className="p-10">
-              <span className="eyebrow">Sending Goods Out</span>
-              <h2 className="mb-8 font-serif text-3xl text-primary">Export Services</h2>
-              <ul className="grid gap-4 text-sm sm:grid-cols-2">
-                {exportServices.map((s) => (
-                  <CheckItem key={s}>{s}</CheckItem>
-                ))}
-              </ul>
-            </div>
+      <section id="direction" className="service-direction">
+        <div className="trade-page-shell">
+          <div className="trade-page-heading"><div><span>Choose a direction</span><h2>Import and export support around the same buyer brief</h2></div><div className="direction-tabs" role="tablist" aria-label="Trade direction"><button type="button" role="tab" aria-selected={direction === "import"} onClick={() => setDirection("import")}>Import</button><button type="button" role="tab" aria-selected={direction === "export"} onClick={() => setDirection("export")}>Export</button></div></div>
+          <div className="direction-panel" role="tabpanel">
+            <div className="direction-image"><SmartImage key={active.image} src={active.image} alt={`${active.title} illustration`} width={1100} height={825} className="h-full w-full object-cover" /><span>Representative visual</span></div>
+            <div className="direction-copy"><span>{active.eyebrow}</span><h3>{active.title}</h3><p>{active.text}</p><ul>{active.items.map((item) => <li key={item}><CheckCircle2 aria-hidden="true" /> {item}</li>)}</ul><Link to="/request-quote">Build a detailed enquiry <ArrowRight aria-hidden="true" /></Link></div>
           </div>
         </div>
       </section>
 
-      {/* Trade in Action gallery */}
-      <section className="px-6 py-24">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="Global Movement" title="Trade in Action" center />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                src: tradeContainers,
-                alt: "Container ship being loaded with colorful shipping containers at a major international port",
-              },
-              {
-                src: tradeDocuments,
-                alt: "International trade documentation including certificate of origin, phytosanitary certificate and bill of lading",
-              },
-              {
-                src: tradeInspection,
-                alt: "Quality inspector checking food cargo at a port warehouse before export",
-              },
-              {
-                src: tradeAirFreight,
-                alt: "Cargo airplane being loaded with refrigerated food pallets at dusk",
-              },
-            ].map((img) => (
-              <div key={img.src} className="surface-3d overflow-hidden rounded-sm">
-                <SmartImage
-                  src={img.src}
-                  alt={img.alt}
-                  width={1024}
-                  height={768}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="aspect-[4/3] w-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
+      <section className="service-process" aria-labelledby="trade-process-title">
+        <div className="trade-page-shell">
+          <div className="trade-page-heading"><div><span>From request to route</span><h2 id="trade-process-title">A five-stage trade workflow</h2></div><p>Final availability, provider scope and documentation are confirmed in the quotation for the specific product and destination.</p></div>
+          <ol>{process.map(({ icon: Icon, title, text }, index) => <li key={title}><span>0{index + 1}</span><Icon aria-hidden="true" /><h3>{title}</h3><p>{text}</p></li>)}</ol>
         </div>
       </section>
 
-      {/* Process */}
-      <section className="bg-card px-6 py-24">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="How a Shipment Runs" title="Our Trade Process" />
-          <div className="grid gap-8 md:grid-cols-3 lg:grid-cols-5">
-            {process.map((p) => (
-              <div key={p.step} className="rounded-sm border border-border bg-background p-6">
-                <span className="font-serif text-3xl text-accent">{p.step}</span>
-                <h3 className="mt-4 mb-2 font-semibold text-primary">{p.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">{p.text}</p>
-              </div>
-            ))}
-          </div>
+      <section className="service-modes" aria-labelledby="modes-title">
+        <div className="trade-page-shell">
+          <div className="trade-page-heading"><div><span>Movement options</span><h2 id="modes-title">Match transport to the product</h2></div><p>Shelf life, volume, temperature, cost and destination determine which option enters the quotation.</p></div>
+          <div className="service-mode-grid">{modes.map(({ icon: Icon, name, best, details, accent }) => <article key={name}><span>{accent}</span><Icon aria-hidden="true" /><h3>{name}</h3><strong>{best}</strong><p>{details}</p></article>)}</div>
         </div>
       </section>
 
-      {/* Incoterms */}
-      <section className="bg-primary px-6 py-24 text-cream">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-12">
-            <span className="eyebrow">Flexible Terms</span>
-            <h2 className="font-serif text-4xl text-cream">Trade Terms We Support</h2>
-          </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-            {tradeTerms.map((t) => (
-              <div key={t.code} className="rounded-sm border border-cream/15 p-6">
-                <h3 className="font-serif text-2xl text-accent">{t.code}</h3>
-                <p className="mt-1 mb-3 text-xs font-bold tracking-widest text-cream/60 uppercase">{t.name}</p>
-                <p className="text-sm leading-relaxed text-cream/75">{t.text}</p>
-              </div>
-            ))}
-          </div>
+      <section className="service-documents" aria-labelledby="documents-title">
+        <div className="trade-page-shell service-document-layout">
+          <div className="trade-page-heading"><div><span>Document planning</span><h2 id="documents-title">Know what belongs in the file</h2><p>Requirements vary by product, origin and destination. The final document set is confirmed before order commitment.</p></div><Container aria-hidden="true" /></div>
+          <div className="document-list">{documents.map((item, index) => <article key={item.name}><span>0{index + 1}</span><div><small>{item.stage}</small><h3>{item.name}</h3></div><p>{item.note}</p><CheckCircle2 aria-hidden="true" /></article>)}</div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="px-6 py-24 text-center">
-        <div className="mx-auto max-w-2xl">
-          <h2 className="font-serif text-4xl text-primary">Tell us your trade lane</h2>
-          <p className="mt-4 text-muted-foreground">
-            Origin, destination, product and volume — we'll return a landed-cost view with documentation requirements.
-          </p>
-          <Link to="/request-quote" className="btn-accent mt-8">
-            Request a Quote
-          </Link>
+      <section className="service-incoterms" aria-labelledby="incoterms-title">
+        <div className="trade-page-shell">
+          <div className="trade-page-heading"><div><span>Quotation basis</span><h2 id="incoterms-title">FOB, CFR or CIF</h2></div><p>Select a starting basis in the quote wizard. The final offer records the applicable Incoterms® rule and named port.</p></div>
+          <div className="incoterm-grid">{terms.map((term) => <article key={term.code}><span>{term.code}</span><h3>{term.name}</h3><small>Handoff · {term.handoff}</small><p>{term.text}</p><Link to="/request-quote">Request this basis <ArrowRight aria-hidden="true" /></Link></article>)}</div>
         </div>
+      </section>
+
+      <section className="service-gallery" aria-labelledby="trade-context-title">
+        <div className="trade-page-shell">
+          <div className="trade-page-heading"><div><span>Operational context</span><h2 id="trade-context-title">The checkpoints around each shipment</h2></div><p>Representative imagery shows the operating environments considered during planning.</p></div>
+          <div>{tradeImages.map((item) => <figure key={item.label}><SmartImage src={item.image} alt={item.label} width={900} height={700} className="h-full w-full object-cover" /><figcaption><small>{item.note}</small><h3>{item.label}</h3><span>Representative image</span></figcaption></figure>)}</div>
+        </div>
+      </section>
+
+      <section className="service-final-cta">
+        <div className="trade-page-shell"><span>Plan the commercial route</span><h2>Share the product, quantity and destination.</h2><p>Our multi-step enquiry captures the details needed to prepare the next practical response.</p><Link to="/request-quote" className="btn-accent">Start a trade enquiry <ArrowRight aria-hidden="true" /></Link></div>
       </section>
     </div>
   );

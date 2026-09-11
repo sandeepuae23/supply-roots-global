@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import catVegetables from "@/assets/cat-vegetables.jpg";
 import { productGalleries } from "@/data/product-images";
 import catFruits from "@/assets/cat-fruits.jpg";
@@ -515,7 +516,7 @@ function buildProduct(categorySlug: string, seed: ProductSeed): Product {
     shipping: d.shipping,
     privateLabel: "Available",
     destination: "International",
-    description: `Export-grade ${seed.name.toLowerCase()} sourced from audited farms and processors, cleaned, graded and packed to destination specifications. Full documentation and inspection support available on every shipment.`,
+    description: `${seed.name} offered for international supply with origin, grade, packaging and minimum-order details confirmed during quotation. Inspection and document support can be arranged to suit the product and destination.`,
     featured: false,
     ...seed.overrides,
     ...(gallery?.[0] && {

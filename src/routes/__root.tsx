@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -121,6 +122,33 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const observer = reducedMotion
+      ? null
+      : new IntersectionObserver(
+          (entries) => entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer?.unobserve(entry.target);
+            }
+          }),
+          { rootMargin: "0px 0px -8%", threshold: 0.08 },
+        );
+    const prepare = (root: ParentNode) => {
+      root.querySelectorAll("main section").forEach((section) => {
+        if (section.classList.contains("site-reveal")) return;
+        section.classList.add("site-reveal");
+        if (reducedMotion) section.classList.add("is-visible");
+        else observer?.observe(section);
+      });
+    };
+    prepare(document);
+    const mutation = new MutationObserver(() => prepare(document));
+    mutation.observe(document.querySelector("main") ?? document.body, { childList: true, subtree: true });
+    return () => { observer?.disconnect(); mutation.disconnect(); };
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

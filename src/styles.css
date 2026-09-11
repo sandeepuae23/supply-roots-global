@@ -15,6 +15,37 @@
   --font-serif: "Playfair Display", Georgia, serif;
 }
 
+/* Shared rhythm and motion for long-form trade pages. */
+:root {
+  --section-space: clamp(4.75rem, 8vw, 7.5rem);
+  --control-radius: 0.4rem;
+}
+
+.btn-primary,
+.btn-accent,
+.btn-outline,
+.btn-outline-light {
+  border-radius: var(--control-radius);
+  min-height: 2.85rem;
+}
+
+main section {
+  scroll-margin-top: 5.5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  main section.site-reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 650ms cubic-bezier(.2,.7,.2,1), transform 650ms cubic-bezier(.2,.7,.2,1);
+  }
+
+  main section.site-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

@@ -1,9 +1,9 @@
+/* eslint-disable prettier/prettier */
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { MessageCircle } from "lucide-react";
+import { Download, MessageCircle } from "lucide-react";
 import { contact, getCategory, getProduct, productsByCategory } from "@/data/catalog";
 import { SmartImage } from "@/components/smart-image";
 import { ProductGallery } from "@/components/product-gallery";
-import { EnquireForm } from "@/components/enquire-form";
 
 export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {
@@ -102,11 +102,11 @@ function ProductDetailPage() {
             </dl>
 
             <div className="flex flex-wrap gap-4">
-              <Link to="/request-quote" className="btn-primary">
+              <a href={`/request-quote?products=${product.slug}`} className="btn-primary">
                 Request Price
-              </Link>
-              <a href="#enquire" className="btn-outline">
-                Enquire Now
+              </a>
+              <a href="/leo-infinity-product-specifications.pdf" download className="btn-outline">
+                <Download className="size-4" /> Specifications
               </a>
               <a
                 href={`${contact.whatsappLink}?text=${encodeURIComponent(`Hello, I'm interested in ${product.name}. Please share pricing and availability.`)}`}
@@ -122,15 +122,9 @@ function ProductDetailPage() {
         </div>
       </section>
 
-      {/* Enquiry */}
-      <section className="px-6 py-20">
-        <div className="mx-auto max-w-4xl">
-          <EnquireForm productName={product.name} />
-        </div>
-      </section>
-
       {/* Documentation strip */}
       <section className="border-y border-border bg-secondary px-6 py-10">
+        <p className="mb-4 text-center text-xs text-muted-foreground">Available documentation depends on product, origin and destination and is confirmed in the quotation.</p>
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs font-bold tracking-widest text-muted-foreground uppercase">
           <span>Phytosanitary Certificate</span>
           <span className="text-accent">•</span>

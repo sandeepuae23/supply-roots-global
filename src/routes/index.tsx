@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowDown, ArrowRight, Check, Download, Globe2 } from "lucide-react";
 import { HeroGlobe } from "@/components/hero-globe";
+import { BusinessCredibility } from "@/components/business-credibility";
 import {
   CompanyFilm,
   FinalQuoteCta,
@@ -12,9 +13,8 @@ import {
   SeasonalCalendar,
   WhyChooseCards,
 } from "@/components/home-enhancements";
-import { SectionHeading } from "@/components/ui-primitives";
-import { SmartImage } from "@/components/smart-image";
-import { categories, featuredProducts } from "@/data/catalog";
+import { HomeProductDiscovery, ProductSpotlights } from "@/components/product-discovery";
+import { categories } from "@/data/catalog";
 import "@/home-experience.css";
 
 export const Route = createFileRoute("/")({
@@ -123,113 +123,13 @@ function HomePage() {
         </div>
       </section>
 
-      <section id="product-categories" className="px-6 py-24">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Our Catalog"
-            title="Product Categories"
-            action={
-              <Link
-                to="/products"
-                className="border-b-2 border-accent pb-1 font-semibold text-primary"
-              >
-                Explore All Products
-              </Link>
-            }
-          />
-          <div className="grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-6">
-            {categories.map((category) => (
-              <Link
-                key={category.slug}
-                to="/products"
-                hash={category.slug}
-                className="group cursor-pointer"
-              >
-                <div className="mb-4 aspect-square overflow-hidden rounded-sm bg-secondary">
-                  <SmartImage
-                    src={category.image}
-                    alt={category.name}
-                    width={600}
-                    height={600}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <h3 className="text-center font-medium text-primary">{category.name}</h3>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      <HomeProductDiscovery />
       <HowWeWork />
       <CompanyFilm />
 
-      <HowWeWork />
-      <CompanyFilm />
+      <ProductSpotlights />
 
-      <section className="px-6 py-24">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Market Essentials"
-            title="Featured Products"
-            action={
-              <Link
-                to="/products"
-                className="border-b-2 border-accent pb-1 font-semibold text-primary"
-              >
-                View Full Catalog
-              </Link>
-            }
-          />
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {featuredProducts.map((product) => (
-              <article key={product.slug} className="group rounded-sm border border-border bg-card">
-                <Link
-                  to="/products/$slug"
-                  params={{ slug: product.slug }}
-                  className="block aspect-[4/3] overflow-hidden rounded-t-sm"
-                >
-                  <SmartImage
-                    src={product.image}
-                    alt={product.name}
-                    width={800}
-                    height={600}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </Link>
-                <div className="p-6">
-                  <h3 className="font-serif text-xl text-primary">{product.name}</h3>
-                  <div className="mt-3 space-y-1.5 text-sm text-muted-foreground">
-                    <p>
-                      <span className="font-semibold text-primary/70">Origin:</span>{" "}
-                      {product.origin}
-                    </p>
-                    <p>
-                      <span className="font-semibold text-primary/70">Packing:</span>{" "}
-                      {product.packaging}
-                    </p>
-                  </div>
-                  <div className="mt-5 flex items-center justify-between border-t border-border pt-4">
-                    <Link
-                      to="/products/$slug"
-                      params={{ slug: product.slug }}
-                      className="text-sm font-semibold text-primary transition-colors hover:text-accent"
-                    >
-                      View Details
-                    </Link>
-                    <Link
-                      to="/request-quote"
-                      className="text-sm font-bold tracking-wider text-accent uppercase transition-colors hover:text-primary"
-                    >
-                      Enquire Now
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <BusinessCredibility />
 
       <WhyChooseCards />
       <GlobalMarkets />
