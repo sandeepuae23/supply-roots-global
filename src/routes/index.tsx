@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { toast } from "sonner";
-import heroFields from "@/assets/hero-fields.jpg";
+import { ArrowRight, Check, Globe2 } from "lucide-react";
 import warehouseOps from "@/assets/warehouse-ops.jpg";
 import { HeroGlobe } from "@/components/hero-globe";
 import { categories, contact, featuredProducts, markets, tradeLanes } from "@/data/catalog";
@@ -16,10 +16,14 @@ export const Route = createFileRoute("/")({
         content:
           "Supplying quality vegetables, fruits, rice, pulses, eggs, spices, grains and food products across UAE, India, Saudi Arabia, Qatar, Oman, Europe, Africa and Asia.",
       },
-      { property: "og:title", content: "Global Food Import & Export — Leo Infinity Global General Trading" },
+      {
+        property: "og:title",
+        content: "Global Food Import & Export — Leo Infinity Global General Trading",
+      },
       {
         property: "og:description",
-        content: "Quality food products. Reliable global supply. Explore 12 product categories for international markets.",
+        content:
+          "Quality food products. Reliable global supply. Explore 12 product categories for international markets.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -42,55 +46,54 @@ const whyChooseUs = [
 function HomePage() {
   return (
     <div>
-      {/* Hero — interactive 3D trade globe */}
-      <section className="deep-panel relative flex min-h-[92vh] items-center overflow-hidden">
-        <SmartImage
-          src={heroFields}
-          alt="Aerial view of lush green farmland at sunrise"
-          priority
-          sizes="100vw"
-          width={1920}
-          height={1080}
-          className="absolute inset-0 h-full w-full object-cover opacity-20"
-        />
-        <div className="absolute inset-0 bg-primary/40" />
-
-        <div className="absolute inset-y-0 right-0 hidden w-[58%] lg:block">
-          <HeroGlobe />
-        </div>
-
-        <div className="relative mx-auto w-full max-w-7xl px-6 py-24">
-          <div className="max-w-2xl">
-            <span className="eyebrow">Quality Food Products. Reliable Global Supply.</span>
-            <h1 className="font-serif text-5xl leading-[1.1] text-cream md:text-7xl">
-              Global Food <span className="italic">Import & Export</span>
+      <section className="trade-hero" aria-labelledby="home-title">
+        <div className="trade-hero-layout">
+          <div className="trade-hero-copy">
+            <span className="trade-hero-eyebrow">
+              <span /> Rooted in quality. Connected globally.
+            </span>
+            <h1 id="home-title" className="trade-hero-title">
+              Global Food
+              <br />
+              <span>Import &amp; Export</span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream/90">
-              Supplying quality vegetables, fruits, rice, pulses, eggs, spices, grains and food products across
-              international markets — with precision and integrity.
+            <p className="trade-hero-description">
+              From trusted growers to global markets. We source and deliver quality food products
+              with care, precision, and integrity.
             </p>
-            <p className="mt-4 text-sm font-semibold tracking-widest text-cream/70 uppercase">
-              Vegetables • Fruits • Rice • Pulses • Eggs • Spices
-            </p>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <Link to="/products" className="btn-light">
-                View Products
-              </Link>
+            <div className="trade-hero-actions">
               <Link to="/request-quote" className="btn-accent">
-                Request a Quote
+                Request a Quote <ArrowRight size={17} aria-hidden="true" />
               </Link>
-              <Link to="/contact" className="btn-outline-light">
-                Contact Us
+              <Link to="/products" className="btn-outline-light">
+                Explore Products
               </Link>
             </div>
+            <div className="trade-hero-assurance">
+              <span>
+                <Check size={15} aria-hidden="true" /> Quality-controlled sourcing
+              </span>
+              <span>
+                <Check size={15} aria-hidden="true" /> End-to-end logistics
+              </span>
+            </div>
           </div>
-
-          <div className="glass-panel mt-14 hidden max-w-md rounded-sm px-6 py-5 text-cream lg:block">
-            <p className="text-xs font-bold tracking-widest text-accent uppercase">Live trade lanes</p>
-            <p className="mt-2 text-sm text-cream/80">
-              Drag the globe to explore our shipping corridors across the Gulf, India, Europe, Africa and Asia.
-            </p>
+          <HeroGlobe />
+        </div>
+        <div className="trade-hero-markets">
+          <span className="trade-hero-markets-label">
+            <Globe2 size={16} aria-hidden="true" /> Connecting markets
+          </span>
+          <div>
+            <span>UAE &amp; Gulf</span>
+            <span>India</span>
+            <span>Europe</span>
+            <span>Africa</span>
+            <span>Asia</span>
           </div>
+          <Link to="/import-export">
+            Explore our network <ArrowRight size={15} aria-hidden="true" />
+          </Link>
         </div>
       </section>
 
@@ -101,7 +104,10 @@ function HomePage() {
             eyebrow="Our Catalog"
             title="Product Categories"
             action={
-              <Link to="/products" className="border-b-2 border-accent pb-1 font-semibold text-primary">
+              <Link
+                to="/products"
+                className="border-b-2 border-accent pb-1 font-semibold text-primary"
+              >
                 Explore All Products
               </Link>
             }
@@ -143,8 +149,9 @@ function HomePage() {
               A reliable international sourcing & supply partner
             </h2>
             <p className="mb-8 text-lg leading-relaxed text-muted-foreground">
-              Leo Infinity is an international food trading company specializing in sourcing, importing, exporting and
-              supplying high-quality agricultural and food products to businesses worldwide.
+              Leo Infinity is an international food trading company specializing in sourcing,
+              importing, exporting and supplying high-quality agricultural and food products to
+              businesses worldwide.
             </p>
             <ul className="mb-10 grid gap-3 text-sm sm:grid-cols-2">
               <CheckItem>Food sourcing & bulk trading</CheckItem>
@@ -166,7 +173,10 @@ function HomePage() {
             eyebrow="Market Essentials"
             title="Featured Products"
             action={
-              <Link to="/products" className="border-b-2 border-accent pb-1 font-semibold text-primary">
+              <Link
+                to="/products"
+                className="border-b-2 border-accent pb-1 font-semibold text-primary"
+              >
                 View Full Catalog
               </Link>
             }
@@ -264,8 +274,8 @@ function HomePage() {
           <span className="eyebrow">Business Clients</span>
           <h2 className="font-serif text-4xl text-primary">Looking for bulk supply?</h2>
           <p className="mx-auto mt-6 max-w-2xl text-muted-foreground">
-            Importers | Wholesalers | Supermarkets | Hotels | Restaurants | Distributors | Catering Companies | Food
-            Processors
+            Importers | Wholesalers | Supermarkets | Hotels | Restaurants | Distributors | Catering
+            Companies | Food Processors
           </p>
           <Link to="/business-clients" className="btn-primary mt-10">
             Become a Business Client
@@ -281,18 +291,30 @@ function HomePage() {
             className="grid grid-cols-1 gap-6 rounded-sm border border-border bg-card p-8 md:grid-cols-2"
             onSubmit={(e) => {
               e.preventDefault();
-              toast.success("Enquiry received — our trade desk will contact you within one business day.");
+              toast.success(
+                "Enquiry received — our trade desk will contact you within one business day.",
+              );
               e.currentTarget.reset();
             }}
           >
             <Field label="Product">
-              <input required type="text" className="field-input" placeholder="e.g. 1121 Basmati Rice" />
+              <input
+                required
+                type="text"
+                className="field-input"
+                placeholder="e.g. 1121 Basmati Rice"
+              />
             </Field>
             <Field label="Quantity">
               <input required type="text" className="field-input" placeholder="e.g. 20 MT" />
             </Field>
             <Field label="Destination">
-              <input required type="text" className="field-input" placeholder="e.g. Jebel Ali, Dubai" />
+              <input
+                required
+                type="text"
+                className="field-input"
+                placeholder="e.g. Jebel Ali, Dubai"
+              />
             </Field>
             <Field label="Email">
               <input required type="email" className="field-input" placeholder="you@company.com" />
@@ -303,7 +325,12 @@ function HomePage() {
           </form>
           <p className="mt-4 text-center text-sm text-muted-foreground">
             Prefer to talk? WhatsApp us at{" "}
-            <a href={contact.whatsappLink} target="_blank" rel="noreferrer" className="font-semibold text-accent">
+            <a
+              href={contact.whatsappLink}
+              target="_blank"
+              rel="noreferrer"
+              className="font-semibold text-accent"
+            >
               {contact.whatsapp}
             </a>
           </p>

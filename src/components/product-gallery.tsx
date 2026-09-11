@@ -14,7 +14,7 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
   if (!current) return null;
 
   return (
-    <div>
+    <div role="group" aria-label={`${alt} image gallery`}>
       <div className="surface-3d overflow-hidden rounded-sm">
         <SmartImage
           key={current}
@@ -36,9 +36,9 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
               key={src}
               type="button"
               onClick={() => setActive(i)}
-              aria-label={`View image ${i + 1} of ${list.length}`}
+              aria-label={`View ${alt} image ${i + 1} of ${list.length}`}
               aria-current={i === active}
-              className={`overflow-hidden rounded-sm border transition-colors ${
+              className={`overflow-hidden rounded-sm border transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent ${
                 i === active ? "border-accent" : "border-border hover:border-accent/50"
               }`}
             >
@@ -53,6 +53,11 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
             </button>
           ))}
         </div>
+      )}
+      {list.length > 1 && (
+        <p className="mt-3 text-sm text-muted-foreground" aria-live="polite">
+          Image {active + 1} of {list.length} · Select a thumbnail to view
+        </p>
       )}
     </div>
   );

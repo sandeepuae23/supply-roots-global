@@ -1,0 +1,1004 @@
+{
+  "generator": "Built-in image_gen",
+  "assets": [
+    {
+      "product": "almonds",
+      "files": [
+        "src/assets/catalog-almonds-1.jpg",
+        "src/assets/catalog-almonds-1-640.webp",
+        "src/assets/catalog-almonds-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: whole raw brown almonds. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "almonds",
+      "files": [
+        "src/assets/catalog-almonds-2.jpg",
+        "src/assets/catalog-almonds-2-640.webp",
+        "src/assets/catalog-almonds-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: whole raw brown almonds. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "alphonso-mango",
+      "files": [
+        "src/assets/catalog-alphonso-mango-1.jpg",
+        "src/assets/catalog-alphonso-mango-1-640.webp",
+        "src/assets/catalog-alphonso-mango-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. One square photorealistic export catalog photograph of ripe golden Alphonso mangoes. Three whole golden mangoes and one cut mango cheek showing rich orange flesh on a warm ivory studio surface. Soft natural daylight, realistic fruit skin and juicy flesh. Only mango fruit, no bowls, no seeds, no nuts, no other food, no text, no logos or watermark."
+    },
+    {
+      "product": "apple",
+      "files": [
+        "src/assets/catalog-apple-1.jpg",
+        "src/assets/catalog-apple-1-640.webp",
+        "src/assets/catalog-apple-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: fresh red and green apples. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "banana",
+      "files": [
+        "src/assets/catalog-banana-1.jpg",
+        "src/assets/catalog-banana-1-640.webp",
+        "src/assets/catalog-banana-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: a bunch of yellow Cavendish bananas. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "barley",
+      "files": [
+        "src/assets/catalog-barley-1.jpg",
+        "src/assets/catalog-barley-1-640.webp",
+        "src/assets/catalog-barley-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry pale tan barley grains. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "barley",
+      "files": [
+        "src/assets/catalog-barley-2.jpg",
+        "src/assets/catalog-barley-2-640.webp",
+        "src/assets/catalog-barley-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry pale tan barley grains. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "basmati-rice",
+      "files": [
+        "src/assets/catalog-basmati-rice-1.jpg",
+        "src/assets/catalog-basmati-rice-1-640.webp",
+        "src/assets/catalog-basmati-rice-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: uncooked extra-long slender white 1121 basmati rice grains. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "black-pepper",
+      "files": [
+        "src/assets/catalog-black-pepper-1.jpg",
+        "src/assets/catalog-black-pepper-1-640.webp",
+        "src/assets/catalog-black-pepper-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dried whole black peppercorns. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "black-pepper",
+      "files": [
+        "src/assets/catalog-black-pepper-2.jpg",
+        "src/assets/catalog-black-pepper-2-640.webp",
+        "src/assets/catalog-black-pepper-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dried whole black peppercorns. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "brown-eggs",
+      "files": [
+        "src/assets/catalog-brown-eggs-1.jpg",
+        "src/assets/catalog-brown-eggs-1-640.webp",
+        "src/assets/catalog-brown-eggs-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: fresh unbroken brown chicken eggs. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "brown-rice",
+      "files": [
+        "src/assets/catalog-brown-rice-1.jpg",
+        "src/assets/catalog-brown-rice-1-640.webp",
+        "src/assets/catalog-brown-rice-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: uncooked wholegrain brown rice with tan bran intact. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "brown-rice",
+      "files": [
+        "src/assets/catalog-brown-rice-2.jpg",
+        "src/assets/catalog-brown-rice-2-640.webp",
+        "src/assets/catalog-brown-rice-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: uncooked wholegrain brown rice with tan bran intact. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "cabbage",
+      "files": [
+        "src/assets/catalog-cabbage-1.jpg",
+        "src/assets/catalog-cabbage-1-640.webp",
+        "src/assets/catalog-cabbage-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. One square photorealistic product catalog photo of whole fresh round green cabbages arranged on a warm ivory studio surface. Soft daylight, realistic texture, premium clean food photography. Show only this vegetable, no other produce, no text, logos or watermark."
+    },
+    {
+      "product": "cabbage",
+      "files": [
+        "src/assets/catalog-cabbage-2.jpg",
+        "src/assets/catalog-cabbage-2-640.webp",
+        "src/assets/catalog-cabbage-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. One square photorealistic product catalog photo of whole fresh round green cabbages in a shallow wooden produce crate on burlap, overhead view. Soft daylight, realistic texture, premium clean food photography. Show only this vegetable, no other produce, no text, logos or watermark."
+    },
+    {
+      "product": "canned-goods",
+      "files": [
+        "src/assets/catalog-canned-goods-1.jpg",
+        "src/assets/catalog-canned-goods-1-640.webp",
+        "src/assets/catalog-canned-goods-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: plain unlabelled food cans, one opened to show sweetcorn and another peas. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "cardamom",
+      "files": [
+        "src/assets/catalog-cardamom-1.jpg",
+        "src/assets/catalog-cardamom-1-640.webp",
+        "src/assets/catalog-cardamom-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: whole green cardamom pods. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "cardamom",
+      "files": [
+        "src/assets/catalog-cardamom-2.jpg",
+        "src/assets/catalog-cardamom-2-640.webp",
+        "src/assets/catalog-cardamom-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: whole green cardamom pods. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "carrot",
+      "files": [
+        "src/assets/catalog-carrot-1.jpg",
+        "src/assets/catalog-carrot-1-640.webp",
+        "src/assets/catalog-carrot-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. One square photorealistic product catalog photo of fresh orange carrots arranged on a warm ivory studio surface. Soft daylight, realistic texture, premium clean food photography. Show only this vegetable, no other produce, no text, logos or watermark."
+    },
+    {
+      "product": "cashews",
+      "files": [
+        "src/assets/catalog-cashews-1.jpg",
+        "src/assets/catalog-cashews-1-640.webp",
+        "src/assets/catalog-cashews-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: whole ivory cashew kernels. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "cashews",
+      "files": [
+        "src/assets/catalog-cashews-2.jpg",
+        "src/assets/catalog-cashews-2-640.webp",
+        "src/assets/catalog-cashews-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: whole ivory cashew kernels. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "cauliflower",
+      "files": [
+        "src/assets/catalog-cauliflower-1.jpg",
+        "src/assets/catalog-cauliflower-1-640.webp",
+        "src/assets/catalog-cauliflower-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. One square photorealistic product catalog photo of fresh white cauliflower heads with green leaves arranged on a warm ivory studio surface. Soft daylight, realistic texture, premium clean food photography. Show only this vegetable, no other produce, no text, logos or watermark."
+    },
+    {
+      "product": "cauliflower",
+      "files": [
+        "src/assets/catalog-cauliflower-2.jpg",
+        "src/assets/catalog-cauliflower-2-640.webp",
+        "src/assets/catalog-cauliflower-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. One square photorealistic product catalog photo of fresh white cauliflower heads with green leaves in a shallow wooden produce crate on burlap, overhead view. Soft daylight, realistic texture, premium clean food photography. Show only this vegetable, no other produce, no text, logos or watermark."
+    },
+    {
+      "product": "chickpeas",
+      "files": [
+        "src/assets/catalog-chickpeas-1.jpg",
+        "src/assets/catalog-chickpeas-1-640.webp",
+        "src/assets/catalog-chickpeas-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry beige Kabuli chickpeas. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "cinnamon",
+      "files": [
+        "src/assets/catalog-cinnamon-1.jpg",
+        "src/assets/catalog-cinnamon-1-640.webp",
+        "src/assets/catalog-cinnamon-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: rolled cinnamon bark quills. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "cinnamon",
+      "files": [
+        "src/assets/catalog-cinnamon-2.jpg",
+        "src/assets/catalog-cinnamon-2-640.webp",
+        "src/assets/catalog-cinnamon-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: rolled cinnamon bark quills. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "cloves",
+      "files": [
+        "src/assets/catalog-cloves-1.jpg",
+        "src/assets/catalog-cloves-1-640.webp",
+        "src/assets/catalog-cloves-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: whole dried brown cloves. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "cloves",
+      "files": [
+        "src/assets/catalog-cloves-2.jpg",
+        "src/assets/catalog-cloves-2-640.webp",
+        "src/assets/catalog-cloves-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: whole dried brown cloves. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "coconut-oil",
+      "files": [
+        "src/assets/catalog-coconut-oil-1.jpg",
+        "src/assets/catalog-coconut-oil-1-640.webp",
+        "src/assets/catalog-coconut-oil-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: clear coconut oil in a plain glass jar beside a split coconut. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "coconut-oil",
+      "files": [
+        "src/assets/catalog-coconut-oil-2.jpg",
+        "src/assets/catalog-coconut-oil-2-640.webp",
+        "src/assets/catalog-coconut-oil-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: clear coconut oil in a plain glass jar beside a split coconut. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "coriander",
+      "files": [
+        "src/assets/catalog-coriander-1.jpg",
+        "src/assets/catalog-coriander-1-640.webp",
+        "src/assets/catalog-coriander-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry round tan coriander seeds. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "coriander",
+      "files": [
+        "src/assets/catalog-coriander-2.jpg",
+        "src/assets/catalog-coriander-2-640.webp",
+        "src/assets/catalog-coriander-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry round tan coriander seeds. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "cumin",
+      "files": [
+        "src/assets/catalog-cumin-1.jpg",
+        "src/assets/catalog-cumin-1-640.webp",
+        "src/assets/catalog-cumin-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry elongated brown cumin seeds. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "cumin",
+      "files": [
+        "src/assets/catalog-cumin-2.jpg",
+        "src/assets/catalog-cumin-2-640.webp",
+        "src/assets/catalog-cumin-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry elongated brown cumin seeds. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "dates",
+      "files": [
+        "src/assets/catalog-dates-1.jpg",
+        "src/assets/catalog-dates-1-640.webp",
+        "src/assets/catalog-dates-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: whole dark brown dates. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "dried-apricots",
+      "files": [
+        "src/assets/catalog-dried-apricots-1.jpg",
+        "src/assets/catalog-dried-apricots-1-640.webp",
+        "src/assets/catalog-dried-apricots-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: orange dried apricot halves. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "dried-apricots",
+      "files": [
+        "src/assets/catalog-dried-apricots-2.jpg",
+        "src/assets/catalog-dried-apricots-2-640.webp",
+        "src/assets/catalog-dried-apricots-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: orange dried apricot halves. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "flax-seeds",
+      "files": [
+        "src/assets/catalog-flax-seeds-1.jpg",
+        "src/assets/catalog-flax-seeds-1-640.webp",
+        "src/assets/catalog-flax-seeds-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: small glossy brown flax seeds. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "flax-seeds",
+      "files": [
+        "src/assets/catalog-flax-seeds-2.jpg",
+        "src/assets/catalog-flax-seeds-2-640.webp",
+        "src/assets/catalog-flax-seeds-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: small glossy brown flax seeds. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "free-range-eggs",
+      "files": [
+        "src/assets/catalog-free-range-eggs-1.jpg",
+        "src/assets/catalog-free-range-eggs-1-640.webp",
+        "src/assets/catalog-free-range-eggs-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: cream and brown unbroken chicken eggs in a rustic basket. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "free-range-eggs",
+      "files": [
+        "src/assets/catalog-free-range-eggs-2.jpg",
+        "src/assets/catalog-free-range-eggs-2-640.webp",
+        "src/assets/catalog-free-range-eggs-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: cream and brown unbroken chicken eggs in a rustic basket. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "frozen-berries",
+      "files": [
+        "src/assets/catalog-frozen-berries-1.jpg",
+        "src/assets/catalog-frozen-berries-1-640.webp",
+        "src/assets/catalog-frozen-berries-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: frozen strawberries, blueberries and raspberries with subtle frost. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "frozen-berries",
+      "files": [
+        "src/assets/catalog-frozen-berries-2.jpg",
+        "src/assets/catalog-frozen-berries-2-640.webp",
+        "src/assets/catalog-frozen-berries-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: frozen strawberries, blueberries and raspberries with subtle frost. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "frozen-mango-pulp",
+      "files": [
+        "src/assets/catalog-frozen-mango-pulp-1.jpg",
+        "src/assets/catalog-frozen-mango-pulp-1-640.webp",
+        "src/assets/catalog-frozen-mango-pulp-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: smooth golden mango pulp in a food-safe container with frozen mango pulp blocks. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "frozen-mixed-vegetables",
+      "files": [
+        "src/assets/catalog-frozen-mixed-vegetables-1.jpg",
+        "src/assets/catalog-frozen-mixed-vegetables-1-640.webp",
+        "src/assets/catalog-frozen-mixed-vegetables-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: frozen diced carrots, green peas, cut green beans and sweetcorn with subtle frost. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "frozen-mixed-vegetables",
+      "files": [
+        "src/assets/catalog-frozen-mixed-vegetables-2.jpg",
+        "src/assets/catalog-frozen-mixed-vegetables-2-640.webp",
+        "src/assets/catalog-frozen-mixed-vegetables-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: frozen diced carrots, green peas, cut green beans and sweetcorn with subtle frost. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "frozen-peas",
+      "files": [
+        "src/assets/catalog-frozen-peas-1.jpg",
+        "src/assets/catalog-frozen-peas-1-640.webp",
+        "src/assets/catalog-frozen-peas-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: bright green individually frozen peas with subtle frost. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "garlic",
+      "files": [
+        "src/assets/catalog-garlic-1.jpg",
+        "src/assets/catalog-garlic-1-640.webp",
+        "src/assets/catalog-garlic-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. One square photorealistic product catalog photo of whole fresh white garlic bulbs arranged on a warm ivory studio surface. Soft daylight, realistic texture, premium clean food photography. Show only this vegetable, no other produce, no text, logos or watermark."
+    },
+    {
+      "product": "ginger",
+      "files": [
+        "src/assets/catalog-ginger-1.jpg",
+        "src/assets/catalog-ginger-1-640.webp",
+        "src/assets/catalog-ginger-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. One square photorealistic product catalog photo of fresh knobbly ginger roots arranged on a warm ivory studio surface. Soft daylight, realistic texture, premium clean food photography. Show only this vegetable, no other produce, no text, logos or watermark."
+    },
+    {
+      "product": "ginger",
+      "files": [
+        "src/assets/catalog-ginger-2.jpg",
+        "src/assets/catalog-ginger-2-640.webp",
+        "src/assets/catalog-ginger-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. One square photorealistic product catalog photo of fresh knobbly ginger roots in a shallow wooden produce crate on burlap, overhead view. Soft daylight, realistic texture, premium clean food photography. Show only this vegetable, no other produce, no text, logos or watermark."
+    },
+    {
+      "product": "grapes",
+      "files": [
+        "src/assets/catalog-grapes-1.jpg",
+        "src/assets/catalog-grapes-1-640.webp",
+        "src/assets/catalog-grapes-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: fresh green Thompson seedless grape bunches. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "green-chilli",
+      "files": [
+        "src/assets/catalog-green-chilli-1.jpg",
+        "src/assets/catalog-green-chilli-1-640.webp",
+        "src/assets/catalog-green-chilli-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. One square photorealistic product catalog photo of fresh slender green chillies arranged on a warm ivory studio surface. Soft daylight, realistic texture, premium clean food photography. Show only this vegetable, no other produce, no text, logos or watermark."
+    },
+    {
+      "product": "hatching-eggs",
+      "files": [
+        "src/assets/catalog-hatching-eggs-1.jpg",
+        "src/assets/catalog-hatching-eggs-1-640.webp",
+        "src/assets/catalog-hatching-eggs-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: intact cream chicken hatching eggs in clean incubation trays, no chicks. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "hatching-eggs",
+      "files": [
+        "src/assets/catalog-hatching-eggs-2.jpg",
+        "src/assets/catalog-hatching-eggs-2-640.webp",
+        "src/assets/catalog-hatching-eggs-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: intact cream chicken hatching eggs in clean incubation trays, no chicks. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "honey",
+      "files": [
+        "src/assets/catalog-honey-1.jpg",
+        "src/assets/catalog-honey-1-640.webp",
+        "src/assets/catalog-honey-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: golden natural honey in an unlabelled glass jar with wooden honey dipper. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "kidney-beans",
+      "files": [
+        "src/assets/catalog-kidney-beans-1.jpg",
+        "src/assets/catalog-kidney-beans-1-640.webp",
+        "src/assets/catalog-kidney-beans-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry deep-red kidney beans (rajma). A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "kidney-beans",
+      "files": [
+        "src/assets/catalog-kidney-beans-2.jpg",
+        "src/assets/catalog-kidney-beans-2-640.webp",
+        "src/assets/catalog-kidney-beans-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry deep-red kidney beans (rajma). An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "maize",
+      "files": [
+        "src/assets/catalog-maize-1.jpg",
+        "src/assets/catalog-maize-1-640.webp",
+        "src/assets/catalog-maize-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry yellow maize corn kernels. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "maize",
+      "files": [
+        "src/assets/catalog-maize-2.jpg",
+        "src/assets/catalog-maize-2-640.webp",
+        "src/assets/catalog-maize-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry yellow maize corn kernels. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "masoor-dal",
+      "files": [
+        "src/assets/catalog-masoor-dal-1.jpg",
+        "src/assets/catalog-masoor-dal-1-640.webp",
+        "src/assets/catalog-masoor-dal-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry orange-red split lentils (masoor dal). A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "masoor-dal",
+      "files": [
+        "src/assets/catalog-masoor-dal-2.jpg",
+        "src/assets/catalog-masoor-dal-2-640.webp",
+        "src/assets/catalog-masoor-dal-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry orange-red split lentils (masoor dal). An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "millet",
+      "files": [
+        "src/assets/catalog-millet-1.jpg",
+        "src/assets/catalog-millet-1-640.webp",
+        "src/assets/catalog-millet-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry small round pale millet grains. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "millet",
+      "files": [
+        "src/assets/catalog-millet-2.jpg",
+        "src/assets/catalog-millet-2-640.webp",
+        "src/assets/catalog-millet-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry small round pale millet grains. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "moong-dal",
+      "files": [
+        "src/assets/catalog-moong-dal-1.jpg",
+        "src/assets/catalog-moong-dal-1-640.webp",
+        "src/assets/catalog-moong-dal-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry split yellow mung beans (moong dal). A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "moong-dal",
+      "files": [
+        "src/assets/catalog-moong-dal-2.jpg",
+        "src/assets/catalog-moong-dal-2-640.webp",
+        "src/assets/catalog-moong-dal-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry split yellow mung beans (moong dal). An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "mustard-oil",
+      "files": [
+        "src/assets/catalog-mustard-oil-1.jpg",
+        "src/assets/catalog-mustard-oil-1-640.webp",
+        "src/assets/catalog-mustard-oil-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: golden amber mustard oil in a plain glass bottle beside mustard seeds. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "mustard-oil",
+      "files": [
+        "src/assets/catalog-mustard-oil-2.jpg",
+        "src/assets/catalog-mustard-oil-2-640.webp",
+        "src/assets/catalog-mustard-oil-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: golden amber mustard oil in a plain glass bottle beside mustard seeds. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "non-basmati",
+      "files": [
+        "src/assets/catalog-non-basmati-1.jpg",
+        "src/assets/catalog-non-basmati-1-640.webp",
+        "src/assets/catalog-non-basmati-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: uncooked white medium-length non-basmati rice grains. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "non-basmati",
+      "files": [
+        "src/assets/catalog-non-basmati-2.jpg",
+        "src/assets/catalog-non-basmati-2-640.webp",
+        "src/assets/catalog-non-basmati-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: uncooked white medium-length non-basmati rice grains. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "okra",
+      "files": [
+        "src/assets/catalog-okra-1.jpg",
+        "src/assets/catalog-okra-1-640.webp",
+        "src/assets/catalog-okra-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. One square photorealistic product catalog photo of fresh green okra pods (lady fingers) arranged on a warm ivory studio surface. Soft daylight, realistic texture, premium clean food photography. Show only this vegetable, no other produce, no text, logos or watermark."
+    },
+    {
+      "product": "okra",
+      "files": [
+        "src/assets/catalog-okra-2.jpg",
+        "src/assets/catalog-okra-2-640.webp",
+        "src/assets/catalog-okra-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. One square photorealistic product catalog photo of fresh green okra pods (lady fingers) in a shallow wooden produce crate on burlap, overhead view. Soft daylight, realistic texture, premium clean food photography. Show only this vegetable, no other produce, no text, logos or watermark."
+    },
+    {
+      "product": "olive-oil",
+      "files": [
+        "src/assets/catalog-olive-oil-1.jpg",
+        "src/assets/catalog-olive-oil-1-640.webp",
+        "src/assets/catalog-olive-oil-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: golden green olive oil in a plain glass bottle beside olives. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "orange",
+      "files": [
+        "src/assets/catalog-orange-1.jpg",
+        "src/assets/catalog-orange-1-640.webp",
+        "src/assets/catalog-orange-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: fresh oranges, whole and halved. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "papaya",
+      "files": [
+        "src/assets/catalog-papaya-1.jpg",
+        "src/assets/catalog-papaya-1-640.webp",
+        "src/assets/catalog-papaya-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: ripe papayas, one halved with orange flesh and black seeds. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "parboiled-rice",
+      "files": [
+        "src/assets/catalog-parboiled-rice-1.jpg",
+        "src/assets/catalog-parboiled-rice-1-640.webp",
+        "src/assets/catalog-parboiled-rice-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: uncooked pale golden translucent parboiled rice grains. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "parboiled-rice",
+      "files": [
+        "src/assets/catalog-parboiled-rice-2.jpg",
+        "src/assets/catalog-parboiled-rice-2-640.webp",
+        "src/assets/catalog-parboiled-rice-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: uncooked pale golden translucent parboiled rice grains. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "pistachios",
+      "files": [
+        "src/assets/catalog-pistachios-1.jpg",
+        "src/assets/catalog-pistachios-1-640.webp",
+        "src/assets/catalog-pistachios-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: pistachios in naturally split beige shells with green kernels. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "pistachios",
+      "files": [
+        "src/assets/catalog-pistachios-2.jpg",
+        "src/assets/catalog-pistachios-2-640.webp",
+        "src/assets/catalog-pistachios-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: pistachios in naturally split beige shells with green kernels. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "pomegranate",
+      "files": [
+        "src/assets/catalog-pomegranate-1.jpg",
+        "src/assets/catalog-pomegranate-1-640.webp",
+        "src/assets/catalog-pomegranate-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: red pomegranates, whole and one opened to show ruby seeds. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "potato",
+      "files": [
+        "src/assets/catalog-potato-1.jpg",
+        "src/assets/catalog-potato-1-640.webp",
+        "src/assets/catalog-potato-1-1024.webp"
+      ],
+      "prompt": "Square photorealistic product-mockup: potato1; studio ivory surface or wooden crate on burlap; soft daylight; only the named vegetable; no text, logos or watermark."
+    },
+    {
+      "product": "potato",
+      "files": [
+        "src/assets/catalog-potato-2.jpg",
+        "src/assets/catalog-potato-2-640.webp",
+        "src/assets/catalog-potato-2-1024.webp"
+      ],
+      "prompt": "Square photorealistic product-mockup: potato2; studio ivory surface or wooden crate on burlap; soft daylight; only the named vegetable; no text, logos or watermark."
+    },
+    {
+      "product": "pumpkin-seeds",
+      "files": [
+        "src/assets/catalog-pumpkin-seeds-1.jpg",
+        "src/assets/catalog-pumpkin-seeds-1-640.webp",
+        "src/assets/catalog-pumpkin-seeds-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: flat green hulled pumpkin seeds. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "pumpkin-seeds",
+      "files": [
+        "src/assets/catalog-pumpkin-seeds-2.jpg",
+        "src/assets/catalog-pumpkin-seeds-2-640.webp",
+        "src/assets/catalog-pumpkin-seeds-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: flat green hulled pumpkin seeds. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "raisins",
+      "files": [
+        "src/assets/catalog-raisins-1.jpg",
+        "src/assets/catalog-raisins-1-640.webp",
+        "src/assets/catalog-raisins-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: golden and brown dried raisins. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "ready-to-eat",
+      "files": [
+        "src/assets/catalog-ready-to-eat-1.jpg",
+        "src/assets/catalog-ready-to-eat-1-640.webp",
+        "src/assets/catalog-ready-to-eat-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: sealed food-safe ready-to-eat meal trays with rice and vegetable curry visible through clear lids. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "red-chilli",
+      "files": [
+        "src/assets/catalog-red-chilli-1.jpg",
+        "src/assets/catalog-red-chilli-1-640.webp",
+        "src/assets/catalog-red-chilli-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dried whole red chilli peppers and a small bowl of red chilli powder. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "red-chilli",
+      "files": [
+        "src/assets/catalog-red-chilli-2.jpg",
+        "src/assets/catalog-red-chilli-2-640.webp",
+        "src/assets/catalog-red-chilli-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dried whole red chilli peppers and a small bowl of red chilli powder. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "red-onion",
+      "files": [
+        "src/assets/catalog-red-onion-1.jpg",
+        "src/assets/catalog-red-onion-1-640.webp",
+        "src/assets/catalog-red-onion-1-1024.webp"
+      ],
+      "prompt": "Square photorealistic product-mockup: red-onion1; studio ivory surface or wooden crate on burlap; soft daylight; only the named vegetable; no text, logos or watermark."
+    },
+    {
+      "product": "red-onion",
+      "files": [
+        "src/assets/catalog-red-onion-2.jpg",
+        "src/assets/catalog-red-onion-2-640.webp",
+        "src/assets/catalog-red-onion-2-1024.webp"
+      ],
+      "prompt": "Square photorealistic product-mockup: red-onion2; studio ivory surface or wooden crate on burlap; soft daylight; only the named vegetable; no text, logos or watermark."
+    },
+    {
+      "product": "sauces-condiments",
+      "files": [
+        "src/assets/catalog-sauces-condiments-1.jpg",
+        "src/assets/catalog-sauces-condiments-1-640.webp",
+        "src/assets/catalog-sauces-condiments-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: tomato sauce and mustard in plain unlabelled glass bottles and small condiment bowls. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "sauces-condiments",
+      "files": [
+        "src/assets/catalog-sauces-condiments-2.jpg",
+        "src/assets/catalog-sauces-condiments-2-640.webp",
+        "src/assets/catalog-sauces-condiments-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: tomato sauce and mustard in plain unlabelled glass bottles and small condiment bowls. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "sesame-seeds",
+      "files": [
+        "src/assets/catalog-sesame-seeds-1.jpg",
+        "src/assets/catalog-sesame-seeds-1-640.webp",
+        "src/assets/catalog-sesame-seeds-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: tiny ivory hulled sesame seeds. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "sona-masoori",
+      "files": [
+        "src/assets/catalog-sona-masoori-1.jpg",
+        "src/assets/catalog-sona-masoori-1-640.webp",
+        "src/assets/catalog-sona-masoori-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: uncooked medium-grain white Sona Masoori rice. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "sona-masoori",
+      "files": [
+        "src/assets/catalog-sona-masoori-2.jpg",
+        "src/assets/catalog-sona-masoori-2-640.webp",
+        "src/assets/catalog-sona-masoori-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: uncooked medium-grain white Sona Masoori rice. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "sorghum",
+      "files": [
+        "src/assets/catalog-sorghum-1.jpg",
+        "src/assets/catalog-sorghum-1-640.webp",
+        "src/assets/catalog-sorghum-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry round ivory sorghum grains (jowar). A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "sorghum",
+      "files": [
+        "src/assets/catalog-sorghum-2.jpg",
+        "src/assets/catalog-sorghum-2-640.webp",
+        "src/assets/catalog-sorghum-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry round ivory sorghum grains (jowar). An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "sunflower-oil",
+      "files": [
+        "src/assets/catalog-sunflower-oil-1.jpg",
+        "src/assets/catalog-sunflower-oil-1-640.webp",
+        "src/assets/catalog-sunflower-oil-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: clear golden sunflower oil in a plain glass bottle beside sunflower seeds. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "sunflower-oil",
+      "files": [
+        "src/assets/catalog-sunflower-oil-2.jpg",
+        "src/assets/catalog-sunflower-oil-2-640.webp",
+        "src/assets/catalog-sunflower-oil-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: clear golden sunflower oil in a plain glass bottle beside sunflower seeds. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "table-eggs",
+      "files": [
+        "src/assets/catalog-table-eggs-1.jpg",
+        "src/assets/catalog-table-eggs-1-640.webp",
+        "src/assets/catalog-table-eggs-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: mixed white and brown unbroken chicken table eggs. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "table-eggs",
+      "files": [
+        "src/assets/catalog-table-eggs-2.jpg",
+        "src/assets/catalog-table-eggs-2-640.webp",
+        "src/assets/catalog-table-eggs-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: mixed white and brown unbroken chicken table eggs. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "tomato",
+      "files": [
+        "src/assets/catalog-tomato-1.jpg",
+        "src/assets/catalog-tomato-1-640.webp",
+        "src/assets/catalog-tomato-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. One square photorealistic product catalog photo of fresh ripe red tomatoes arranged on a warm ivory studio surface. Soft daylight, realistic texture, premium clean food photography. Show only this vegetable, no other produce, no text, logos or watermark."
+    },
+    {
+      "product": "toor-dal",
+      "files": [
+        "src/assets/catalog-toor-dal-1.jpg",
+        "src/assets/catalog-toor-dal-1-640.webp",
+        "src/assets/catalog-toor-dal-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry yellow split pigeon peas (toor dal), small yellow flattened halves. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "toor-dal",
+      "files": [
+        "src/assets/catalog-toor-dal-2.jpg",
+        "src/assets/catalog-toor-dal-2-640.webp",
+        "src/assets/catalog-toor-dal-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry yellow split pigeon peas (toor dal), small yellow flattened halves. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "turmeric",
+      "files": [
+        "src/assets/catalog-turmeric-1.jpg",
+        "src/assets/catalog-turmeric-1-640.webp",
+        "src/assets/catalog-turmeric-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dried golden turmeric fingers and a small bowl of turmeric powder. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "urad-dal",
+      "files": [
+        "src/assets/catalog-urad-dal-1.jpg",
+        "src/assets/catalog-urad-dal-1-640.webp",
+        "src/assets/catalog-urad-dal-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry whole black gram (urad) and split ivory urad dal in separate bowls. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "urad-dal",
+      "files": [
+        "src/assets/catalog-urad-dal-2.jpg",
+        "src/assets/catalog-urad-dal-2-640.webp",
+        "src/assets/catalog-urad-dal-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry whole black gram (urad) and split ivory urad dal in separate bowls. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "walnuts",
+      "files": [
+        "src/assets/catalog-walnuts-1.jpg",
+        "src/assets/catalog-walnuts-1-640.webp",
+        "src/assets/catalog-walnuts-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: whole walnuts in shells and walnut kernels. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "watermelon",
+      "files": [
+        "src/assets/catalog-watermelon-1.jpg",
+        "src/assets/catalog-watermelon-1-640.webp",
+        "src/assets/catalog-watermelon-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: a green striped watermelon with a red cut wedge. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "wheat",
+      "files": [
+        "src/assets/catalog-wheat-1.jpg",
+        "src/assets/catalog-wheat-1-640.webp",
+        "src/assets/catalog-wheat-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry golden wheat kernels. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "wheat",
+      "files": [
+        "src/assets/catalog-wheat-2.jpg",
+        "src/assets/catalog-wheat-2-640.webp",
+        "src/assets/catalog-wheat-2-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: dry golden wheat kernels. An overhead close product view arranged on a warm wooden table with natural linen, use a shallow wooden tray or bowl appropriate to the food. Different composition from a studio hero shot. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    },
+    {
+      "product": "white-eggs",
+      "files": [
+        "src/assets/catalog-white-eggs-1.jpg",
+        "src/assets/catalog-white-eggs-1-640.webp",
+        "src/assets/catalog-white-eggs-1-1024.webp"
+      ],
+      "prompt": "Use case: product-mockup. Asset: square export food catalog photograph. Subject: fresh unbroken white chicken eggs. A clean three-quarter close product view on a warm ivory studio surface, use a simple ceramic bowl for loose grains, seeds, nuts or powders. Photorealistic, soft natural daylight, accurate food texture, premium commercial photography. Only the named product and its ingredients; no unrelated food, no people, no readable text, no logos or watermark. One photograph, no collage."
+    }
+  ]
+}

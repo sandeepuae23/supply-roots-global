@@ -1,0 +1,347 @@
+[
+  [
+    "red-onion",
+    "whole burgundy-purple Nashik red onions",
+    ""
+  ],
+  [
+    "potato",
+    "fresh whole golden-brown potatoes",
+    ""
+  ],
+  [
+    "tomato",
+    "fresh ripe red tomatoes",
+    "gal-veg-tomato"
+  ],
+  [
+    "carrot",
+    "fresh orange carrots",
+    "gal-veg-carrots"
+  ],
+  [
+    "green-chilli",
+    "fresh slender green chillies",
+    "gal-veg-chilli"
+  ],
+  [
+    "garlic",
+    "whole white garlic bulbs",
+    "gal-veg-garlic"
+  ],
+  [
+    "ginger",
+    "fresh knobbly ginger roots",
+    ""
+  ],
+  [
+    "okra",
+    "fresh green okra pods (lady fingers)",
+    "gal-veg-okra"
+  ],
+  [
+    "cabbage",
+    "whole fresh round green cabbages",
+    "gal-veg-cabbage"
+  ],
+  [
+    "cauliflower",
+    "fresh white cauliflower heads with green leaves",
+    ""
+  ],
+  [
+    "alphonso-mango",
+    "ripe golden Alphonso mangoes, whole and cut to show orange flesh",
+    "product-mango"
+  ],
+  [
+    "banana",
+    "a bunch of yellow Cavendish bananas",
+    "gal-fruit-banana"
+  ],
+  [
+    "pomegranate",
+    "red pomegranates, whole and one opened to show ruby seeds",
+    "gal-fruit-pomegranate"
+  ],
+  [
+    "grapes",
+    "fresh green Thompson seedless grape bunches",
+    "gal-fruit-grapes"
+  ],
+  [
+    "orange",
+    "fresh oranges, whole and halved",
+    "gal-fruit-citrus"
+  ],
+  [
+    "apple",
+    "fresh red and green apples",
+    "gal-fruit-apples"
+  ],
+  [
+    "papaya",
+    "ripe papayas, one halved with orange flesh and black seeds",
+    "gal-fruit-papaya"
+  ],
+  [
+    "watermelon",
+    "a green striped watermelon with a red cut wedge",
+    "gal-fruit-watermelon"
+  ],
+  [
+    "basmati-rice",
+    "uncooked extra-long slender white 1121 basmati rice grains",
+    "product-basmati"
+  ],
+  [
+    "sona-masoori",
+    "uncooked medium-grain white Sona Masoori rice",
+    ""
+  ],
+  [
+    "non-basmati",
+    "uncooked white medium-length non-basmati rice grains",
+    ""
+  ],
+  [
+    "parboiled-rice",
+    "uncooked pale golden translucent parboiled rice grains",
+    ""
+  ],
+  [
+    "brown-rice",
+    "uncooked wholegrain brown rice with tan bran intact",
+    ""
+  ],
+  [
+    "toor-dal",
+    "dry yellow split pigeon peas (toor dal), small yellow flattened halves",
+    ""
+  ],
+  [
+    "moong-dal",
+    "dry split yellow mung beans (moong dal)",
+    ""
+  ],
+  [
+    "urad-dal",
+    "dry whole black gram (urad) and split ivory urad dal in separate bowls",
+    ""
+  ],
+  [
+    "masoor-dal",
+    "dry orange-red split lentils (masoor dal)",
+    ""
+  ],
+  [
+    "chickpeas",
+    "dry beige Kabuli chickpeas",
+    "gal-pulses-chickpeas"
+  ],
+  [
+    "kidney-beans",
+    "dry deep-red kidney beans (rajma)",
+    ""
+  ],
+  [
+    "white-eggs",
+    "fresh unbroken white chicken eggs",
+    "gal-eggs-cartons"
+  ],
+  [
+    "brown-eggs",
+    "fresh unbroken brown chicken eggs",
+    "gal-eggs-brown"
+  ],
+  [
+    "table-eggs",
+    "mixed white and brown unbroken chicken table eggs",
+    ""
+  ],
+  [
+    "hatching-eggs",
+    "intact cream chicken hatching eggs in clean incubation trays, no chicks",
+    ""
+  ],
+  [
+    "free-range-eggs",
+    "cream and brown unbroken chicken eggs in a rustic basket",
+    ""
+  ],
+  [
+    "turmeric",
+    "dried golden turmeric fingers and a small bowl of turmeric powder",
+    "gal-spices-turmeric"
+  ],
+  [
+    "red-chilli",
+    "dried whole red chilli peppers and a small bowl of red chilli powder",
+    ""
+  ],
+  [
+    "black-pepper",
+    "dried whole black peppercorns",
+    ""
+  ],
+  [
+    "cardamom",
+    "whole green cardamom pods",
+    ""
+  ],
+  [
+    "cumin",
+    "dry elongated brown cumin seeds",
+    ""
+  ],
+  [
+    "coriander",
+    "dry round tan coriander seeds",
+    ""
+  ],
+  [
+    "cloves",
+    "whole dried brown cloves",
+    ""
+  ],
+  [
+    "cinnamon",
+    "rolled cinnamon bark quills",
+    ""
+  ],
+  [
+    "wheat",
+    "dry golden wheat kernels",
+    ""
+  ],
+  [
+    "maize",
+    "dry yellow maize corn kernels",
+    ""
+  ],
+  [
+    "millet",
+    "dry small round pale millet grains",
+    ""
+  ],
+  [
+    "barley",
+    "dry pale tan barley grains",
+    ""
+  ],
+  [
+    "sorghum",
+    "dry round ivory sorghum grains (jowar)",
+    ""
+  ],
+  [
+    "almonds",
+    "whole raw brown almonds",
+    ""
+  ],
+  [
+    "cashews",
+    "whole ivory cashew kernels",
+    ""
+  ],
+  [
+    "raisins",
+    "golden and brown dried raisins",
+    "gal-dryfruits-raisins"
+  ],
+  [
+    "dates",
+    "whole dark brown dates",
+    "gal-dryfruits-dates"
+  ],
+  [
+    "dried-apricots",
+    "orange dried apricot halves",
+    ""
+  ],
+  [
+    "walnuts",
+    "whole walnuts in shells and walnut kernels",
+    "gal-nuts-walnuts"
+  ],
+  [
+    "pistachios",
+    "pistachios in naturally split beige shells with green kernels",
+    ""
+  ],
+  [
+    "sesame-seeds",
+    "tiny ivory hulled sesame seeds",
+    "gal-nuts-sesame"
+  ],
+  [
+    "pumpkin-seeds",
+    "flat green hulled pumpkin seeds",
+    ""
+  ],
+  [
+    "flax-seeds",
+    "small glossy brown flax seeds",
+    ""
+  ],
+  [
+    "sunflower-oil",
+    "clear golden sunflower oil in a plain glass bottle beside sunflower seeds",
+    ""
+  ],
+  [
+    "olive-oil",
+    "golden green olive oil in a plain glass bottle beside olives",
+    "gal-oils-olive"
+  ],
+  [
+    "mustard-oil",
+    "golden amber mustard oil in a plain glass bottle beside mustard seeds",
+    ""
+  ],
+  [
+    "coconut-oil",
+    "clear coconut oil in a plain glass jar beside a split coconut",
+    ""
+  ],
+  [
+    "frozen-peas",
+    "bright green individually frozen peas with subtle frost",
+    "gal-frozen-peas"
+  ],
+  [
+    "frozen-mixed-vegetables",
+    "frozen diced carrots, green peas, cut green beans and sweetcorn with subtle frost",
+    ""
+  ],
+  [
+    "frozen-berries",
+    "frozen strawberries, blueberries and raspberries with subtle frost",
+    ""
+  ],
+  [
+    "frozen-mango-pulp",
+    "smooth golden mango pulp in a food-safe container with frozen mango pulp blocks",
+    "gal-frozen-mango"
+  ],
+  [
+    "honey",
+    "golden natural honey in an unlabelled glass jar with wooden honey dipper",
+    "gal-other-honey"
+  ],
+  [
+    "canned-goods",
+    "plain unlabelled food cans, one opened to show sweetcorn and another peas",
+    "gal-other-canned"
+  ],
+  [
+    "sauces-condiments",
+    "tomato sauce and mustard in plain unlabelled glass bottles and small condiment bowls",
+    ""
+  ],
+  [
+    "ready-to-eat",
+    "sealed food-safe ready-to-eat meal trays with rice and vegetable curry visible through clear lids",
+    "gal-other-rte"
+  ]
+]

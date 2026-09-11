@@ -19,7 +19,10 @@ export const Route = createFileRoute("/products/$slug")({
       meta: [
         { title: `${loaderData.name} — Leo Infinity Global General Trading` },
         { name: "description", content: loaderData.description },
-        { property: "og:title", content: `${loaderData.name} — Leo Infinity Global General Trading` },
+        {
+          property: "og:title",
+          content: `${loaderData.name} — Leo Infinity Global General Trading`,
+        },
         { property: "og:description", content: loaderData.description },
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary_large_image" },
@@ -36,9 +39,7 @@ function ProductDetailPage() {
     .filter((p) => p.slug !== product.slug)
     .slice(0, 3);
 
-  const galleryImages = Array.from(
-    new Set([product.image, ...(category?.gallery ?? []), ...related.map((p) => p.image)]),
-  ).slice(0, 4);
+  const galleryImages = Array.from(new Set([product.image, ...(product.gallery ?? [])]));
 
   const highlights: [string, string][] = [
     ["Price (FOB)", product.price],
@@ -63,7 +64,7 @@ function ProductDetailPage() {
       {/* Detail */}
       <section className="bg-card px-6 py-20">
         <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
-          <ProductGallery images={galleryImages} alt={product.name} />
+          <ProductGallery key={product.slug} images={galleryImages} alt={product.name} />
           <div>
             {product.featured && (
               <span className="mb-4 inline-block rounded-full bg-accent/10 px-3 py-1 text-xs font-bold text-accent">
@@ -74,12 +75,16 @@ function ProductDetailPage() {
               {category?.name}
             </p>
             <h1 className="mb-6 font-serif text-4xl text-primary md:text-5xl">{product.name}</h1>
-            <p className="mb-8 text-lg leading-relaxed text-muted-foreground">{product.description}</p>
+            <p className="mb-8 text-lg leading-relaxed text-muted-foreground">
+              {product.description}
+            </p>
 
             <div className="mb-10 grid gap-3 sm:grid-cols-3">
               {highlights.map(([label, value]) => (
                 <div key={label} className="surface-3d rounded-sm border border-border p-4">
-                  <p className="mb-1 text-xs font-bold tracking-wider text-accent uppercase">{label}</p>
+                  <p className="mb-1 text-xs font-bold tracking-wider text-accent uppercase">
+                    {label}
+                  </p>
                   <p className="text-sm font-semibold text-foreground">{value}</p>
                 </div>
               ))}
@@ -88,7 +93,9 @@ function ProductDetailPage() {
             <dl className="mb-10 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
               {specs.map(([label, value]) => (
                 <div key={label}>
-                  <dt className="mb-1 text-xs font-bold tracking-wider text-primary/50 uppercase">{label}</dt>
+                  <dt className="mb-1 text-xs font-bold tracking-wider text-primary/50 uppercase">
+                    {label}
+                  </dt>
                   <dd className="text-sm font-medium text-foreground">{value}</dd>
                 </div>
               ))}
@@ -163,7 +170,9 @@ function ProductDetailPage() {
                     />
                   </div>
                   <div className="p-6">
-                    <h4 className="font-serif text-xl text-primary group-hover:text-accent">{p.name}</h4>
+                    <h4 className="font-serif text-xl text-primary group-hover:text-accent">
+                      {p.name}
+                    </h4>
                     <p className="mt-2 text-sm text-muted-foreground">{p.origin}</p>
                   </div>
                 </Link>

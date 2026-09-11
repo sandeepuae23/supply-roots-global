@@ -1,4 +1,5 @@
 import catVegetables from "@/assets/cat-vegetables.jpg";
+import { productGalleries } from "@/data/product-images";
 import catFruits from "@/assets/cat-fruits.jpg";
 import catRice from "@/assets/cat-rice.jpg";
 import catPulses from "@/assets/cat-pulses.jpg";
@@ -80,6 +81,8 @@ export interface Product {
   name: string;
   category: string;
   image: string;
+  /** Photos of this specific product, in display order. */
+  gallery?: string[];
   origin: string;
   /** Indicative FOB price range shown on the detail page. */
   price: string;
@@ -494,6 +497,7 @@ const productSeeds: Record<string, ProductSeed[]> = {
 function buildProduct(categorySlug: string, seed: ProductSeed): Product {
   const category = categories.find((c) => c.slug === categorySlug)!;
   const d = categoryDefaults[categorySlug]!;
+  const gallery = productGalleries[seed.slug];
   return {
     slug: seed.slug,
     name: seed.name,
@@ -514,6 +518,10 @@ function buildProduct(categorySlug: string, seed: ProductSeed): Product {
     description: `Export-grade ${seed.name.toLowerCase()} sourced from audited farms and processors, cleaned, graded and packed to destination specifications. Full documentation and inspection support available on every shipment.`,
     featured: false,
     ...seed.overrides,
+    ...(gallery?.[0] && {
+      image: gallery[0],
+      gallery,
+    }),
   };
 }
 

@@ -1,6 +1,6 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment, Lightformer, OrbitControls, useTexture } from "@react-three/drei";
-import { Suspense, useEffect, useMemo, useRef } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import earthMap from "@/assets/earth-map.jpg";
 import { HUBS, LANES, TIMELINE_LANES, type LaneMode } from "@/data/trade-lanes";
@@ -18,11 +18,13 @@ function latLonToVec3(lat: number, lon: number, radius: number) {
 
 type Mode = LaneMode;
 
-
-const MODE_STYLE: Record<Mode, { color: string; emissive: string; lift: number; speed: number; tube: number }> = {
-  sea: { color: "#2dd4bf", emissive: "#0d9488", lift: 0.1, speed: 0.09, tube: 0.014 },
-  air: { color: "#fbbf24", emissive: "#f59e0b", lift: 0.34, speed: 0.2, tube: 0.011 },
-  land: { color: "#fb923c", emissive: "#ea580c", lift: 0.18, speed: 0.13, tube: 0.012 },
+const MODE_STYLE: Record<
+  Mode,
+  { color: string; emissive: string; lift: number; speed: number; tube: number }
+> = {
+  sea: { color: "#7dcbbb", emissive: "#397d70", lift: 0.1, speed: 0.09, tube: 0.005 },
+  air: { color: "#e6c581", emissive: "#a7803e", lift: 0.34, speed: 0.2, tube: 0.005 },
+  land: { color: "#dca48b", emissive: "#9a6550", lift: 0.18, speed: 0.13, tube: 0.005 },
 };
 
 const R = 2;
@@ -36,16 +38,16 @@ function ShipIcon() {
   const hull = "#0f766e";
   const glow = "#2dd4bf";
   return (
-    <group scale={1.7}>
+    <group scale={1.05}>
       {/* hull — wider at back, tapering to the bow (+Z) */}
       <mesh position={[0, 0.012, -0.01]}>
         <boxGeometry args={[0.05, 0.024, 0.11]} />
-        <meshStandardMaterial color={hull} emissive={glow} emissiveIntensity={0.9} toneMapped={false} />
+        <meshStandardMaterial color={hull} emissive={glow} emissiveIntensity={0.25} />
       </mesh>
       {/* bow wedge */}
       <mesh position={[0, 0.012, 0.055]} rotation-y={Math.PI / 4}>
         <boxGeometry args={[0.036, 0.024, 0.036]} />
-        <meshStandardMaterial color={hull} emissive={glow} emissiveIntensity={0.9} toneMapped={false} />
+        <meshStandardMaterial color={hull} emissive={glow} emissiveIntensity={0.25} />
       </mesh>
       {/* container stacks */}
       {(
@@ -57,13 +59,13 @@ function ShipIcon() {
       ).map(([z, color, emissive], i) => (
         <mesh key={i} position={[0, 0.036, z]}>
           <boxGeometry args={[0.038, 0.016, 0.02]} />
-          <meshStandardMaterial color={color} emissive={emissive} emissiveIntensity={0.6} toneMapped={false} />
+          <meshStandardMaterial color={color} emissive={emissive} emissiveIntensity={0.25} />
         </mesh>
       ))}
       {/* bridge tower at the stern */}
       <mesh position={[0, 0.042, -0.042]}>
         <boxGeometry args={[0.04, 0.028, 0.014]} />
-        <meshStandardMaterial color="#f8fafc" emissive="#cbd5e1" emissiveIntensity={0.8} toneMapped={false} />
+        <meshStandardMaterial color="#f8fafc" emissive="#cbd5e1" emissiveIntensity={0.25} />
       </mesh>
     </group>
   );
@@ -73,31 +75,31 @@ function PlaneIcon() {
   const body = "#fde68a";
   const glow = "#f59e0b";
   return (
-    <group scale={1.7}>
+    <group scale={1.05}>
       {/* fuselage pointing along +Z */}
       <mesh rotation-x={Math.PI / 2}>
         <cylinderGeometry args={[0.011, 0.011, 0.095, 10]} />
-        <meshStandardMaterial color={body} emissive={glow} emissiveIntensity={1.6} toneMapped={false} />
+        <meshStandardMaterial color={body} emissive={glow} emissiveIntensity={0.25} />
       </mesh>
       {/* nose cone */}
       <mesh position={[0, 0, 0.058]} rotation-x={Math.PI / 2}>
         <coneGeometry args={[0.011, 0.026, 10]} />
-        <meshStandardMaterial color={body} emissive={glow} emissiveIntensity={1.6} toneMapped={false} />
+        <meshStandardMaterial color={body} emissive={glow} emissiveIntensity={0.25} />
       </mesh>
       {/* main wings — swept back slightly */}
       <mesh position={[0, 0, 0.004]} rotation-y={0}>
         <boxGeometry args={[0.115, 0.004, 0.026]} />
-        <meshStandardMaterial color={body} emissive={glow} emissiveIntensity={1.4} toneMapped={false} />
+        <meshStandardMaterial color={body} emissive={glow} emissiveIntensity={0.25} />
       </mesh>
       {/* tail wings */}
       <mesh position={[0, 0, -0.04]}>
         <boxGeometry args={[0.05, 0.003, 0.014]} />
-        <meshStandardMaterial color={body} emissive={glow} emissiveIntensity={1.4} toneMapped={false} />
+        <meshStandardMaterial color={body} emissive={glow} emissiveIntensity={0.25} />
       </mesh>
       {/* vertical tail fin */}
       <mesh position={[0, 0.014, -0.042]}>
         <boxGeometry args={[0.003, 0.024, 0.016]} />
-        <meshStandardMaterial color={body} emissive={glow} emissiveIntensity={1.4} toneMapped={false} />
+        <meshStandardMaterial color={body} emissive={glow} emissiveIntensity={0.25} />
       </mesh>
     </group>
   );
@@ -108,21 +110,21 @@ function TruckIcon() {
   const glow = "#fb923c";
   const wheel = "#1c1917";
   return (
-    <group scale={1.7}>
+    <group scale={1.05}>
       {/* trailer / container box at the rear */}
       <mesh position={[0, 0.026, -0.022]}>
         <boxGeometry args={[0.034, 0.032, 0.062]} />
-        <meshStandardMaterial color="#fff7ed" emissive={glow} emissiveIntensity={0.9} toneMapped={false} />
+        <meshStandardMaterial color="#fff7ed" emissive={glow} emissiveIntensity={0.25} />
       </mesh>
       {/* cab at the front */}
       <mesh position={[0, 0.02, 0.03]}>
         <boxGeometry args={[0.032, 0.024, 0.022]} />
-        <meshStandardMaterial color={cab} emissive={cab} emissiveIntensity={1.2} toneMapped={false} />
+        <meshStandardMaterial color={cab} emissive={cab} emissiveIntensity={0.25} />
       </mesh>
       {/* windshield */}
       <mesh position={[0, 0.028, 0.0415]}>
         <boxGeometry args={[0.026, 0.01, 0.002]} />
-        <meshStandardMaterial color="#bae6fd" emissive="#7dd3fc" emissiveIntensity={1.2} toneMapped={false} />
+        <meshStandardMaterial color="#bae6fd" emissive="#7dd3fc" emissiveIntensity={0.25} />
       </mesh>
       {/* wheels */}
       {[-0.038, -0.006, 0.03].map((z, i) =>
@@ -143,7 +145,19 @@ function CargoMarker({ mode }: { mode: Mode }) {
   return <TruckIcon />;
 }
 
-function Lane({ from, to, mode, delay }: { from: THREE.Vector3; to: THREE.Vector3; mode: Mode; delay: number }) {
+function Lane({
+  from,
+  to,
+  mode,
+  delay,
+  paused,
+}: {
+  from: THREE.Vector3;
+  to: THREE.Vector3;
+  mode: Mode;
+  delay: number;
+  paused: boolean;
+}) {
   const style = MODE_STYLE[mode];
 
   const curve = useMemo(() => {
@@ -153,12 +167,17 @@ function Lane({ from, to, mode, delay }: { from: THREE.Vector3; to: THREE.Vector
     return new THREE.QuadraticBezierCurve3(from, mid, to);
   }, [from, to, style.lift]);
 
-  const geometry = useMemo(() => new THREE.TubeGeometry(curve, 64, style.tube, 8, false), [curve, style.tube]);
+  const geometry = useMemo(
+    () => new THREE.TubeGeometry(curve, 64, style.tube, 8, false),
+    [curve, style.tube],
+  );
   const cargoRef = useRef<THREE.Group>(null);
 
-  useFrame(({ clock }) => {
+  const progress = useRef(delay);
+  useFrame((_, delta) => {
     if (!cargoRef.current) return;
-    const t = (clock.elapsedTime * style.speed + delay) % 1;
+    if (!paused) progress.current += delta * style.speed * 0.55;
+    const t = progress.current % 1;
     const p = curve.getPoint(t);
     cargoRef.current.position.copy(p);
     // orient cargo along the lane direction
@@ -186,21 +205,29 @@ function Lane({ from, to, mode, delay }: { from: THREE.Vector3; to: THREE.Vector
   );
 }
 
-function HubMarker({ position, name }: { position: THREE.Vector3; name: string }) {
+function HubMarker({
+  position,
+  name,
+  paused,
+}: {
+  position: THREE.Vector3;
+  name: string;
+  paused: boolean;
+}) {
   const pulseRef = useRef<THREE.Mesh>(null);
   useFrame(({ clock }) => {
-    if (!pulseRef.current) return;
+    if (!pulseRef.current || paused) return;
     const s = 1 + 0.35 * Math.sin(clock.elapsedTime * 2 + position.x * 5);
     pulseRef.current.scale.setScalar(s);
   });
   return (
     <group position={position} key={name}>
       <mesh>
-        <sphereGeometry args={[0.034, 16, 16]} />
-        <meshStandardMaterial color="#fbbf24" emissive="#f59e0b" emissiveIntensity={1.8} toneMapped={false} />
+        <sphereGeometry args={[0.018, 16, 16]} />
+        <meshStandardMaterial color="#fbbf24" emissive="#f59e0b" emissiveIntensity={0.25} />
       </mesh>
       <mesh ref={pulseRef}>
-        <sphereGeometry args={[0.05, 16, 16]} />
+        <sphereGeometry args={[0.032, 16, 16]} />
         <meshBasicMaterial color="#fbbf24" transparent opacity={0.25} />
       </mesh>
     </group>
@@ -230,7 +257,10 @@ function TimelineLane({
     return new THREE.QuadraticBezierCurve3(from, mid, to);
   }, [from, to, style.lift]);
 
-  const geometry = useMemo(() => new THREE.TubeGeometry(curve, 64, style.tube, 8, false), [curve, style.tube]);
+  const geometry = useMemo(
+    () => new THREE.TubeGeometry(curve, 64, style.tube, 8, false),
+    [curve, style.tube],
+  );
   const totalIndices = geometry.index ? geometry.index.count : 0;
 
   const tubeRef = useRef<THREE.Mesh>(null);
@@ -327,13 +357,20 @@ function TimelineRunner({
 }
 
 type GlobeProps = {
+  paused?: boolean | undefined;
   timeline?: boolean | undefined;
   playToken?: number | undefined;
   onStage?: ((i: number) => void) | undefined;
   onComplete?: (() => void) | undefined;
 };
 
-function Globe({ timeline = false, playToken = 0, onStage, onComplete }: GlobeProps) {
+function Globe({
+  timeline = false,
+  playToken = 0,
+  onStage,
+  onComplete,
+  paused = false,
+}: GlobeProps) {
   const map = useTexture(earthMap);
   map.colorSpace = THREE.SRGBColorSpace;
   map.anisotropy = 8;
@@ -343,7 +380,7 @@ function Globe({ timeline = false, playToken = 0, onStage, onComplete }: GlobePr
   const stateRef = useRef({ index: 0, t: 0, done: true });
 
   useFrame((_, delta) => {
-    if (group.current) group.current.rotation.y += delta * (timeline ? 0.025 : 0.05);
+    if (group.current && !paused) group.current.rotation.y += delta * (timeline ? 0.025 : 0.018);
   });
 
   return (
@@ -355,13 +392,13 @@ function Globe({ timeline = false, playToken = 0, onStage, onComplete }: GlobePr
       </mesh>
 
       {/* Atmosphere shell */}
-      <mesh scale={1.045}>
+      <mesh scale={1.015}>
         <sphereGeometry args={[R, 64, 64]} />
-        <meshBasicMaterial color="#7dd3c0" transparent opacity={0.09} side={THREE.BackSide} />
+        <meshBasicMaterial color="#7dd3c0" transparent opacity={0.07} side={THREE.BackSide} />
       </mesh>
 
       {points.map((p, i) => (
-        <HubMarker key={HUBS[i]!.name} position={p} name={HUBS[i]!.name} />
+        <HubMarker key={HUBS[i]!.name} position={p} name={HUBS[i]!.name} paused={paused} />
       ))}
 
       {timeline ? (
@@ -385,34 +422,71 @@ function Globe({ timeline = false, playToken = 0, onStage, onComplete }: GlobePr
         </>
       ) : (
         LANES.map(([a, b, mode], i) => (
-          <Lane key={`${a}-${b}-${mode}-${i}`} from={points[a]!} to={points[b]!} mode={mode} delay={i / LANES.length} />
+          <Lane
+            key={`${a}-${b}-${mode}-${i}`}
+            from={points[a]!}
+            to={points[b]!}
+            mode={mode}
+            delay={i / LANES.length}
+            paused={paused}
+          />
         ))
       )}
     </group>
   );
 }
 
-export default function GlobeScene({ timeline, playToken, onStage, onComplete }: GlobeProps = {}) {
+export default function GlobeScene({
+  timeline,
+  playToken,
+  onStage,
+  onComplete,
+  paused = false,
+}: GlobeProps = {}) {
+  const [reducedMotion, setReducedMotion] = useState(false);
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReducedMotion(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
   return (
     <Canvas
-      shadows
       dpr={[1, 2]}
-      camera={{ position: [0, 1.1, 6.4], fov: 42 }}
+      camera={{ position: [0, 0.7, 7.4], fov: 42 }}
       gl={{ antialias: true, alpha: true }}
       style={{ background: "transparent" }}
     >
-      <ambientLight intensity={0.35} />
-      <directionalLight position={[5, 4, 5]} intensity={2.2} castShadow />
+      <ambientLight intensity={0.65} />
+      <directionalLight position={[5, 4, 5]} intensity={1.4} />
       <directionalLight position={[-6, -2, -4]} intensity={0.5} color="#8fb3a5" />
       <Suspense fallback={null}>
-        <Globe timeline={timeline} playToken={playToken} onStage={onStage} onComplete={onComplete} />
+        <Globe
+          paused={paused || reducedMotion}
+          timeline={timeline}
+          playToken={playToken}
+          onStage={onStage}
+          onComplete={onComplete}
+        />
         <Environment>
           <Lightformer intensity={1.6} position={[0, 5, 2]} scale={[10, 10, 1]} />
-          <Lightformer intensity={0.8} color="#f5b971" position={[-5, 1, -2]} rotation-y={Math.PI / 2} scale={[16, 4, 1]} />
+          <Lightformer
+            intensity={0.8}
+            color="#f5b971"
+            position={[-5, 1, -2]}
+            rotation-y={Math.PI / 2}
+            scale={[16, 4, 1]}
+          />
         </Environment>
       </Suspense>
-      <OrbitControls enablePan={false} enableZoom={false} autoRotate={false} minPolarAngle={0.8} maxPolarAngle={2.2} />
+      <OrbitControls
+        enablePan={false}
+        enableZoom={false}
+        autoRotate={false}
+        minPolarAngle={0.8}
+        maxPolarAngle={2.2}
+      />
     </Canvas>
   );
 }
-
