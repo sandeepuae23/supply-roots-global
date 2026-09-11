@@ -560,9 +560,9 @@ export const tradeLanes = [
 export const contact = {
   company: "Leo Infinity Global General Trading LLC",
   phone: "+971 4 887 2130",
-  whatsapp: "+971 50 214 8890",
-  whatsappLink: "https://wa.me/971502148890",
-  email: "trade@leoinfinity.ae",
+  whatsapp: "+971 56 970 5667",
+  whatsappLink: "https://wa.me/971569705667",
+  email: "support@leoinfinityglobal.com",
   address: "Office 1204, JAFZA One, Jebel Ali Free Zone, Dubai, UAE",
   indiaOffice: "Suite 402, Trade Tower, MG Road, Mumbai 400001, India",
   hours: "Monday – Saturday, 9:00 – 18:00 (GST)",
