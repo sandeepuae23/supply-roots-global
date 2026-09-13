@@ -73,3 +73,24 @@ async def login(client, identifier: str, password: str = DEFAULT_PASSWORD):
 
 def auth_header(access_token: str) -> dict[str, str]:
     return {"Authorization": f"Bearer {access_token}"}
+
+
+async def owned_company_id(db, user_id):
+    """The id of the company this user owns.
+
+    Phase 2 keyed the profile tables to ``company_id``; a user reaches their
+    company through an ACTIVE OWNER row in ``company_members``. Tests that used
+    to filter a profile by ``user_id`` go through here instead.
+    """
+    from sqlalchemy import select
+
+    from app.models.enums import CompanyRole, MembershipStatus
+    from app.models.organization import CompanyMember
+
+    return await db.scalar(
+        select(CompanyMember.company_id).where(
+            CompanyMember.user_id == user_id,
+            CompanyMember.role == CompanyRole.OWNER.value,
+            CompanyMember.status == MembershipStatus.ACTIVE.value,
+        )
+    )

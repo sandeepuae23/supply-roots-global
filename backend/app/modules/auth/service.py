@@ -31,11 +31,16 @@ from app.core.security import (
     verify_password,
 )
 from app.models.company import BusinessClient, Vendor
+from app.models.organization import Company, CompanyMember
 from app.models.enums import (
     AccountStatus,
     ActorType,
     AuditAction,
+    CompanyRole,
+    CompanyStatus,
+    CompanyType,
     LoginFailureReason,
+    MembershipStatus,
     UserType,
 )
 from app.models.login_attempt import LoginAttempt
@@ -158,11 +163,42 @@ async def register_user(
             code="account_exists",
         ) from exc
 
-    # Persist the company profile atomically alongside the user.
+    # Persist the company, the registrant's OWNER membership and the
+    # type-specific profile atomically alongside the user. Registration is
+    # all-or-nothing: a user without a company, or a company without an owner,
+    # is not a state this system should ever be able to observe.
+    company_type = (
+        CompanyType.BUYER if user_type == UserType.BUYER else CompanyType.VENDOR
+    )
+    company = Company(
+        legal_name=profile.company_name,
+        company_type=company_type.value,
+        status=CompanyStatus.PENDING_APPROVAL.value,
+        country=profile.country,
+        phone=profile.phone,
+    )
+    session.add(company)
+    await session.flush()
+
+    # The registrant becomes the company's single active OWNER. user_type and
+    # company_type are denormalised here purely so the CHECK constraint can
+    # compare them; the authoritative values live on users and companies.
+    session.add(
+        CompanyMember(
+            company_id=company.id,
+            user_id=user.id,
+            role=CompanyRole.OWNER.value,
+            status=MembershipStatus.ACTIVE.value,
+            user_type=user_type.value,
+            company_type=company_type.value,
+            joined_at=_now(),
+        )
+    )
+
     if user_type == UserType.BUYER:
         session.add(
             BusinessClient(
-                user_id=user.id,
+                company_id=company.id,
                 company_name=profile.company_name,
                 contact_name=profile.contact_name,
                 phone=profile.phone,
@@ -172,7 +208,7 @@ async def register_user(
     else:  # UserType.VENDOR
         session.add(
             Vendor(
-                user_id=user.id,
+                company_id=company.id,
                 company_name=profile.company_name,
                 contact_name=profile.contact_name,
                 phone=profile.phone,

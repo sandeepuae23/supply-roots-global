@@ -20,7 +20,14 @@ from app.core.errors import NotFoundError
 from app.core.security import generate_temporary_password, hash_password
 from app.models.audit_log import AdminAuditLog
 from app.models.company import BusinessClient, Vendor
-from app.models.enums import AccountStatus, ActorType, AuditAction, UserType
+from app.models.organization import Company, CompanyMember
+from app.models.enums import (
+    AccountStatus,
+    ActorType,
+    AuditAction,
+    MembershipStatus,
+    UserType,
+)
 from app.models.login_attempt import LoginAttempt
 from app.models.password_history import PasswordHistory
 from app.models.status_history import AccountStatusHistory
@@ -192,16 +199,36 @@ async def reset_password(
 # Read queries
 # --------------------------------------------------------------------------- #
 def _company_name_matches(pattern: str) -> ColumnElement[bool]:
-    """A correlated EXISTS matching either profile table's company_name."""
+    """A correlated EXISTS matching the company name of any company the user belongs to.
+
+    Phase 2 moved the profile tables off ``user_id`` and onto ``company_id``, so
+    this reaches the company through ``company_members``. A user may now belong
+    to several companies, and matching any of them is the behaviour an
+    administrator searching by company name expects.
+
+    ``INVITED`` memberships are excluded: an invitation that has not been
+    accepted grants no access and should not make the invitee findable under
+    that company's name.
+    """
+    company_match = select(Company.id).where(
+        Company.id == CompanyMember.company_id,
+        CompanyMember.user_id == User.id,
+        CompanyMember.status == MembershipStatus.ACTIVE.value,
+        func.lower(Company.legal_name).like(pattern),
+    )
     buyer_match = select(BusinessClient.id).where(
-        BusinessClient.user_id == User.id,
+        BusinessClient.company_id == CompanyMember.company_id,
+        CompanyMember.user_id == User.id,
+        CompanyMember.status == MembershipStatus.ACTIVE.value,
         func.lower(BusinessClient.company_name).like(pattern),
     )
     vendor_match = select(Vendor.id).where(
-        Vendor.user_id == User.id,
+        Vendor.company_id == CompanyMember.company_id,
+        CompanyMember.user_id == User.id,
+        CompanyMember.status == MembershipStatus.ACTIVE.value,
         func.lower(Vendor.company_name).like(pattern),
     )
-    return or_(buyer_match.exists(), vendor_match.exists())
+    return or_(company_match.exists(), buyer_match.exists(), vendor_match.exists())
 
 
 def _apply_user_filters(

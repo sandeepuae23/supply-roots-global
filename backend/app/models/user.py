@@ -18,10 +18,10 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base, TimestampMixin, UUIDPrimaryKeyMixin
 from app.db.types import enum_column
-from app.models.enums import AccountStatus, UserType
+from app.models.enums import AccountStatus, CompanyRole, MembershipStatus, UserType
 
 if TYPE_CHECKING:
-    from app.models.company import BusinessClient, Vendor
+    from app.models.organization import CompanyMember
     from app.models.rbac import UserRole
     from app.models.refresh_token import RefreshToken
 
@@ -84,21 +84,32 @@ class User(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     refresh_tokens: Mapped[list[RefreshToken]] = relationship(
         back_populates="user", cascade="all, delete-orphan"
     )
-    # Company profiles (one-to-one; exactly one is present per user_type).
-    business_client: Mapped[BusinessClient | None] = relationship(
-        back_populates="user", cascade="all, delete-orphan", lazy="selectin", uselist=False
-    )
-    vendor: Mapped[Vendor | None] = relationship(
-        back_populates="user", cascade="all, delete-orphan", lazy="selectin", uselist=False
+    # Company memberships. A user may belong to several companies, but only to
+    # companies matching their immutable user_type (contract section 1.1). The
+    # direct 1:1 link to a company profile was removed in Phase 2 — a company is
+    # reached through membership, not ownership of a row.
+    memberships: Mapped[list[CompanyMember]] = relationship(
+        back_populates="user",
+        foreign_keys="CompanyMember.user_id",
+        cascade="all, delete-orphan",
+        lazy="selectin",
     )
 
     @property
     def company_name(self) -> str | None:
-        """The registered company name from whichever profile exists (or None)."""
-        if self.business_client is not None:
-            return self.business_client.company_name
-        if self.vendor is not None:
-            return self.vendor.company_name
+        """Legal name of the company this user owns, if any.
+
+        Convenience for admin screens that still show a single company per
+        account. It reads the OWNER membership rather than a direct profile
+        link, so it stays correct once a user belongs to several companies.
+        """
+        for member in self.memberships:
+            if (
+                member.role == CompanyRole.OWNER.value
+                and member.status == MembershipStatus.ACTIVE.value
+                and member.company is not None
+            ):
+                return member.company.legal_name
         return None
 
     __table_args__ = (

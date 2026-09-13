@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import pytest
+
+from tests.helpers import owned_company_id
 from sqlalchemy import func, select
 
 from app.core.errors import ConflictError, PermissionDeniedError, ValidationAppError
@@ -43,16 +45,19 @@ async def test_register_buyer_creates_pending_account(db, seeded) -> None:
     # Password is hashed, never stored plaintext.
     assert user.password_hash != "a-strong-password-123"
 
-    # Buyer company profile persisted atomically.
+    # Buyer company profile persisted atomically, reached through the OWNER
+    # membership created in the same transaction.
+    company_id = await owned_company_id(db, user.id)
+    assert company_id is not None
     profile = await db.scalar(
-        select(BusinessClient).where(BusinessClient.user_id == user.id)
+        select(BusinessClient).where(BusinessClient.company_id == company_id)
     )
     assert profile is not None
     assert profile.company_name == "Acme Trading LLC"
     assert profile.contact_name == "Jane Buyer"
     assert profile.country == "United Arab Emirates"
     # No vendor profile for a buyer.
-    assert await db.scalar(select(Vendor).where(Vendor.user_id == user.id)) is None
+    assert await db.scalar(select(Vendor).where(Vendor.company_id == company_id)) is None
 
     # Default role assigned.
     roles = await rbac_service.get_user_role_names(db, user.id)
@@ -95,13 +100,15 @@ async def test_vendor_registration_assigns_vendor_role_and_profile(db, seeded) -
     )
     roles = await rbac_service.get_user_role_names(db, user.id)
     assert "VENDOR_OWNER" in roles
-    vendor = await db.scalar(select(Vendor).where(Vendor.user_id == user.id))
+    company_id = await owned_company_id(db, user.id)
+    assert company_id is not None
+    vendor = await db.scalar(select(Vendor).where(Vendor.company_id == company_id))
     assert vendor is not None
     assert vendor.company_name == "Global Supply Co"
     assert vendor.supply_categories == ["Spices", "Grains"]
     # No buyer profile for a vendor.
     assert await db.scalar(
-        select(BusinessClient).where(BusinessClient.user_id == user.id)
+        select(BusinessClient).where(BusinessClient.company_id == company_id)
     ) is None
 
 

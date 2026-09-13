@@ -9,18 +9,64 @@ from app.models.company import BusinessClient, Vendor
 from app.models.enums import (
     AccountStatus,
     ActorType,
+    AddressRole,
     AuditAction,
+    CompanyRole,
+    CompanyStatus,
+    CompanyType,
+    ConsentType,
+    DeletionRequestStatus,
     LoginFailureReason,
+    MembershipStatus,
+    NotificationChannel,
+    NotificationTopic,
     UserType,
 )
 from app.models.login_attempt import LoginAttempt
+from app.models.organization import (
+    Company,
+    CompanyAddress,
+    CompanyContact,
+    CompanyMember,
+    VendorFacility,
+    VendorSourcingLocation,
+)
 from app.models.password_history import PasswordHistory
+from app.models.profile import (
+    AccountDeletionRequest,
+    NotificationPreference,
+    PrivacyConsent,
+    UserDevice,
+    UserPreference,
+    UserProfile,
+)
 from app.models.rbac import Permission, Role, RolePermission, UserRole
 from app.models.refresh_token import RefreshToken
 from app.models.status_history import AccountStatusHistory
 from app.models.user import User
 
 __all__ = [
+    "VendorSourcingLocation",
+    "VendorFacility",
+    "UserProfile",
+    "UserPreference",
+    "UserDevice",
+    "PrivacyConsent",
+    "NotificationTopic",
+    "NotificationPreference",
+    "NotificationChannel",
+    "MembershipStatus",
+    "DeletionRequestStatus",
+    "ConsentType",
+    "CompanyType",
+    "CompanyStatus",
+    "CompanyRole",
+    "CompanyMember",
+    "CompanyContact",
+    "CompanyAddress",
+    "Company",
+    "AddressRole",
+    "AccountDeletionRequest",
     "AccountStatus",
     "AccountStatusHistory",
     "ActorType",
