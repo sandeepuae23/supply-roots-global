@@ -206,7 +206,9 @@ export function RegistrationForm({ variant }: { variant: "buyer" | "vendor" }) {
         )}
 
         <fieldset className="space-y-5">
-          <legend className="mb-2 text-sm font-semibold tracking-wider text-muted-foreground uppercase">Company details</legend>
+          <legend className="mb-2 text-sm font-semibold tracking-wider text-muted-foreground uppercase">
+            Company details
+          </legend>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <TextField
               label="Company name"
@@ -250,7 +252,9 @@ export function RegistrationForm({ variant }: { variant: "buyer" | "vendor" }) {
         </fieldset>
 
         <fieldset className="space-y-5">
-          <legend className="mb-2 text-sm font-semibold tracking-wider text-muted-foreground uppercase">Account credentials</legend>
+          <legend className="mb-2 text-sm font-semibold tracking-wider text-muted-foreground uppercase">
+            Account credentials
+          </legend>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <TextField
               label="Username"

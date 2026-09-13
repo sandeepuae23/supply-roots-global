@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, X, MessageCircle } from "lucide-react";
+import { Menu, X, MessageCircle, LogIn } from "lucide-react";
 import { useState } from "react";
 import { contact } from "@/data/catalog";
 import logo from "@/assets/logo-leo-infinity.png";
@@ -77,9 +77,11 @@ export function SiteHeader() {
           <div className="flex shrink-0 items-center gap-3">
             <Link
               to="/login"
-              className="hidden whitespace-nowrap text-sm font-medium tracking-wider text-primary uppercase transition-colors hover:text-accent sm:inline-flex"
+              aria-label="Portal login"
+              title="Portal login"
+              className="hidden size-10 items-center justify-center rounded-md border border-primary/15 text-primary transition-colors hover:border-accent/40 hover:bg-primary/5 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:inline-flex"
             >
-              Portal Login
+              <LogIn className="size-5" aria-hidden="true" />
             </Link>
             <Link
               to="/request-quote"

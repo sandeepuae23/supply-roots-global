@@ -156,13 +156,8 @@ function availableActions(status: AccountStatus): ActionDef[] {
 // --- Presentation helpers ---------------------------------------------------
 
 /**
- * One label/value row.
- *
- * Renders nothing when the value is absent. Several fields are structurally
- * empty for a given account — an administrator never has a company, an active
- * account never has a suspension reason — and printing a row of em-dashes for
- * them fills the card with placeholders that carry no information. Pass
- * `alwaysShow` for fields whose emptiness is itself meaningful.
+ * One label/value row. Renders nothing when the value is absent; pass
+ * `alwaysShow` for fields whose emptiness is itself meaningful (e.g. last login).
  */
 function DetailRow({
   label,
@@ -298,11 +293,8 @@ function AdminUserDetailPage() {
               aria-label="Account actions"
             >
               {availableActions(userQuery.data.status).map((def) => (
-                // Destructive actions are rendered recessive, not as a solid red
-                // fill. Filled red made "Disable" the loudest element on the
-                // screen — louder than the account name — which is backwards for
-                // the action you least want taken by reflex. The confirmation
-                // dialog is where the weight belongs.
+                // Destructive actions render recessive (outline + destructive tone);
+                // the weight belongs in the confirmation dialog, not the action bar.
                 <Button
                   key={def.key}
                   variant={
@@ -328,24 +320,16 @@ function AdminUserDetailPage() {
             </p>
           )}
 
-          {/* Details sit above activity rather than beside it. Side by side, a
-              short fixed list and a long scrolling log are never the same
-              height, which left a ragged column and a band of dead space. */}
+          {/* Single-column: account details first, then full-width activity. */}
           <div className="grid grid-cols-1 gap-6">
             {/* Account details */}
             <section aria-label="Account details">
               <h2 className="mb-2 text-sm font-semibold tracking-wider text-muted-foreground uppercase">
                 Account details
               </h2>
-              {/* Two columns at width: a single stack of label-left/value-right
-                  rows across the full container leaves the pair marooned at
-                  opposite edges. */}
+              {/* Two-up rows at width so label/value pairs aren't marooned edge-to-edge. */}
               <dl className="grid grid-cols-1 rounded-sm border border-border bg-card px-4 sm:grid-cols-2 sm:gap-x-10 sm:px-5">
-                {/* Company, roles and suspension reason are omitted when empty
-                    rather than shown as em-dashes — see DetailRow. "Last login"
-                    is always shown because "never signed in" is worth stating.
-                    Company is structurally inapplicable to an administrator, so
-                    it is dropped entirely for that user type. */}
+                {/* Company is structurally inapplicable to an admin — dropped entirely. */}
                 {userQuery.data.user_type !== "ADMIN" && (
                   <DetailRow label="Company" value={userQuery.data.company_name} />
                 )}
