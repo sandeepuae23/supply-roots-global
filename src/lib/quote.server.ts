@@ -63,6 +63,10 @@ function cleanLine(text: string) {
   return text.replace(/[\r\n]+/g, " ").slice(0, 500);
 }
 
+function cleanBlock(text: string) {
+  return text.replace(/\r/g, "").slice(0, 4000);
+}
+
 function getFiles(form: FormData) {
   return form.getAll("files").filter((item): item is File => item instanceof File && item.size > 0);
 }
@@ -114,7 +118,7 @@ function formatQuote(form: FormData, reference: string) {
     "Products:",
     ...products.map((item, index) => `${index + 1}. ${cleanLine(item.product)} — ${cleanLine(item.quantity)} ${cleanLine(item.unit)} — ${cleanLine(item.specification) || "Specification to be advised"}`),
     "",
-    `Additional requirements: ${cleanLine(value(form, "notes")) || "None"}`,
+    `Additional requirements: ${cleanBlock(value(form, "notes")) || "None"}`,
     `Attachments: ${getFiles(form).map((file) => file.name).join(", ") || "None"}`,
   ];
   return { products, text: lines.join("\n") };

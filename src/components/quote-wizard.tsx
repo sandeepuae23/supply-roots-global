@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, CheckCircle2, FileUp, Mail, MessageCircle, Plus,
 import { useEffect, useMemo, useState } from "react";
 import { products } from "@/data/catalog";
 import { submitQuote, type QuoteSubmissionResult } from "@/lib/quote.server";
+import { formatQualityBrief, QUALITY_BRIEF_KEY, type QualityBrief } from "@/lib/quality-brief";
 import "@/quote-wizard.css";
 
 type ProductRow = { id: string; product: string; specification: string; quantity: string; unit: string };
@@ -33,7 +34,7 @@ function row(product = ""): ProductRow {
   return { id: crypto.randomUUID(), product, specification: "", quantity: "", unit: "MT" };
 }
 
-export function QuoteWizard({ initialProducts = [] }: { initialProducts?: string[] }) {
+export function QuoteWizard({ initialProducts = [], applyQualityBrief = false }: { initialProducts?: string[]; applyQualityBrief?: boolean }) {
   const [step, setStep] = useState(0);
   const [draft, setDraft] = useState<Draft>(() => ({ ...emptyDraft, products: initialProducts.length ? initialProducts.map(row) : [row()] }));
   const [files, setFiles] = useState<File[]>([]);
@@ -42,19 +43,37 @@ export function QuoteWizard({ initialProducts = [] }: { initialProducts?: string
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
   const [result, setResult] = useState<QuoteSubmissionResult | null>(null);
+  const [qualityApplied, setQualityApplied] = useState(false);
 
   useEffect(() => {
     try {
       const saved = window.localStorage.getItem(DRAFT_KEY);
+      let nextDraft = { ...emptyDraft, products: initialProducts.length ? initialProducts.map(row) : [row()] };
       if (saved) {
         const parsed = JSON.parse(saved) as Draft;
-        setDraft((current) => ({ ...emptyDraft, ...parsed, products: initialProducts.length ? initialProducts.map(row) : parsed.products?.length ? parsed.products : current.products }));
+        nextDraft = { ...emptyDraft, ...parsed, products: initialProducts.length ? initialProducts.map(row) : parsed.products?.length ? parsed.products : nextDraft.products };
       }
+      if (applyQualityBrief) {
+        const storedQuality = window.localStorage.getItem(QUALITY_BRIEF_KEY);
+        if (storedQuality) {
+          const quality = JSON.parse(storedQuality) as QualityBrief;
+          const qualityProduct = products.find((product) => product.slug === quality.product);
+          const qualityText = formatQualityBrief(quality, qualityProduct?.name ?? "Selected product");
+          const specification = [quality.grade, quality.variety, quality.sizeCount, quality.moisture, quality.purity].filter(Boolean).join(" · ");
+          const hasProduct = nextDraft.products.some((item) => item.product === quality.product);
+          if (quality.product && !hasProduct) nextDraft.products = [...nextDraft.products, row(quality.product)];
+          nextDraft.products = nextDraft.products.map((item) => item.product === quality.product ? { ...item, specification: item.specification || specification } : item);
+          nextDraft.packaging = nextDraft.packaging || quality.packaging;
+          if (!nextDraft.notes.includes("QUALITY BRIEF —")) nextDraft.notes = [nextDraft.notes, qualityText].filter(Boolean).join("\n\n");
+          setQualityApplied(true);
+        }
+      }
+      setDraft(nextDraft);
     } catch {
       window.localStorage.removeItem(DRAFT_KEY);
     }
     setHydrated(true);
-  }, [initialProducts]);
+  }, [applyQualityBrief, initialProducts]);
 
   useEffect(() => {
     if (!hydrated || result) return;
@@ -131,6 +150,7 @@ export function QuoteWizard({ initialProducts = [] }: { initialProducts?: string
   const steps = ["Company", "Products", "Delivery", "Review"];
   return (
     <form className="quote-wizard" onSubmit={finish} noValidate>
+      {qualityApplied && <div className="quote-quality-applied"><CheckCircle2 aria-hidden="true" /><div><strong>Quality brief applied</strong><span>Your selected specification, inspection, document and sample requirements were added to this enquiry.</span></div></div>}
       <ol className="quote-steps" aria-label="Quote request progress">
         {steps.map((label, index) => <li key={label} className={index === step ? "is-current" : index < step ? "is-complete" : ""}><span>{index < step ? <CheckCircle2 aria-hidden="true" /> : index + 1}</span><strong>{label}</strong></li>)}
       </ol>

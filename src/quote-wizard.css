@@ -1,4 +1,9 @@
 .quote-wizard { margin: 0 auto; max-width: 1100px; }
+.quote-quality-applied { align-items:flex-start; background:#eaf4ee; border:1px solid #b8d1c4; border-radius:.45rem; color:#0b5b45; display:flex; gap:.7rem; margin:0 auto 1.2rem; max-width:780px; padding:.85rem 1rem; }
+.quote-quality-applied > svg { flex:0 0 auto; height:1.05rem; margin-top:.1rem; width:1.05rem; }
+.quote-quality-applied > div { display:grid; gap:.15rem; }
+.quote-quality-applied strong { font-size:.75rem; }
+.quote-quality-applied span { color:#557269; font-size:.68rem; line-height:1.45; }
 .quote-steps { display: grid; grid-template-columns: repeat(4, 1fr); list-style: none; margin: 0 auto 2rem; max-width: 780px; padding: 0; position: relative; }
 .quote-steps::before { background: #d6dfda; content: ""; height: 1px; left: 12.5%; position: absolute; right: 12.5%; top: 1.05rem; }
 .quote-steps li { align-items: center; color: #7b8d87; display: flex; flex-direction: column; font-size: .7rem; gap: .45rem; position: relative; text-transform: uppercase; }

@@ -5,12 +5,12 @@ import { PageHero } from "@/components/ui-primitives";
 import { products } from "@/data/catalog";
 
 export const Route = createFileRoute("/request-quote")({
-  validateSearch: (search: Record<string, unknown>): { products?: string[] } => {
+  validateSearch: (search: Record<string, unknown>): { products?: string[]; quality?: boolean } => {
     const requested = typeof search["products"] === "string" ? search["products"].split(",") : [];
-    if (!requested.length) return {};
-    return {
-      products: requested.filter((slug) => products.some((product) => product.slug === slug)).slice(0, 12),
-    };
+    const validated: { products?: string[]; quality?: boolean } = {};
+    if (requested.length) validated.products = requested.filter((slug) => products.some((product) => product.slug === slug)).slice(0, 12);
+    if (search["quality"] === "1" || search["quality"] === true) validated.quality = true;
+    return validated;
   },
   head: () => ({
     meta: [
@@ -42,7 +42,7 @@ function RequestQuotePage() {
         subtitle="Select several products, set quantities and delivery terms, then receive a unique reference for clear follow-up. Your draft stays saved on this device while you work."
       />
       <section className="bg-[#f8f4ec] px-4 py-16 md:px-6 md:py-24">
-        <QuoteWizard initialProducts={search.products ?? []} />
+        <QuoteWizard initialProducts={search.products ?? []} applyQualityBrief={Boolean(search.quality)} />
       </section>
     </div>
   );

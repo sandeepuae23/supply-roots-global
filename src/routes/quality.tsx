@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowDown, ArrowRight, CheckCircle2, ChevronDown, ClipboardCheck, FileCheck2, FlaskConical, Leaf, PackageCheck, ScanSearch, ShieldCheck, Snowflake, Sprout, Wheat } from "lucide-react";
-import { useState } from "react";
+import { ArrowDown, ArrowRight, CheckCircle2, ChevronDown, ClipboardCheck, FileCheck2, FlaskConical, Leaf, Maximize2, PackageCheck, ScanSearch, Search, ShieldCheck, Snowflake, Sprout, Wheat } from "lucide-react";
+import { useMemo, useState } from "react";
 import qualityLab from "@/assets/quality-lab.jpg";
 import qualLabTesting from "@/assets/qual-lab-testing.jpg";
 import qualInspection from "@/assets/qual-inspection.jpg";
@@ -10,6 +10,11 @@ import qualSampling from "@/assets/qual-sampling.jpg";
 import warehouseOps from "@/assets/warehouse-ops.jpg";
 import tradeContainers from "@/assets/trade-containers.jpg";
 import { SmartImage } from "@/components/smart-image";
+import { QualityRequirementBuilder } from "@/components/quality-requirement-builder";
+import { QualityVisualExperience } from "@/components/quality-visual-experience";
+import { QualityLabTraceability } from "@/components/quality-lab-traceability";
+import { BuyerTrustEvidence } from "@/components/buyer-trust-evidence";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import "@/quality-page.css";
 
 export const Route = createFileRoute("/quality")({
@@ -66,14 +71,14 @@ const checkpoints = [
 ] as const;
 
 const documentItems = [
-  { title: "Commercial invoice", timing: "Confirmed order", status: "Core commercial document" },
-  { title: "Packing list", timing: "Before dispatch", status: "Weights, packs and quantities" },
-  { title: "Certificate of origin", timing: "As applicable", status: "Origin or destination dependent" },
-  { title: "Phytosanitary certificate", timing: "As applicable", status: "Product and destination dependent" },
-  { title: "Health or veterinary certificate", timing: "As applicable", status: "Product and destination dependent" },
-  { title: "Laboratory analysis", timing: "On request", status: "Parameters agreed for the order" },
-  { title: "Third-party inspection report", timing: "On request", status: "Scope agreed before inspection" },
-  { title: "Transport document", timing: "At shipment", status: "Issued for the chosen freight mode" },
+  { title: "Commercial invoice", timing: "Confirmed order", status: "Core commercial document", group: "commercial" },
+  { title: "Packing list", timing: "Before dispatch", status: "Weights, packs and quantities", group: "commercial" },
+  { title: "Certificate of origin", timing: "As applicable", status: "Origin or destination dependent", group: "origin" },
+  { title: "Phytosanitary certificate", timing: "As applicable", status: "Product and destination dependent", group: "origin" },
+  { title: "Health or veterinary certificate", timing: "As applicable", status: "Product and destination dependent", group: "origin" },
+  { title: "Laboratory analysis", timing: "On request", status: "Parameters agreed for the order", group: "quality" },
+  { title: "Third-party inspection report", timing: "On request", status: "Scope agreed before inspection", group: "quality" },
+  { title: "Transport document", timing: "At shipment", status: "Issued for the chosen freight mode", group: "freight" },
 ] as const;
 
 const gallery = [
@@ -94,9 +99,16 @@ function QualityPage() {
   const [productType, setProductType] = useState<keyof typeof productPlans>("fresh");
   const [galleryIndex, setGalleryIndex] = useState(0);
   const [openFaq, setOpenFaq] = useState(0);
+  const [documentQuery, setDocumentQuery] = useState("");
+  const [documentGroup, setDocumentGroup] = useState("all");
   const plan = productPlans[productType];
   const PlanIcon = plan.icon;
   const selectedImage = gallery[galleryIndex]!;
+  const visibleDocuments = useMemo(() => documentItems.filter((item) => {
+    const matchesGroup = documentGroup === "all" || item.group === documentGroup;
+    const haystack = `${item.title} ${item.timing} ${item.status}`.toLowerCase();
+    return matchesGroup && (!documentQuery.trim() || haystack.includes(documentQuery.trim().toLowerCase()));
+  }), [documentGroup, documentQuery]);
 
   return (
     <div className="quality-page">
@@ -123,12 +135,18 @@ function QualityPage() {
         </div>
       </section>
 
+      <QualityRequirementBuilder />
+
       <section className="quality-checkpoints" aria-labelledby="checkpoints-title">
         <div className="quality-shell">
           <div className="quality-heading"><div><span>Quality control path</span><h2 id="checkpoints-title">Five checkpoints that keep the brief aligned</h2></div><p>Each checkpoint is configured to the agreed product and order rather than treated as a universal promise.</p></div>
           <ol>{checkpoints.map(({ icon: Icon, title, text }, index) => <li key={title}><span>0{index + 1}</span><Icon aria-hidden="true" /><h3>{title}</h3><p>{text}</p></li>)}</ol>
         </div>
       </section>
+
+      <QualityVisualExperience />
+
+      <QualityLabTraceability />
 
       <section className="quality-specification" aria-labelledby="spec-title">
         <div className="quality-shell quality-spec-layout">
@@ -140,16 +158,19 @@ function QualityPage() {
       <section className="quality-documents" aria-labelledby="quality-documents-title">
         <div className="quality-shell">
           <div className="quality-heading"><div><span>Order-linked documents</span><h2 id="quality-documents-title">A document set matched to the shipment</h2></div><p>Items below describe possible documentation support. Availability and issuing authority must be confirmed for the product, origin and destination.</p></div>
-          <div className="quality-document-list">{documentItems.map((item, index) => <article key={item.title}><span>0{index + 1}</span><div><small>{item.timing}</small><h3>{item.title}</h3></div><p>{item.status}</p><CheckCircle2 aria-hidden="true" /></article>)}</div>
+          <div className="quality-document-tools"><label><span>Search documentation</span><div><Search aria-hidden="true" /><input type="search" value={documentQuery} onChange={(event) => setDocumentQuery(event.target.value)} placeholder="Search certificates, reports or shipment documents" /></div></label><div role="group" aria-label="Document category">{["all", "commercial", "origin", "quality", "freight"].map((group) => <button key={group} type="button" className={documentGroup === group ? "is-active" : ""} aria-pressed={documentGroup === group} onClick={() => setDocumentGroup(group)}>{group}</button>)}</div></div>
+          {visibleDocuments.length ? <div className="quality-document-list">{visibleDocuments.map((item) => { const index = documentItems.findIndex((document) => document.title === item.title); return <article key={item.title}><span>0{index + 1}</span><div><small>{item.timing}</small><h3>{item.title}</h3></div><p>{item.status}</p><FileCheck2 aria-hidden="true" /></article>; })}</div> : <div className="quality-document-empty"><FileCheck2 aria-hidden="true" /><h3>No matching documents</h3><p>Try another keyword or document category.</p><button type="button" onClick={() => { setDocumentQuery(""); setDocumentGroup("all"); }}>Reset document filters</button></div>}
           <div className="quality-document-note"><ShieldCheck aria-hidden="true" /><p><strong>Certification evidence</strong> Approved company certificates or accreditations should only be displayed after the issuing body, scope and validity date have been verified.</p></div>
         </div>
       </section>
+
+      <BuyerTrustEvidence />
 
       <section className="quality-gallery" aria-labelledby="gallery-title">
         <div className="quality-shell">
           <div className="quality-heading"><div><span>Operational context</span><h2 id="gallery-title">Explore the quality checkpoints</h2></div><p>Select an image to review how each quality activity can fit into an order brief.</p></div>
           <div className="quality-gallery-layout">
-            <figure><SmartImage key={selectedImage.image} src={selectedImage.image} alt={selectedImage.title} width={1250} height={900} className="h-full w-full object-cover" /><figcaption><span>0{galleryIndex + 1}</span><div><h3>{selectedImage.title}</h3><p>{selectedImage.text}</p><small>Representative image</small></div></figcaption></figure>
+            <figure><SmartImage key={selectedImage.image} src={selectedImage.image} alt={selectedImage.title} width={1250} height={900} className="h-full w-full object-cover" /><Dialog><DialogTrigger asChild><button type="button" className="quality-gallery-expand" aria-label={`View ${selectedImage.title} fullscreen`}><Maximize2 aria-hidden="true" /> Fullscreen</button></DialogTrigger><DialogContent className="quality-gallery-dialog max-w-5xl!"><DialogHeader><DialogTitle>{selectedImage.title}</DialogTitle><DialogDescription>{selectedImage.text} Representative image.</DialogDescription></DialogHeader><SmartImage src={selectedImage.image} alt={selectedImage.title} width={1600} height={1100} className="max-h-[72vh] w-full object-contain" /></DialogContent></Dialog><figcaption><span>0{galleryIndex + 1}</span><div><h3>{selectedImage.title}</h3><p>{selectedImage.text}</p><small>Representative image</small></div></figcaption></figure>
             <div role="tablist" aria-label="Quality checkpoint gallery">{gallery.map((item, index) => <button key={item.title} type="button" role="tab" aria-selected={galleryIndex === index} onClick={() => setGalleryIndex(index)}><SmartImage src={item.image} alt="" width={300} height={220} className="h-full w-full object-cover" /><span><small>0{index + 1}</small><strong>{item.title}</strong></span></button>)}</div>
           </div>
         </div>
@@ -166,6 +187,7 @@ function QualityPage() {
       </section>
 
       <section className="quality-final-cta"><div className="quality-shell"><Leaf aria-hidden="true" /><span>Build the quality brief</span><h2>Tell us what the product must meet.</h2><p>Add specifications, quantity, destination, inspection needs and reference files to one structured enquiry.</p><div><Link to="/request-quote" className="btn-accent">Start a quality-led enquiry <ArrowRight aria-hidden="true" /></Link><Link to="/contact" className="btn-outline-light">Ask the trade desk</Link></div></div></section>
+      <a href="#quality-builder-title" className="quality-mobile-action"><ClipboardCheck aria-hidden="true" /><span>Add requirements</span><ArrowRight aria-hidden="true" /></a>
     </div>
   );
 }
