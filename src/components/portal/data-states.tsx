@@ -49,7 +49,7 @@ function StateShell({
       )}
     >
       <div className={cn("mb-4", toneRing)}>{icon}</div>
-      <p className="font-serif text-xl text-primary">{title}</p>
+      <p className="text-base font-semibold text-primary">{title}</p>
       {description && <p className="mt-2 max-w-md text-sm text-muted-foreground">{description}</p>}
       {action && <div className="mt-6 flex flex-wrap justify-center gap-3">{action}</div>}
     </div>

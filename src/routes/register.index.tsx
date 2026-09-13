@@ -31,7 +31,7 @@ function RegisterChooser() {
             className="size-8 text-primary transition-colors group-hover:text-accent"
             aria-hidden="true"
           />
-          <span className="font-serif text-lg text-primary">Business Client</span>
+          <span className="text-base font-semibold text-primary">Business Client</span>
           <span className="text-sm text-muted-foreground">
             Source products, submit enquiries and receive quotations.
           </span>
@@ -44,7 +44,7 @@ function RegisterChooser() {
             className="size-8 text-primary transition-colors group-hover:text-accent"
             aria-hidden="true"
           />
-          <span className="font-serif text-lg text-primary">Vendor</span>
+          <span className="text-base font-semibold text-primary">Vendor</span>
           <span className="text-sm text-muted-foreground">
             Offer supply capabilities and respond to sourcing requests.
           </span>

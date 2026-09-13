@@ -8,7 +8,7 @@
 
 import { useState, type ReactNode } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
-import { LogOut, Menu } from "lucide-react";
+import { ChevronDown, LogOut, Menu } from "lucide-react";
 import type { RoleName, UserType } from "@/lib/api";
 import { useAuth } from "@/lib/auth/use-auth";
 import { RequireAuth } from "@/components/portal/require-auth";
@@ -26,42 +26,62 @@ import { cn } from "@/lib/utils";
 import type { PortalConfig } from "@/components/portal/portal-nav";
 import logo from "@/assets/logo-leo-infinity.png";
 
+/**
+ * Sidebar navigation.
+ *
+ * Live destinations (Dashboard, Users) come first and stay prominent. The
+ * not-yet-built sections — most of the catalogue — are folded into a single
+ * compact "Coming soon" disclosure so they stop drowning the two working links.
+ * It is a native <details>, so the summary is genuinely keyboard-operable while
+ * the items inside remain inert text: nothing unbuilt is dressed up as a link.
+ */
 function SidebarNav({ config, onNavigate }: { config: PortalConfig; onNavigate?: () => void }) {
+  const live = config.nav.filter((item) => !item.upcoming);
+  const upcoming = config.nav.filter((item) => item.upcoming);
+
   return (
-    <nav className="flex flex-col gap-1" aria-label={`${config.label} navigation`}>
-      {config.nav.map((item) => {
+    <nav className="portal-nav" aria-label={`${config.label} navigation`}>
+      {live.map((item) => {
         const Icon = item.icon;
-        if (item.upcoming) {
-          return (
-            <span
-              key={item.to}
-              aria-disabled="true"
-              title="Available in a later phase"
-              className="flex cursor-not-allowed items-center justify-between gap-3 rounded-sm px-3 py-2 text-sm text-muted-foreground/50"
-            >
-              <span className="flex items-center gap-3">
-                <Icon className="size-4" aria-hidden="true" />
-                {item.label}
-              </span>
-              <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-semibold tracking-wide uppercase">
-                Soon
-              </span>
-            </span>
-          );
-        }
         return (
           <Link
             key={item.to}
             to={item.to}
             onClick={onNavigate}
-            className="flex items-center gap-3 rounded-sm px-3 py-2 text-sm font-medium text-primary/80 transition-colors hover:bg-secondary hover:text-primary"
-            activeProps={{ className: "bg-primary/10 text-primary" }}
+            className="portal-nav__link"
+            activeProps={{ className: "portal-nav__link--active" }}
           >
-            <Icon className="size-4" aria-hidden="true" />
+            <Icon className="portal-nav__icon size-4" aria-hidden="true" />
             {item.label}
           </Link>
         );
       })}
+
+      {upcoming.length > 0 && (
+        <details className="portal-nav__soon">
+          <summary className="portal-nav__soon-summary">
+            Coming soon
+            <span className="portal-nav__soon-count">{upcoming.length}</span>
+            <ChevronDown className="portal-nav__soon-chevron size-3.5" aria-hidden="true" />
+          </summary>
+          <ul className="portal-nav__soon-list">
+            {upcoming.map((item) => {
+              const Icon = item.icon;
+              return (
+                <li
+                  key={item.to}
+                  className="portal-nav__soon-item"
+                  aria-disabled="true"
+                  title="Available in a later phase"
+                >
+                  <Icon className="portal-nav__icon size-4" aria-hidden="true" />
+                  {item.label}
+                </li>
+              );
+            })}
+          </ul>
+        </details>
+      )}
     </nav>
   );
 }
@@ -77,7 +97,7 @@ function PortalChrome({ config, children }: { config: PortalConfig; children: Re
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="portal-shell min-h-screen bg-background">
       {/* Top bar */}
       <header className="sticky top-0 z-30 flex items-center justify-between gap-4 border-b border-border bg-card px-4 py-3 sm:px-6">
         <div className="flex items-center gap-3">
@@ -103,7 +123,7 @@ function PortalChrome({ config, children }: { config: PortalConfig; children: Re
               aria-label={`${config.label} portal navigation`}
             >
               <SheetHeader className="mb-4 text-left">
-                <SheetTitle className="font-serif text-base text-primary">
+                <SheetTitle className="text-xs font-semibold tracking-widest text-primary uppercase">
                   {config.label} portal
                 </SheetTitle>
                 <SheetDescription className="sr-only">
@@ -141,7 +161,7 @@ function PortalChrome({ config, children }: { config: PortalConfig; children: Re
 
       <div className="mx-auto flex w-full max-w-[1400px]">
         {/* Desktop sidebar */}
-        <aside className="hidden w-60 shrink-0 border-r border-border bg-card/50 p-4 lg:block">
+        <aside className="hidden w-52 shrink-0 border-r border-border/70 p-3 lg:block">
           <div className="sticky top-20">
             <SidebarNav config={config} />
           </div>

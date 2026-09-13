@@ -55,7 +55,7 @@ export function AuthCard({
             </span>
           </Link>
           {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-          <h1 className="font-serif text-3xl text-primary">{title}</h1>
+          <h1 className="text-2xl font-semibold tracking-tight text-primary">{title}</h1>
           {subtitle && (
             <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
               {subtitle}

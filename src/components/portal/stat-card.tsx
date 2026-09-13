@@ -42,7 +42,7 @@ export function StatCard({
           <p className="text-xs font-semibold tracking-wider text-muted-foreground uppercase">
             {label}
           </p>
-          <p className="mt-2 font-serif text-3xl text-primary">{value}</p>
+          <p className="mt-2 text-3xl font-semibold tracking-tight tabular-nums text-primary">{value}</p>
           {hint && <p className="mt-1 text-xs text-muted-foreground">{hint}</p>}
         </div>
         {Icon && <Icon className="size-5 shrink-0 text-muted-foreground/60" aria-hidden="true" />}

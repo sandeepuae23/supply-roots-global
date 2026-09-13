@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { ArrowLeft, CheckCircle2, XCircle } from "lucide-react";
 import { toast } from "sonner";
 import {
@@ -155,13 +155,33 @@ function availableActions(status: AccountStatus): ActionDef[] {
 
 // --- Presentation helpers ---------------------------------------------------
 
-function DetailRow({ label, value }: { label: string; value: React.ReactNode }) {
+/**
+ * One label/value row.
+ *
+ * Renders nothing when the value is absent. Several fields are structurally
+ * empty for a given account — an administrator never has a company, an active
+ * account never has a suspension reason — and printing a row of em-dashes for
+ * them fills the card with placeholders that carry no information. Pass
+ * `alwaysShow` for fields whose emptiness is itself meaningful.
+ */
+function DetailRow({
+  label,
+  value,
+  alwaysShow = false,
+}: {
+  label: string;
+  value: ReactNode;
+  alwaysShow?: boolean;
+}) {
+  const isEmpty = value === null || value === undefined || value === "" || value === "—";
+  if (isEmpty && !alwaysShow) return null;
+
   return (
-    <div className="flex flex-col gap-0.5 border-b border-border py-3 sm:flex-row sm:items-center sm:justify-between">
+    <div className="flex flex-col gap-0.5 border-b border-border py-2.5 last:border-b-0 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
       <dt className="text-xs font-semibold tracking-wider text-muted-foreground uppercase">
         {label}
       </dt>
-      <dd className="text-sm text-foreground">{value}</dd>
+      <dd className="text-sm text-foreground sm:text-right">{isEmpty ? "—" : value}</dd>
     </div>
   );
 }
@@ -273,48 +293,75 @@ function AdminUserDetailPage() {
           {/* Action bar */}
           {availableActions(userQuery.data.status).length > 0 ? (
             <div
-              className="mb-8 flex flex-wrap gap-2 rounded-sm border border-border bg-card p-4"
+              className="mb-6 flex flex-wrap gap-2 rounded-sm border border-border bg-card p-3"
               role="group"
               aria-label="Account actions"
             >
               {availableActions(userQuery.data.status).map((def) => (
+                // Destructive actions are rendered recessive, not as a solid red
+                // fill. Filled red made "Disable" the loudest element on the
+                // screen — louder than the account name — which is backwards for
+                // the action you least want taken by reflex. The confirmation
+                // dialog is where the weight belongs.
                 <Button
                   key={def.key}
-                  variant={def.buttonVariant ?? "outline"}
+                  variant={
+                    def.buttonVariant === "destructive"
+                      ? "outline"
+                      : (def.buttonVariant ?? "outline")
+                  }
                   onClick={() => openAction(def)}
+                  className={
+                    def.buttonVariant === "destructive"
+                      ? "border-destructive/40 text-destructive hover:bg-destructive/10 hover:text-destructive"
+                      : undefined
+                  }
                 >
                   {def.label}
                 </Button>
               ))}
             </div>
           ) : (
-            <p className="mb-8 rounded-sm border border-border bg-muted/40 px-4 py-3 text-sm text-muted-foreground">
+            <p className="mb-6 rounded-sm border border-border bg-muted/40 px-4 py-3 text-sm text-muted-foreground">
               This account is in a terminal state ({userQuery.data.status}). No further actions are
               available.
             </p>
           )}
 
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          {/* Details sit above activity rather than beside it. Side by side, a
+              short fixed list and a long scrolling log are never the same
+              height, which left a ragged column and a band of dead space. */}
+          <div className="grid grid-cols-1 gap-6">
             {/* Account details */}
             <section aria-label="Account details">
-              <h2 className="mb-2 font-serif text-xl text-primary">Account details</h2>
-              <dl className="rounded-sm border border-border bg-card px-4">
-                <DetailRow label="Company" value={userQuery.data.company_name ?? "—"} />
-                <DetailRow label="Roles" value={userQuery.data.roles.join(", ") || "—"} />
+              <h2 className="mb-2 text-sm font-semibold tracking-wider text-muted-foreground uppercase">
+                Account details
+              </h2>
+              {/* Two columns at width: a single stack of label-left/value-right
+                  rows across the full container leaves the pair marooned at
+                  opposite edges. */}
+              <dl className="grid grid-cols-1 rounded-sm border border-border bg-card px-4 sm:grid-cols-2 sm:gap-x-10 sm:px-5">
+                {/* Company, roles and suspension reason are omitted when empty
+                    rather than shown as em-dashes — see DetailRow. "Last login"
+                    is always shown because "never signed in" is worth stating.
+                    Company is structurally inapplicable to an administrator, so
+                    it is dropped entirely for that user type. */}
+                {userQuery.data.user_type !== "ADMIN" && (
+                  <DetailRow label="Company" value={userQuery.data.company_name} />
+                )}
+                <DetailRow label="Roles" value={userQuery.data.roles.join(", ")} />
                 <DetailRow label="Failed logins" value={userQuery.data.failed_login_attempts} />
                 <DetailRow
                   label="Last login"
                   value={formatDateTime(userQuery.data.last_login_at)}
+                  alwaysShow
                 />
                 <DetailRow label="Approved" value={formatDateTime(userQuery.data.approved_at)} />
                 <DetailRow
                   label="Must change password"
                   value={userQuery.data.must_change_password ? "Yes" : "No"}
                 />
-                <DetailRow
-                  label="Suspension reason"
-                  value={userQuery.data.suspension_reason ?? "—"}
-                />
+                <DetailRow label="Suspension reason" value={userQuery.data.suspension_reason} />
                 <DetailRow label="Registered" value={formatDateTime(userQuery.data.created_at)} />
               </dl>
             </section>
