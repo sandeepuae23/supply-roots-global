@@ -1,8 +1,27 @@
+# Root compose file — owned by the INTEGRATION lane.
+#
+# The `web` service (existing TanStack site) starts by default and is
+# unaffected by the portal work:
+#
+#     docker compose up -d --build            # site only, as before
+#
+# The portal services (PostgreSQL + FastAPI) sit behind the `portal`
+# profile so this file stays runnable while backend/ does not yet exist.
+# Once the backend lane delivers backend/Dockerfile, bring them up with:
+#
+#     docker compose --profile portal up -d --build
+#
 services:
   web:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        # Baked into the client bundle by Vite at build time. Defaults to the
+        # local API origin for compose acceptance; override via the host env
+        # (e.g. VITE_API_BASE_URL=https://api.example.com docker compose build)
+        # or set it empty for same-origin production.
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8000}
     image: supply-roots-global:local
     container_name: supply-roots-global
     restart: unless-stopped
@@ -27,3 +46,94 @@ services:
       timeout: 5s
       retries: 3
       start_period: 15s
+
+  db:
+    profiles: ["portal"]
+    image: postgres:16-alpine
+    container_name: supply-roots-db
+    restart: unless-stopped
+    ports:
+      # 5433 by default: 5432 is commonly already bound by a local Postgres.
+      - "${DB_PORT:-5433}:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-portal}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-portal}
+      POSTGRES_DB: ${POSTGRES_DB:-portal}
+    volumes:
+      - portal-db-data:/var/lib/postgresql/data
+    healthcheck:
+      # The api service waits on this, so it never starts against a server
+      # that is not accepting connections. This is ordering only - it does
+      # NOT run migrations. The backend container's startup command must run
+      # `alembic upgrade head` itself before serving (BE-FOUNDATION).
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-portal} -d ${POSTGRES_DB:-portal}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  api:
+    profiles: ["portal"]
+    build:
+      # Owned by the BE-FOUNDATION lane; this file only consumes it.
+      context: ./backend
+      dockerfile: Dockerfile
+    image: supply-roots-api:local
+    container_name: supply-roots-api
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "${API_PORT:-8000}:8000"
+    environment:
+      # Backend settings are LEO_-namespaced (Settings.model_config uses
+      # env_prefix="LEO_") so the API never accidentally consumes generic host
+      # variables like HOST/PORT/DEBUG. These names are canonical — sourced from
+      # the backend worktree's app/core/config.py.
+      #
+      # SQLAlchemy 2.x async driver (asyncpg), per the roadmap's approved stack.
+      # Alembic's env.py reads this same DSN when applying migrations.
+      LEO_DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-portal}:${POSTGRES_PASSWORD:-portal}@db:5432/${POSTGRES_DB:-portal}
+      # Defaults to empty rather than a dev fallback: a baked-in default signing
+      # key is the kind of thing that reaches production. Compose cannot mark
+      # this "required" (a ${VAR:?} marker would break interpolation for the
+      # site-only default profile too), so the fail-closed check lives in the
+      # backend settings validation. Must be set before the portal starts.
+      LEO_JWT_SECRET_KEY: ${LEO_JWT_SECRET_KEY:-}
+      LEO_ACCESS_TOKEN_EXPIRE_MINUTES: ${LEO_ACCESS_TOKEN_EXPIRE_MINUTES:-15}
+      LEO_REFRESH_TOKEN_EXPIRE_DAYS: ${LEO_REFRESH_TOKEN_EXPIRE_DAYS:-14}
+      # Browser origin allowed to call the API. Defaults to the site's host port
+      # (3100), not 3000; change this if you change WEB_PORT.
+      LEO_CORS_ALLOW_ORIGINS: ${LEO_CORS_ALLOW_ORIGINS:-http://localhost:3100}
+      LEO_ENVIRONMENT: ${LEO_ENVIRONMENT:-development}
+      # The backend entrypoint runs `alembic upgrade head` when RUN_MIGRATIONS=1.
+      # It runs under `set -e`, so a failed upgrade exits non-zero and the
+      # container fails rather than serving on a stale schema. The depends_on
+      # above is ordering only and does NOT apply migrations.
+      RUN_MIGRATIONS: "1"
+      # First-admin bootstrap is optional and idempotent: the entrypoint runs it
+      # only when BOOTSTRAP_ADMIN=1, using the ADMIN_* credentials below (which
+      # match app/scripts/bootstrap_admin.py). Off by default.
+      BOOTSTRAP_ADMIN: ${BOOTSTRAP_ADMIN:-0}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+    healthcheck:
+      # Liveness probe on the versioned path the backend actually serves
+      # (app/api/v1/routes/health.py -> GET /api/v1/health/live). urllib is
+      # stdlib, so this needs no curl in the image.
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health/live', timeout=3).status==200 else 1)",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+volumes:
+  portal-db-data:

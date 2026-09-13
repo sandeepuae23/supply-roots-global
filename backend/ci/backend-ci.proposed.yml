@@ -1,0 +1,71 @@
+# PROPOSED CI workflow for the backend — NOT installed.
+#
+# The INTEGRATION lane owns the root `.github/workflows/` directory, so this file
+# lives under `backend/ci/` as a proposal. To activate it, INTEGRATION should copy
+# it to `.github/workflows/backend-ci.yml` at the repository root (see
+# backend/INTEGRATION_NOTES.md).
+#
+# It runs Ruff, mypy, the unit/service test suite, the PostgreSQL concurrency
+# tests, an Alembic upgrade/downgrade cycle, and a container build.
+
+name: backend-ci
+
+on:
+  push:
+    paths: ["backend/**", ".github/workflows/backend-ci.yml"]
+  pull_request:
+    paths: ["backend/**", ".github/workflows/backend-ci.yml"]
+
+defaults:
+  run:
+    working-directory: backend
+
+jobs:
+  lint-type-test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: leo
+          POSTGRES_PASSWORD: leo
+          POSTGRES_DB: leo_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U leo"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      TEST_DATABASE_URL: postgresql+asyncpg://leo:leo@localhost:5432/leo_test
+      LEO_DATABASE_URL: postgresql+asyncpg://leo:leo@localhost:5432/leo_migrate
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: pip install -e ".[dev]"
+      - name: Ruff (lint)
+        run: ruff check app tests
+      - name: mypy (type check)
+        run: mypy app
+      - name: Create migrate database
+        run: PGPASSWORD=leo psql -h localhost -U leo -d leo_test -c "CREATE DATABASE leo_migrate;"
+      - name: Alembic upgrade/downgrade cycle
+        run: |
+          alembic upgrade head
+          alembic downgrade -1
+          alembic upgrade head
+      - name: Tests with coverage (incl. PostgreSQL concurrency)
+        run: |
+          pytest -q \
+            --cov=app.modules.auth --cov=app.modules.accounts --cov=app.modules.rbac \
+            --cov-report=term-missing --cov-fail-under=90
+      - name: OpenAPI schema generates
+        run: python -c "import json; from app.main import create_app; json.dumps(create_app().openapi())"
+
+  container-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build backend image
+        run: docker build -t leo-portal-backend:ci backend

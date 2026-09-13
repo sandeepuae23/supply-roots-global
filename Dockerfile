@@ -15,6 +15,14 @@ RUN bun install --frozen-lockfile
 
 COPY . .
 
+# Origin of the FastAPI backend, baked into the client bundle at build time.
+# Vite statically replaces `import.meta.env.VITE_API_BASE_URL` (see
+# src/lib/api/config.ts), so it must be present in the environment before the
+# build runs. Empty by default keeps requests same-origin/relative; compose
+# passes http://localhost:8000 for local acceptance.
+ARG VITE_API_BASE_URL=""
+ENV VITE_API_BASE_URL=${VITE_API_BASE_URL}
+
 # The project's vite config defaults Nitro to the "cloudflare" target, which
 # emits a Workers bundle that plain Node cannot execute. Override it so the
 # build emits a standalone Node HTTP server at .output/server/index.mjs.

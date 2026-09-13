@@ -11,13 +11,34 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as BusinessClientsRouteImport } from './routes/business-clients'
+import { Route as BuyerRouteImport } from './routes/buyer'
+import { Route as ChangeTemporaryPasswordRouteImport } from './routes/change-temporary-password'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ImportExportRouteImport } from './routes/import-export'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as QualityRouteImport } from './routes/quality'
 import { Route as RequestQuoteRouteImport } from './routes/request-quote'
+import { Route as VendorRouteImport } from './routes/vendor'
+import { Route as AccountDisabledRouteImport } from './routes/account.disabled'
+import { Route as AccountLockedRouteImport } from './routes/account.locked'
+import { Route as AccountPendingRouteImport } from './routes/account.pending'
+import { Route as AccountRejectedRouteImport } from './routes/account.rejected'
+import { Route as AccountSuspendedRouteImport } from './routes/account.suspended'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
+import { Route as BuyerIndexRouteImport } from './routes/buyer.index'
+import { Route as BuyerDashboardRouteImport } from './routes/buyer.dashboard'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
+import { Route as RegisterIndexRouteImport } from './routes/register.index'
+import { Route as RegisterBuyerRouteImport } from './routes/register.buyer'
+import { Route as RegisterVendorRouteImport } from './routes/register.vendor'
+import { Route as VendorIndexRouteImport } from './routes/vendor.index'
+import { Route as VendorDashboardRouteImport } from './routes/vendor.dashboard'
+import { Route as AdminUsersIndexRouteImport } from './routes/admin.users.index'
+import { Route as AdminUsersUserIdRouteImport } from './routes/admin.users.$userId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -29,9 +50,24 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BusinessClientsRoute = BusinessClientsRouteImport.update({
   id: '/business-clients',
   path: '/business-clients',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BuyerRoute = BuyerRouteImport.update({
+  id: '/buyer',
+  path: '/buyer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChangeTemporaryPasswordRoute = ChangeTemporaryPasswordRouteImport.update({
+  id: '/change-temporary-password',
+  path: '/change-temporary-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -44,6 +80,11 @@ const ImportExportRoute = ImportExportRouteImport.update({
   path: '/import-export',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const QualityRoute = QualityRouteImport.update({
   id: '/quality',
   path: '/quality',
@@ -53,6 +94,56 @@ const RequestQuoteRoute = RequestQuoteRouteImport.update({
   id: '/request-quote',
   path: '/request-quote',
   getParentRoute: () => rootRouteImport,
+} as any)
+const VendorRoute = VendorRouteImport.update({
+  id: '/vendor',
+  path: '/vendor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountDisabledRoute = AccountDisabledRouteImport.update({
+  id: '/account/disabled',
+  path: '/account/disabled',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountLockedRoute = AccountLockedRouteImport.update({
+  id: '/account/locked',
+  path: '/account/locked',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountPendingRoute = AccountPendingRouteImport.update({
+  id: '/account/pending',
+  path: '/account/pending',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountRejectedRoute = AccountRejectedRouteImport.update({
+  id: '/account/rejected',
+  path: '/account/rejected',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountSuspendedRoute = AccountSuspendedRouteImport.update({
+  id: '/account/suspended',
+  path: '/account/suspended',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AdminRoute,
+} as any)
+const BuyerIndexRoute = BuyerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => BuyerRoute,
+} as any)
+const BuyerDashboardRoute = BuyerDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => BuyerRoute,
 } as any)
 const ProductsIndexRoute = ProductsIndexRouteImport.update({
   id: '/products/',
@@ -64,87 +155,255 @@ const ProductsSlugRoute = ProductsSlugRouteImport.update({
   path: '/products/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RegisterIndexRoute = RegisterIndexRouteImport.update({
+  id: '/register/',
+  path: '/register/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterBuyerRoute = RegisterBuyerRouteImport.update({
+  id: '/register/buyer',
+  path: '/register/buyer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterVendorRoute = RegisterVendorRouteImport.update({
+  id: '/register/vendor',
+  path: '/register/vendor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VendorIndexRoute = VendorIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => VendorRoute,
+} as any)
+const VendorDashboardRoute = VendorDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => VendorRoute,
+} as any)
+const AdminUsersIndexRoute = AdminUsersIndexRouteImport.update({
+  id: '/users/',
+  path: '/users/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminUsersUserIdRoute = AdminUsersUserIdRouteImport.update({
+  id: '/users/$userId',
+  path: '/users/$userId',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
   '/business-clients': typeof BusinessClientsRoute
+  '/buyer': typeof BuyerRouteWithChildren
+  '/change-temporary-password': typeof ChangeTemporaryPasswordRoute
   '/contact': typeof ContactRoute
   '/import-export': typeof ImportExportRoute
+  '/login': typeof LoginRoute
   '/quality': typeof QualityRoute
   '/request-quote': typeof RequestQuoteRoute
+  '/vendor': typeof VendorRouteWithChildren
+  '/account/disabled': typeof AccountDisabledRoute
+  '/account/locked': typeof AccountLockedRoute
+  '/account/pending': typeof AccountPendingRoute
+  '/account/rejected': typeof AccountRejectedRoute
+  '/account/suspended': typeof AccountSuspendedRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/buyer/dashboard': typeof BuyerDashboardRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/register/buyer': typeof RegisterBuyerRoute
+  '/register/vendor': typeof RegisterVendorRoute
+  '/vendor/dashboard': typeof VendorDashboardRoute
+  '/admin/': typeof AdminIndexRoute
+  '/buyer/': typeof BuyerIndexRoute
   '/products/': typeof ProductsIndexRoute
+  '/register/': typeof RegisterIndexRoute
+  '/vendor/': typeof VendorIndexRoute
+  '/admin/users/$userId': typeof AdminUsersUserIdRoute
+  '/admin/users/': typeof AdminUsersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/business-clients': typeof BusinessClientsRoute
+  '/change-temporary-password': typeof ChangeTemporaryPasswordRoute
   '/contact': typeof ContactRoute
   '/import-export': typeof ImportExportRoute
+  '/login': typeof LoginRoute
   '/quality': typeof QualityRoute
   '/request-quote': typeof RequestQuoteRoute
+  '/account/disabled': typeof AccountDisabledRoute
+  '/account/locked': typeof AccountLockedRoute
+  '/account/pending': typeof AccountPendingRoute
+  '/account/rejected': typeof AccountRejectedRoute
+  '/account/suspended': typeof AccountSuspendedRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/buyer/dashboard': typeof BuyerDashboardRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/register/buyer': typeof RegisterBuyerRoute
+  '/register/vendor': typeof RegisterVendorRoute
+  '/vendor/dashboard': typeof VendorDashboardRoute
+  '/admin': typeof AdminIndexRoute
+  '/buyer': typeof BuyerIndexRoute
   '/products': typeof ProductsIndexRoute
+  '/register': typeof RegisterIndexRoute
+  '/vendor': typeof VendorIndexRoute
+  '/admin/users/$userId': typeof AdminUsersUserIdRoute
+  '/admin/users': typeof AdminUsersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
   '/business-clients': typeof BusinessClientsRoute
+  '/buyer': typeof BuyerRouteWithChildren
+  '/change-temporary-password': typeof ChangeTemporaryPasswordRoute
   '/contact': typeof ContactRoute
   '/import-export': typeof ImportExportRoute
+  '/login': typeof LoginRoute
   '/quality': typeof QualityRoute
   '/request-quote': typeof RequestQuoteRoute
+  '/vendor': typeof VendorRouteWithChildren
+  '/account/disabled': typeof AccountDisabledRoute
+  '/account/locked': typeof AccountLockedRoute
+  '/account/pending': typeof AccountPendingRoute
+  '/account/rejected': typeof AccountRejectedRoute
+  '/account/suspended': typeof AccountSuspendedRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/buyer/dashboard': typeof BuyerDashboardRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/register/buyer': typeof RegisterBuyerRoute
+  '/register/vendor': typeof RegisterVendorRoute
+  '/vendor/dashboard': typeof VendorDashboardRoute
+  '/admin/': typeof AdminIndexRoute
+  '/buyer/': typeof BuyerIndexRoute
   '/products/': typeof ProductsIndexRoute
+  '/register/': typeof RegisterIndexRoute
+  '/vendor/': typeof VendorIndexRoute
+  '/admin/users/$userId': typeof AdminUsersUserIdRoute
+  '/admin/users/': typeof AdminUsersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
+    | '/admin'
     | '/business-clients'
+    | '/buyer'
+    | '/change-temporary-password'
     | '/contact'
     | '/import-export'
+    | '/login'
     | '/quality'
     | '/request-quote'
+    | '/vendor'
+    | '/account/disabled'
+    | '/account/locked'
+    | '/account/pending'
+    | '/account/rejected'
+    | '/account/suspended'
+    | '/admin/dashboard'
+    | '/buyer/dashboard'
     | '/products/$slug'
+    | '/register/buyer'
+    | '/register/vendor'
+    | '/vendor/dashboard'
+    | '/admin/'
+    | '/buyer/'
     | '/products/'
+    | '/register/'
+    | '/vendor/'
+    | '/admin/users/$userId'
+    | '/admin/users/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/business-clients'
+    | '/change-temporary-password'
     | '/contact'
     | '/import-export'
+    | '/login'
     | '/quality'
     | '/request-quote'
+    | '/account/disabled'
+    | '/account/locked'
+    | '/account/pending'
+    | '/account/rejected'
+    | '/account/suspended'
+    | '/admin/dashboard'
+    | '/buyer/dashboard'
     | '/products/$slug'
+    | '/register/buyer'
+    | '/register/vendor'
+    | '/vendor/dashboard'
+    | '/admin'
+    | '/buyer'
     | '/products'
+    | '/register'
+    | '/vendor'
+    | '/admin/users/$userId'
+    | '/admin/users'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/admin'
     | '/business-clients'
+    | '/buyer'
+    | '/change-temporary-password'
     | '/contact'
     | '/import-export'
+    | '/login'
     | '/quality'
     | '/request-quote'
+    | '/vendor'
+    | '/account/disabled'
+    | '/account/locked'
+    | '/account/pending'
+    | '/account/rejected'
+    | '/account/suspended'
+    | '/admin/dashboard'
+    | '/buyer/dashboard'
     | '/products/$slug'
+    | '/register/buyer'
+    | '/register/vendor'
+    | '/vendor/dashboard'
+    | '/admin/'
+    | '/buyer/'
     | '/products/'
+    | '/register/'
+    | '/vendor/'
+    | '/admin/users/$userId'
+    | '/admin/users/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AdminRoute: typeof AdminRouteWithChildren
   BusinessClientsRoute: typeof BusinessClientsRoute
+  BuyerRoute: typeof BuyerRouteWithChildren
+  ChangeTemporaryPasswordRoute: typeof ChangeTemporaryPasswordRoute
   ContactRoute: typeof ContactRoute
   ImportExportRoute: typeof ImportExportRoute
+  LoginRoute: typeof LoginRoute
   QualityRoute: typeof QualityRoute
   RequestQuoteRoute: typeof RequestQuoteRoute
+  VendorRoute: typeof VendorRouteWithChildren
+  AccountDisabledRoute: typeof AccountDisabledRoute
+  AccountLockedRoute: typeof AccountLockedRoute
+  AccountPendingRoute: typeof AccountPendingRoute
+  AccountRejectedRoute: typeof AccountRejectedRoute
+  AccountSuspendedRoute: typeof AccountSuspendedRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
+  RegisterBuyerRoute: typeof RegisterBuyerRoute
+  RegisterVendorRoute: typeof RegisterVendorRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
+  RegisterIndexRoute: typeof RegisterIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -163,11 +422,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/business-clients': {
       id: '/business-clients'
       path: '/business-clients'
       fullPath: '/business-clients'
       preLoaderRoute: typeof BusinessClientsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/buyer': {
+      id: '/buyer'
+      path: '/buyer'
+      fullPath: '/buyer'
+      preLoaderRoute: typeof BuyerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/change-temporary-password': {
+      id: '/change-temporary-password'
+      path: '/change-temporary-password'
+      fullPath: '/change-temporary-password'
+      preLoaderRoute: typeof ChangeTemporaryPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -184,6 +464,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ImportExportRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/quality': {
       id: '/quality'
       path: '/quality'
@@ -197,6 +484,76 @@ declare module '@tanstack/react-router' {
       fullPath: '/request-quote'
       preLoaderRoute: typeof RequestQuoteRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/vendor': {
+      id: '/vendor'
+      path: '/vendor'
+      fullPath: '/vendor'
+      preLoaderRoute: typeof VendorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account/disabled': {
+      id: '/account/disabled'
+      path: '/account/disabled'
+      fullPath: '/account/disabled'
+      preLoaderRoute: typeof AccountDisabledRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account/locked': {
+      id: '/account/locked'
+      path: '/account/locked'
+      fullPath: '/account/locked'
+      preLoaderRoute: typeof AccountLockedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account/pending': {
+      id: '/account/pending'
+      path: '/account/pending'
+      fullPath: '/account/pending'
+      preLoaderRoute: typeof AccountPendingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account/rejected': {
+      id: '/account/rejected'
+      path: '/account/rejected'
+      fullPath: '/account/rejected'
+      preLoaderRoute: typeof AccountRejectedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account/suspended': {
+      id: '/account/suspended'
+      path: '/account/suspended'
+      fullPath: '/account/suspended'
+      preLoaderRoute: typeof AccountSuspendedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/dashboard': {
+      id: '/admin/dashboard'
+      path: '/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/buyer/': {
+      id: '/buyer/'
+      path: '/'
+      fullPath: '/buyer/'
+      preLoaderRoute: typeof BuyerIndexRouteImport
+      parentRoute: typeof BuyerRoute
+    }
+    '/buyer/dashboard': {
+      id: '/buyer/dashboard'
+      path: '/dashboard'
+      fullPath: '/buyer/dashboard'
+      preLoaderRoute: typeof BuyerDashboardRouteImport
+      parentRoute: typeof BuyerRoute
     }
     '/products/': {
       id: '/products/'
@@ -212,19 +569,122 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/register/': {
+      id: '/register/'
+      path: '/register'
+      fullPath: '/register/'
+      preLoaderRoute: typeof RegisterIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register/buyer': {
+      id: '/register/buyer'
+      path: '/register/buyer'
+      fullPath: '/register/buyer'
+      preLoaderRoute: typeof RegisterBuyerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register/vendor': {
+      id: '/register/vendor'
+      path: '/register/vendor'
+      fullPath: '/register/vendor'
+      preLoaderRoute: typeof RegisterVendorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vendor/': {
+      id: '/vendor/'
+      path: '/'
+      fullPath: '/vendor/'
+      preLoaderRoute: typeof VendorIndexRouteImport
+      parentRoute: typeof VendorRoute
+    }
+    '/vendor/dashboard': {
+      id: '/vendor/dashboard'
+      path: '/dashboard'
+      fullPath: '/vendor/dashboard'
+      preLoaderRoute: typeof VendorDashboardRouteImport
+      parentRoute: typeof VendorRoute
+    }
+    '/admin/users/': {
+      id: '/admin/users/'
+      path: '/users'
+      fullPath: '/admin/users/'
+      preLoaderRoute: typeof AdminUsersIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/users/$userId': {
+      id: '/admin/users/$userId'
+      path: '/users/$userId'
+      fullPath: '/admin/users/$userId'
+      preLoaderRoute: typeof AdminUsersUserIdRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
+
+interface AdminRouteChildren {
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  AdminUsersUserIdRoute: typeof AdminUsersUserIdRoute
+  AdminUsersIndexRoute: typeof AdminUsersIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  AdminUsersUserIdRoute: AdminUsersUserIdRoute,
+  AdminUsersIndexRoute: AdminUsersIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface BuyerRouteChildren {
+  BuyerDashboardRoute: typeof BuyerDashboardRoute
+  BuyerIndexRoute: typeof BuyerIndexRoute
+}
+
+const BuyerRouteChildren: BuyerRouteChildren = {
+  BuyerDashboardRoute: BuyerDashboardRoute,
+  BuyerIndexRoute: BuyerIndexRoute,
+}
+
+const BuyerRouteWithChildren = BuyerRoute._addFileChildren(BuyerRouteChildren)
+
+interface VendorRouteChildren {
+  VendorDashboardRoute: typeof VendorDashboardRoute
+  VendorIndexRoute: typeof VendorIndexRoute
+}
+
+const VendorRouteChildren: VendorRouteChildren = {
+  VendorDashboardRoute: VendorDashboardRoute,
+  VendorIndexRoute: VendorIndexRoute,
+}
+
+const VendorRouteWithChildren =
+  VendorRoute._addFileChildren(VendorRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AdminRoute: AdminRouteWithChildren,
   BusinessClientsRoute: BusinessClientsRoute,
+  BuyerRoute: BuyerRouteWithChildren,
+  ChangeTemporaryPasswordRoute: ChangeTemporaryPasswordRoute,
   ContactRoute: ContactRoute,
   ImportExportRoute: ImportExportRoute,
+  LoginRoute: LoginRoute,
   QualityRoute: QualityRoute,
   RequestQuoteRoute: RequestQuoteRoute,
+  VendorRoute: VendorRouteWithChildren,
+  AccountDisabledRoute: AccountDisabledRoute,
+  AccountLockedRoute: AccountLockedRoute,
+  AccountPendingRoute: AccountPendingRoute,
+  AccountRejectedRoute: AccountRejectedRoute,
+  AccountSuspendedRoute: AccountSuspendedRoute,
   ProductsSlugRoute: ProductsSlugRoute,
+  RegisterBuyerRoute: RegisterBuyerRoute,
+  RegisterVendorRoute: RegisterVendorRoute,
   ProductsIndexRoute: ProductsIndexRoute,
+  RegisterIndexRoute: RegisterIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

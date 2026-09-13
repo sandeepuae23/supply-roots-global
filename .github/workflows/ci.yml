@@ -1,0 +1,129 @@
+# CI gates named by roadmap section 16 (Definition of done).
+# Owned by the INTEGRATION lane.
+#
+# Backend jobs are guarded on backend/pyproject.toml existing, so this file is
+# green today and activates automatically when the BE-FOUNDATION lane lands —
+# no second commit needed to "switch CI on".
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    outputs:
+      backend: ${{ steps.check.outputs.backend }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: check
+        run: |
+          if [ -f backend/pyproject.toml ]; then
+            echo "backend=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "backend=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::backend/ not present yet - backend gates skipped"
+          fi
+
+  web:
+    name: Web - typecheck and build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      # --frozen-lockfile is required: npm cannot install this project at all
+      # (@react-three/fiber pins react <19.3 while package.json floats ^19.2.0;
+      # only bun.lock's react@19.2.8 resolves).
+      - run: bun install --frozen-lockfile
+      - run: ./node_modules/.bin/tsc --noEmit
+      - run: bun run build
+        env:
+          NITRO_PRESET: node-server
+
+  web-format:
+    name: Web - lint (advisory)
+    runs-on: ubuntu-latest
+    # Non-blocking on purpose. The tree carries ~151 pre-existing
+    # prettier/prettier violations; making this required would mean a red
+    # pipeline from day one. Flip continue-on-error off once `bun run format`
+    # has been run across the repo.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - run: bun install --frozen-lockfile
+      - run: bun run lint
+
+  container:
+    name: Container - image builds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t supply-roots-global:ci .
+
+  backend:
+    name: Backend - migrations, lint, types, tests
+    needs: detect
+    if: needs.detect.outputs.backend == 'true'
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: portal
+          POSTGRES_PASSWORD: portal
+          POSTGRES_DB: portal_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U portal -d portal_test"
+          --health-interval 10s --health-timeout 5s --health-retries 5
+    env:
+      # Backend settings are LEO_-namespaced (app/core/config.py). Alembic's
+      # env.py resolves the async DSN from LEO_DATABASE_URL. Migrations run
+      # against a dedicated database so the up/down/up cycle never collides with
+      # the concurrency suite's drop_all/create_all on portal_test.
+      LEO_DATABASE_URL: postgresql+asyncpg://portal:portal@localhost:5432/portal_migrate
+      # PostgreSQL DSN for the row-level FOR UPDATE concurrency tests; without it
+      # they skip (tests/integration/test_concurrency_pg.py + conftest.py).
+      TEST_DATABASE_URL: postgresql+asyncpg://portal:portal@localhost:5432/portal_test
+      LEO_JWT_SECRET_KEY: ci-only-not-a-real-secret
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      # Alembic points at LEO_DATABASE_URL (portal_migrate), which must exist
+      # first. psql is preinstalled on the ubuntu-latest runner.
+      - name: Create migrate database
+        run: PGPASSWORD=portal psql -h localhost -U portal -d portal_test -c "CREATE DATABASE portal_migrate;"
+      # Migration gate: upgrade must reach head, and downgrade must be
+      # reversible (roadmap section 16, "migration and rollback are reviewed").
+      - name: Migration up/down/up
+        run: |
+          alembic upgrade head
+          alembic downgrade base
+          alembic upgrade head
+      # Exactly one Alembic head - catches competing heads from parallel lanes
+      # (task-breakdown rule 3).
+      - name: Single migration head
+        run: test "$(alembic heads | grep -c '')" -eq 1
+      - run: ruff check .
+      - run: mypy app
+      # TEST_DATABASE_URL is set above, so the PostgreSQL concurrency tests run
+      # rather than skip.
+      - name: Tests with coverage (incl. PostgreSQL concurrency)
+        run: pytest --cov=app --cov-report=term-missing
+      # The frontend generates its typed client from the OpenAPI schema, so
+      # guard that it still builds (app.main.create_app().openapi()).
+      - name: OpenAPI schema generates
+        run: python -c "import json; from app.main import create_app; json.dumps(create_app().openapi())"

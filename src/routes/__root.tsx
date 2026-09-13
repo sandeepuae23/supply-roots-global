@@ -5,6 +5,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -15,6 +16,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { AuthProvider } from "@/lib/auth/auth-context";
 
 function NotFoundComponent() {
   return (
@@ -120,8 +122,27 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+// Portal and authentication screens render their own full-screen chrome, so the
+// public marketing header/footer are omitted for these route prefixes. Every
+// other (public website) route keeps the original layout untouched.
+const PORTAL_PREFIXES = [
+  "/admin",
+  "/buyer",
+  "/vendor",
+  "/login",
+  "/register",
+  "/account",
+  "/change-temporary-password",
+];
+
+function isPortalPath(pathname: string): boolean {
+  return PORTAL_PREFIXES.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const portal = isPortalPath(pathname);
 
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -152,15 +173,17 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen flex-col">
-        <SiteHeader />
-        <main className="flex-1">
-          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-          <Outlet />
-        </main>
-        <SiteFooter />
-      </div>
-      <Toaster position="top-center" richColors />
+      <AuthProvider>
+        <div className="flex min-h-screen flex-col">
+          {!portal && <SiteHeader />}
+          <main className="flex-1">
+            {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+            <Outlet />
+          </main>
+          {!portal && <SiteFooter />}
+        </div>
+        <Toaster position="top-center" richColors />
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

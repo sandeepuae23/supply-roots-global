@@ -19,3 +19,14 @@ Dockerfile
 docker-compose.yml
 README.md
 AGENTS.md
+
+# Agent worktrees live under .claude/worktrees/ inside the repo root. Each is a
+# full checkout, so without this the build context carries the entire portal
+# backend and frontend lanes on every site build.
+.claude
+tmp
+docs
+
+# The portal backend has its own image (api service builds from ./backend with
+# its own .dockerignore). Keep its Python source out of the site build context.
+backend
